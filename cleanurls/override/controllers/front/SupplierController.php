@@ -23,7 +23,7 @@ class SupplierController extends SupplierControllerCore
 				$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
 			}
 
-			$id_supplier = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+			$id_supplier = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
 			if($id_supplier > 0)
 			{

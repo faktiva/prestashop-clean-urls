@@ -18,7 +18,7 @@ class CmsController extends CmsControllerCore
 				$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
 			}
 
-			$id_cms = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+			$id_cms = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
 			if($id_cms > 0)
 			{
@@ -44,7 +44,7 @@ class CmsController extends CmsControllerCore
 				$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
 			}
 
-			$id_cms_category = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+			$id_cms_category = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
 			if($id_cms_category > 0)
 			{

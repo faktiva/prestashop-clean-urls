@@ -23,7 +23,7 @@ class ManufacturerController extends ManufacturerControllerCore
 				$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
 			}
 
-			$id_manufacturer = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+			$id_manufacturer = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
 			if($id_manufacturer > 0)
 			{

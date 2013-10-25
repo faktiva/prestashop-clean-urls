@@ -19,7 +19,7 @@ class ProductController extends ProductControllerCore
 				$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
 			}
 
-			$id_product = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+			$id_product = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 				
 			if($id_product > 0)
 			{
@@ -38,7 +38,7 @@ class ProductController extends ProductControllerCore
 					$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
 				}
 					
-				$id_product = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+				$id_product = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
 				if($id_product > 0)
 				{

@@ -1,5 +1,4 @@
 <?php
-
 class Dispatcher extends DispatcherCore
 {
 	/**
@@ -89,14 +88,14 @@ class Dispatcher extends DispatcherCore
 		),
 		'category_rule' => array(
 			'controller' =>	'category',
-			'rule' =>		'{categories:/}{rewrite}/',
+			'rule' =>		'{parent_categories:/}{rewrite}/',
 			'keywords' => array(
 				'id' =>				array('regexp' => '[0-9]+'),
-				'categories' =>		array('regexp' => '[/_a-zA-Z0-9-\pL]*', 'param' => 'categories_rewrite'),
 				'rewrite' =>		array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'category_rewrite'),
 				'meta_keywords' =>	array('regexp' => '[_a-zA-Z0-9-\pL]*'),
 				'meta_title' =>		array('regexp' => '[_a-zA-Z0-9-\pL]*'),
-			),
+				'parent_categories' =>		array('regexp' => '[/_a-zA-Z0-9-\pL]*'),
+				),
 		),
 	);
 	

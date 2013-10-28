@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
         <module>
             <name>cleanurls</name>
-            <displayName><![CDATA[Clean URLs]]></displayName>
-            <version><![CDATA[0.45]]></version>
-            <description><![CDATA[This override allows you to remove URL ID&#039;s. + FIX BY LAPY90. FIX by Lebioda: It allows to use templates to achieve links like domain.com/link]]></description>
+            <displayName><![CDATA[Very Clean URLs]]></displayName>
+            <version><![CDATA[0.5]]></version>
+            <description><![CDATA[This override allows you to remove URL ID&#039;s. + FIX BY LAPY90 + FIX by Lebioda: It allows to use templates to achieve links like domain.com/link]]></description>
             <author><![CDATA[ha!*!*y + Lapy90 + Lebioda]]></author>
             <tab><![CDATA[seo]]></tab>
             <is_configurable>1</is_configurable>

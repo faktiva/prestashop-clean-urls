@@ -107,9 +107,13 @@ class Dispatcher extends DispatcherCore
 	 */
 	public static function isProductLink($short_link)
 	{
+		// check if any keyword
+		$explode_product_link = explode("/", $short_link);
+		$count = count($explode_product_link);
+		
 		$sql = 'SELECT `id_product`
 			FROM `'._DB_PREFIX_.'product_lang`
-			WHERE `link_rewrite` = \''.$short_link.'\' AND `id_lang` = '. Context::getContext()->language->id;
+			WHERE `link_rewrite` = \''.$explode_product_link[$count-1].'\' AND `id_lang` = '. Context::getContext()->language->id;
 
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 		{
@@ -153,10 +157,14 @@ class Dispatcher extends DispatcherCore
 	 */
 	public static function isCmsLink($short_link)
 	{
+		// check if any keyword
+		$explode_cms_link = explode("/", $short_link);
+		$count = count($explode_cms_link);
+	
 		$sql = 'SELECT l.`id_cms`
 			FROM `'._DB_PREFIX_.'cms_lang` l
 			LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
-			WHERE l.`link_rewrite` = \''.$short_link.'\'';
+			WHERE l.`link_rewrite` = \''.$explode_cms_link[$count-1].'\'';
 
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 		{
@@ -176,7 +184,11 @@ class Dispatcher extends DispatcherCore
 	 */
 	public static function isManufacturerLink($short_link)
 	{
-		$name_manufacturer = str_replace('-', '%', $short_link);
+		// check if any keyword
+		$explode_manufacturer_link = explode("/", $short_link);
+		$count = count($explode_manufacturer_link);
+		
+		$name_manufacturer = str_replace('-', '%', $explode_manufacturer_link[$count-1]);
 
 		$sql = 'SELECT m.`id_manufacturer`
 			FROM `'._DB_PREFIX_.'manufacturer` m
@@ -201,7 +213,11 @@ class Dispatcher extends DispatcherCore
 	 */
 	public static function isSupplierLink($short_link)
 	{
-		$name_supplier = str_replace('-', '%', $short_link);
+		// check if any keyword
+		$explode_supplier_link = explode("/", $short_link);
+		$count = count($explode_supplier_link);
+		
+		$name_supplier = str_replace('-', '%', $explode_supplier_link[$count-1]);
 
 		$sql = 'SELECT sp.`id_supplier`
 			FROM `'._DB_PREFIX_.'supplier` sp

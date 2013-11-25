@@ -1,6 +1,16 @@
 <?php
 class Link extends LinkCore
 {
+	protected static $category_disable_rewrite = null;
+
+	public function __construct($protocol_link = null, $protocol_content = null)
+	{
+		// Disable only root category
+		self::$category_disable_rewrite = array(Configuration::get('PS_ROOT_CATEGORY'));
+
+		parent::__construct($protocol_link, $protocol_content);
+	}
+
 	/**
 	 * Create a link to a category
 	 *
@@ -10,7 +20,7 @@ class Link extends LinkCore
 	 * @param string $selected_filters Url parameter to autocheck filters of the module blocklayered
 	 * @return string
 	 */
-	 //MODIFIED BY LAPY90
+	 //MODIFIED BY LAPY90 + ZiZuu
 	public function getCategoryLink($category, $alias = NULL, $id_lang = NULL, $selected_filters = NULL, $id_shop = NULL)
 	{
 	
@@ -18,7 +28,8 @@ class Link extends LinkCore
 		
 		if (!$id_lang)
 			$id_lang = Context::getContext()->language->id;
-		$url = _PS_BASE_URL_.__PS_BASE_URI__.$this->getLangLink($id_lang);
+
+		$url = $this->getBaseLink($id_shop).$this->getLangLink($id_lang, null, $id_shop);
 
 		if (!is_object($category))
 			$category = new Category($category, $id_lang);
@@ -48,12 +59,19 @@ class Link extends LinkCore
 			//RETRIEVING ALL THE PARENT CATEGORIES
 			$cats = array();
 			foreach ($category->getParentsCategories() as $cat)
-				if (!in_array($cat['id_category'], array(1, 2, $category->id)))//remove root, home and current category from the URL
+			{
+				$category_disable_rewrite[] = $category->id;
+
+				// remove root and current category from the URL
+				if (!in_array($cat['id_category'], $category_disable_rewrite)) {
 					$cats[] = $cat['link_rewrite']; //THE CATEGORIES ARE BEING ASSIGNED IN THE WRONG ORDER (?)
-			$params['parent_categories'] = implode('/', array_reverse($cats));//ADD THE URL SLASHES TO THE CATEGORIES IN REVERSE ORDER
+				}
+			}
+
+			$params['parent_categories'] = implode('/', array_reverse($cats)); //ADD THE URL SLASHES TO THE CATEGORIES IN REVERSE ORDER
 		}
 		
-		return $url.Dispatcher::getInstance()->createUrl($rule, $id_lang, $params, $this->allow);
+		return $url.Dispatcher::getInstance()->createUrl($rule, $id_lang, $params, $this->allow, '', $id_shop);
 
 	}
 

@@ -56,7 +56,7 @@ class cleanurls extends Module
 			$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
 		}
 
-		if ($results = (int)Db::getInstance()->ExecuteS($sql))
+		if ($results = Db::getInstance()->ExecuteS($sql))
 		{
 			$output .= 'You need to fix duplicate URL entries<br/>';
 			foreach ($results AS $row)

@@ -20,7 +20,7 @@ class Link extends LinkCore
 	 * @param string $selected_filters Url parameter to autocheck filters of the module blocklayered
 	 * @return string
 	 */
-	 //MODIFIED BY LAPY90 + ZiZuu
+	 //MODIFIED BY LAPY90
 	public function getCategoryLink($category, $alias = NULL, $id_lang = NULL, $selected_filters = NULL, $id_shop = NULL)
 	{
 	

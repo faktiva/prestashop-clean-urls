@@ -1,14 +1,12 @@
 <?php
 class Link extends LinkCore
 {
-	protected static $category_disable_rewrite = null;
-
 	public function __construct($protocol_link = null, $protocol_content = null)
 	{
-		parent::__construct($protocol_link, $protocol_content);
-		
 		// Disable only root category
-		self::$category_disable_rewrite = array(Configuration::get('PS_ROOT_CATEGORY'));
+		Link::$category_disable_rewrite = array(Configuration::get('PS_ROOT_CATEGORY'));
+
+		parent::__construct($protocol_link, $protocol_content);
 	}
 
 	/**
@@ -60,10 +58,10 @@ class Link extends LinkCore
 			$cats = array();
 			foreach ($category->getParentsCategories() as $cat)
 			{
-				$category_disable_rewrite[] = $category->id;
+				self::$category_disable_rewrite[] = $category->id;
 
 				// remove root and current category from the URL
-				if (!in_array($cat['id_category'], $category_disable_rewrite)) {
+				if (!in_array($cat['id_category'], self::$category_disable_rewrite)) {
 					$cats[] = $cat['link_rewrite']; //THE CATEGORIES ARE BEING ASSIGNED IN THE WRONG ORDER (?)
 				}
 			}

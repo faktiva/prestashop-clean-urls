@@ -5,10 +5,10 @@ class Link extends LinkCore
 
 	public function __construct($protocol_link = null, $protocol_content = null)
 	{
+		parent::__construct($protocol_link, $protocol_content);
+		
 		// Disable only root category
 		self::$category_disable_rewrite = array(Configuration::get('PS_ROOT_CATEGORY'));
-
-		parent::__construct($protocol_link, $protocol_content);
 	}
 
 	/**

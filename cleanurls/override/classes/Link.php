@@ -5,8 +5,10 @@ class Link extends LinkCore
 	{
 		parent::__construct($protocol_link, $protocol_content);
 
+		/* TODO add a configuration switch to hide or show the Home category
 		// Re-add Home category
 		Link::$category_disable_rewrite = array_diff(Link::$category_disable_rewrite, array(Configuration::get('PS_HOME_CATEGORY')));
+		*/
 	}
 
 	/**
@@ -18,7 +20,6 @@ class Link extends LinkCore
 	 * @param string $selected_filters Url parameter to autocheck filters of the module blocklayered
 	 * @return string
 	 */
-	 //MODIFIED BY LAPY90
 	public function getCategoryLink($category, $alias = NULL, $id_lang = NULL, $selected_filters = NULL, $id_shop = NULL)
 	{
 	

@@ -349,6 +349,7 @@ class Dispatcher extends DispatcherCore
 						// hack to make smartblog category path work. Remember to deactivate html in the smartblog module configuration
 						if (null !== Configuration::get('smartmainblogurl')) {
 							$blog_url = Configuration::get('smartmainblogurl');
+							$blog_url = $blog_url.'/';
 						}
 						else {
 							// no smart blog we assume a generic blog path

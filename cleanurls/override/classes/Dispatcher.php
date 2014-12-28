@@ -15,6 +15,15 @@ class Dispatcher extends DispatcherCore
 				'meta_title' =>		array('regexp' => '[_a-zA-Z0-9-\pL]*'),
 			),
 		),
+		'smartblog_rule' => array(
+			'controller' => 'category',
+        		'rule' => 'blog/',
+        		'keywords' => array(),
+        	'params' => array(
+        		'fc' => 'module',
+        		'module' => 'smartblog',
+        		),
+        	),
 		'manufacturer_rule' => array(
 			'controller' =>	'manufacturer',
 			'rule' =>		'manufacturer/{rewrite}/',
@@ -336,6 +345,19 @@ class Dispatcher extends DispatcherCore
 						$req_url = substr($this->request_uri, 1); 		// remove '/' from begining
 						$req_url = explode("?", $req_url);				// remove all after '?'
 						$short_link = $req_url[0];
+						
+						// hack to make smartblog category path work. Remember to deactivate html in the smartblog module configuration
+						if (null !== Configuration::get('smartmainblogurl')) {
+							$blog_url = Configuration::get('smartmainblogurl');
+						}
+						else {
+							// no smart blog we assume a generic blog path
+							$blog_url = 'blog/'
+						}
+						
+						if ($req_url[0] == $blog_url) {
+							$findRoute = $this->routes[$id_shop][Context::getContext()->language->id]['smartblog_rule'];
+						}
 						
 //						$firephp->log($short_link, 'Short Link');
 						

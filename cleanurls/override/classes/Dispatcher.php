@@ -352,7 +352,7 @@ class Dispatcher extends DispatcherCore
 						}
 						else {
 							// no smart blog we assume a generic blog path
-							$blog_url = 'blog/'
+							$blog_url = 'blog/';
 						}
 						
 						if ($req_url[0] == $blog_url) {

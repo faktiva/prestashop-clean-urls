@@ -37,8 +37,22 @@ class Link extends LinkCore
 		$params = array();
 		$params['id'] = $category->id;
 		$params['rewrite'] = (!$alias) ? $category->link_rewrite : $alias;
-		$params['meta_keywords'] =	Tools::str2url($category->meta_keywords);
-		$params['meta_title'] = Tools::str2url($category->meta_title);
+		
+		/* 
+		/* keywords and metatitle can be supplied by PS as an array, if so make
+		/* sure we implode to a single string for further processing by str2url
+		*/
+		$tmpKwds = $category->meta_keywords;
+		if(is_array($tmpKwds))	{
+			$tmpKwds = implode(" ", $category->meta_keywords);
+		}
+		$params['meta_keywords'] = Tools::str2url($tmpKwds);
+		
+		$tmpTitle = $category->meta_title;
+		if(is_array($tmpTitle)) {
+			$tmpTitle = implode(" ", $category->meta_title);
+		}
+		$params['meta_title'] = Tools::str2url($tmpTitle);
 
 		// Selected filters is used by the module blocklayered
 		$selected_filters = is_null($selected_filters) ? '' : $selected_filters;

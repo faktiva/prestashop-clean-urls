@@ -1,4 +1,4 @@
-[ABOUT](http://lebioda.github.io/PrestaShop-modules-CleanURLs/)
+[ABOUT](https://github.com/Ha99y/PrestaShop-modules-CleanURLs)
 ===============================================================
 it works on my 1.6.0.9
 don't ask me how and why, hack away,

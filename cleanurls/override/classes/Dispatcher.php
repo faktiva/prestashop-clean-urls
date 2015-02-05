@@ -15,15 +15,6 @@ class Dispatcher extends DispatcherCore
 				'meta_title' =>		array('regexp' => '[_a-zA-Z0-9-\pL]*'),
 			),
 		),
-		'smartblog_rule' => array(
-			'controller' => 'category',
-        		'rule' => 'blog/',
-        		'keywords' => array(),
-        	'params' => array(
-        		'fc' => 'module',
-        		'module' => 'smartblog',
-        		),
-        	),
 		'manufacturer_rule' => array(
 			'controller' =>	'manufacturer',
 			'rule' =>		'manufacturer/{rewrite}/',
@@ -242,7 +233,70 @@ class Dispatcher extends DispatcherCore
 					
 		return ($id_supplier > 0) ? true : false;
 	}
+	
+		/**
+	 *
+	 * @param string $route_id Name of the route (need to be uniq, a second route with same name will override the first)
+	 * @param string $rule Url rule
+	 * @param string $controller Controller to call if request uri match the rule
+	 * @param int $id_lang
+ 	 * @param int $id_shop
+	 */
+	public function addRoute($route_id, $rule, $controller, $id_lang = null, array $keywords = array(), array $params = array(), $id_shop = null)
+	{
+		if (isset(Context::getContext()->language) && $id_lang === null)
+			$id_lang = (int)Context::getContext()->language->id;
 
+		if (isset(Context::getContext()->shop) && $id_shop === null)
+			$id_shop = (int)Context::getContext()->shop->id;
+
+		$regexp = preg_quote($rule, '#');
+		if ($keywords)
+		{
+			$transform_keywords = array();
+			preg_match_all('#\\\{(([^{}]*)\\\:)?('.implode('|', array_keys($keywords)).')(\\\:([^{}]*))?\\\}#', $regexp, $m);
+			for ($i = 0, $total = count($m[0]); $i < $total; $i++)
+			{
+				$prepend = $m[2][$i];
+				$keyword = $m[3][$i];
+				$append = $m[5][$i];
+				$transform_keywords[$keyword] = array(
+					'required' =>	isset($keywords[$keyword]['param']),
+					'prepend' =>	stripslashes($prepend),
+					'append' =>		stripslashes($append),
+				);
+
+				$prepend_regexp = $append_regexp = '';
+				if ($prepend || $append)
+				{
+					$prepend_regexp = '('.preg_quote($prepend);
+					$append_regexp = preg_quote($append).')?';
+				}
+
+				if (isset($keywords[$keyword]['param']))
+					$regexp = str_replace($m[0][$i], $prepend_regexp.'(?P<'.$keywords[$keyword]['param'].'>'.$keywords[$keyword]['regexp'].')'.$append_regexp, $regexp);
+				else
+					$regexp = str_replace($m[0][$i], $prepend_regexp.'('.$keywords[$keyword]['regexp'].')'.$append_regexp, $regexp);
+
+			}
+			$keywords = $transform_keywords;
+		}
+
+		$regexp = '#^/'.$regexp.'(\?.*)?$#u';
+		if (!isset($this->routes[$id_shop]))
+			$this->routes[$id_shop] = array();
+		if (!isset($this->routes[$id_shop][$id_lang]))
+			$this->routes[$id_shop][$id_lang] = array();
+
+		$this->routes[$id_shop][$id_lang][$route_id] = array(
+			'rule' =>		$rule,
+			'regexp' =>		$regexp,
+			'controller' =>	$controller,
+			'keywords' =>	$keywords,
+			'params' =>		$params,
+		);
+	}
+	
 	/**
 	 * Retrieve the controller from url or request uri if routes are activated
 	 *

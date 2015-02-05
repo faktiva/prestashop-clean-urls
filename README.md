@@ -11,6 +11,15 @@ Install the module from the Backoffice (administration panel)
 
 In the modules tab, click on add a new module. Click on Browse to open the dialogue box letting you search your computer, select the file then validate the dialogue box. Finally click on Upload this module.
 
+Make sure your seo and url settings are as follows:
+ 
+This is MANDATORY
+products:          {categories:/}{rewrite} (no .html at the end OBLIGATORY)
+categories:       {parent_categories:/}{rewrite}/
+manufacturers: {rewrite}
+CMS:                "WHAT YOU WANT"/{rewrite} ex info/{rewrite}
+ 
+Keep in mind to clear browser cache / PS cache under smarty/cache and smarty/compile
 
 UNINSTALLATION
 --------

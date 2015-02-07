@@ -1,6 +1,6 @@
 [ABOUT](https://github.com/Ha99y/PrestaShop-modules-CleanURLs)
 ===============================================================
-it works on my 1.6.0.9 sadly not working on 1.6.0.11 and onwards at the moment.
+it works on my 1.6.0.12.
 
 btw I added support for smartblog url rewrite, so now both module play nicely along, or at least for my needs...
 

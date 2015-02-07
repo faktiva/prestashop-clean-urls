@@ -14,7 +14,7 @@ In the modules tab, click on add a new module. Click on Browse to open the dialo
 ###Make sure your seo and url settings are as follows:
  
 This is __MANDATORY__
-* products:          {categories:/}{rewrite} (no .html at the end **OBLIGATORY**)
+* products:          {category:/}{rewrite} (no .html at the end **OBLIGATORY**)
 * categories:       {parent_categories:/}{rewrite}/
 * manufacturers: {rewrite}
 * CMS:                "WHAT YOU WANT"/{rewrite} ex info/{rewrite}

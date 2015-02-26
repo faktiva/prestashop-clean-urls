@@ -30,7 +30,7 @@ class cleanurls extends Module
 
 		parent::__construct();
 
-		$this->displayName = $this->l('ZZ Clean URLs');
+		$this->displayName = $this->l('ZiZuu Clean URLs');
 		$this->description = $this->l('This override-Module allows you to remove URL ID\'s.');
 	}
 
@@ -41,7 +41,7 @@ class cleanurls extends Module
 				Advanced Parameters > Performance > Clear Smarty cache<br /><br/>
 				Go to back office -> Preferences -> SEO and URLs -> Set userfriendly URL off -> Save<br />
 				Go to back office -> Preferences -> SEO and URLs -> Set userfriendly URL on -> Save<br />
-			</div><br />';
+				</div><br />';
 
 		$sql = 'SELECT * FROM `'._DB_PREFIX_.'product_lang`
 				WHERE `link_rewrite`

@@ -24,21 +24,19 @@ class cleanurls extends Module
 	{
 		$this->name = 'cleanurls';
 		$this->tab = 'seo';
-		$this->version = '0.42.1';
+		$this->version = '0.6';
 		$this->need_instance = 0;
-		$this->author = 'ha!*!*y';
+		$this->author = 'ZiZuu Store';
 
 		parent::__construct();
 
-		$this->displayName = $this->l('Clean URLs');
+		$this->displayName = $this->l('ZZ Clean URLs');
 		$this->description = $this->l('This override-Module allows you to remove URL ID\'s.');
 	}
 
 	public function getContent()
 	{
-		$output = '';
-
-		$output .= '<div style="display:block;" class="hint">
+		$output = '<div style="display:block;" class="hint">
 				On some versions you have to disable Cache save than open your shop home page than go back and enable it.<br/>
 				Advanced Parameters > Performance > Clear Smarty cache<br /><br/>
 				Go to back office -> Preferences -> SEO and URLs -> Set userfriendly URL off -> Save<br />
@@ -76,13 +74,13 @@ class cleanurls extends Module
 	}
 
 	function checkWritable($directories)
-    {
-        foreach ($directories as $dir) {
-			if (!file_exists(_PS_ROOT_DIR_ . "/" . $dir) && 
-				strpos($dir, "override/", 0) === 0 && 
+	{
+        	foreach ($directories as $dir) {
+			if (!file_exists(_PS_ROOT_DIR_ . '/' . $dir) && 
+				strpos($dir, 'override/', 0) === 0 && 
 				!copy(_PS_ROOT_DIR_ ."/modules/cleanurls/empty_".$dir, _PS_ROOT_DIR_ . "/" . $dir))
 				return false;
-            if (!is_writable(_PS_ROOT_DIR_ . "/" . $dir))
+            if (!is_writable(_PS_ROOT_DIR_ . '/' . $dir))
                 return false;
 		}
         return true;
@@ -90,12 +88,12 @@ class cleanurls extends Module
     
 	public function install()
 	{
-	
 		if (!$this->checkWritable(array("override/classes/Dispatcher.php", "override/classes/Link.php",
             "override/controllers/front/CategoryController.php", "override/controllers/front/CmsController.php", "override/controllers/front/ManufacturerController.php","override/controllers/front/ProductController.php"),"override/controllers/front/SupplierController.php")
         ) {
-            $this->_errors[] = $this->l('Files in /override folder are not writable, these files need to be writable: classes: Dispatcher.php, Link.php; controllers/front: CategoryController.php, CmsController.php, ManufacturerController.php, ProductController.php, SupplierController.php');
-            return false;
+			$this->_errors[] = $this->l('Files in /override folder are not writable, these files need to be writable: classes: Dispatcher.php, Link.php; controllers/front: CategoryController.php, CmsController.php, ManufacturerController.php, ProductController.php, SupplierController.php')
+;
+			 return false;
 		}
 		// add link_rewrite as index to improve search
 		$table_list = array('category_lang','cms_category_lang','cms_lang','product_lang');

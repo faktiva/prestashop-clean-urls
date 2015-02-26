@@ -5,7 +5,8 @@ class Link extends LinkCore
 	{
 		parent::__construct($protocol_link, $protocol_content);
 
-		/* TODO add a configuration switch to hide or show the Home category
+		/* TODO
+		 * add a configuration switch to hide or show the Home category
 		// Re-add Home category
 		Link::$category_disable_rewrite = array_diff(Link::$category_disable_rewrite, array(Configuration::get('PS_HOME_CATEGORY')));
 		*/
@@ -35,10 +36,10 @@ class Link extends LinkCore
 
 		// Set available keywords
 		$params = array();
-		$params['id'] = $category->id;
-		$params['rewrite'] = (!$alias) ? $category->link_rewrite : $alias;
-		$params['meta_keywords'] =	Tools::str2url($category->meta_keywords);
-		$params['meta_title'] = Tools::str2url($category->meta_title);
+		$params['id']            = $category->id;
+		$params['rewrite']       = (!$alias) ? $category->link_rewrite : $alias;
+		$params['meta_keywords'] = Tools::str2url($category->meta_keywords);
+		$params['meta_title']    = Tools::str2url($category->meta_title);
 
 		// Selected filters is used by the module blocklayered
 		$selected_filters = is_null($selected_filters) ? '' : $selected_filters;
@@ -50,12 +51,10 @@ class Link extends LinkCore
 			$rule = 'layered_rule';
 			$params['selected_filters'] = $selected_filters;
 		}
-
-		
 	
 		if ($dispatcher->hasKeyword('category_rule', $id_lang, 'parent_categories'))
 		{
-			//RETRIEVING ALL THE PARENT CATEGORIES
+			//Retrieve all parent categories
 			$cats = array();
 			foreach ($category->getParentsCategories() as $cat)
 			{
@@ -63,18 +62,17 @@ class Link extends LinkCore
 
 				// remove root and current category from the URL
 				if (!in_array($cat['id_category'], self::$category_disable_rewrite)) {
-					$cats[] = $cat['link_rewrite']; //THE CATEGORIES ARE BEING ASSIGNED IN THE WRONG ORDER (?)
+					$cats[] = $cat['link_rewrite'];
 				}
 			}
-
-			$params['parent_categories'] = implode('/', array_reverse($cats)); //ADD THE URL SLASHES TO THE CATEGORIES IN REVERSE ORDER
+			// Add the URL slashes among categories, in reverse order
+			$params['parent_categories'] = implode('/', array_reverse($cats));
 		}
 		
 		return $url.Dispatcher::getInstance()->createUrl($rule, $id_lang, $params, $this->allow, '', $id_shop);
-
 	}
 
-	
+
 	/**
 	 * Get pagination link
 	 *
@@ -116,7 +114,7 @@ class Link extends LinkCore
 
 		foreach ($_GET as $k => $value)
 		{
-			// Ha!*!*y strip var like category_rewrite from url
+			// strip var like category_rewrite from url
 			if ($k != 'id_'.$type && $k != $type.'_rewrite' && $k != 'controller')
 			{
 				if (Configuration::get('PS_REWRITING_SETTINGS') && ($k == 'isolang' || $k == 'id_lang'))
@@ -155,5 +153,4 @@ class Link extends LinkCore
 			$vars['controller'] = Dispatcher::getInstance()->getController();
 		return $vars;
 	}
-
 }

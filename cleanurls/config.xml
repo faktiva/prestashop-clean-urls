@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
         <module>
-            <name>cleanurls</name>
-            <displayName><![CDATA[Very Clean URLs]]></displayName>
+            <name>zzcleanurls</name>
+            <displayName><![CDATA[ZiZuu Clean URLs]]></displayName>
             <version><![CDATA[0.6]]></version>
             <description><![CDATA[This override allows you to remove URL ID&#039;s. This version is actively maintained by ZiZuu Store, as we need it working]]></description>
-            <author><![CDATA[ZiZuu + ha!*!*y + Lapy90 + Lebioda]]></author>
+            <author><![CDATA[ZiZuu Store]]></author>
             <tab><![CDATA[seo]]></tab>
             <is_configurable>1</is_configurable>
             <need_instance>0</need_instance>

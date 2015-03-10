@@ -56,7 +56,7 @@ class Link extends LinkCore
 		{
 			//Retrieve all parent categories
 			$cats = array();
-			foreach ($category->getParentsCategories() as $cat)
+			foreach ($category->getParentsCategories($id_lang) as $cat)
 			{
 				self::$category_disable_rewrite[] = $category->id;
 

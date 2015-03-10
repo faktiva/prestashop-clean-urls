@@ -24,7 +24,9 @@ This is __MANDATORY__
 
 You can replace "info" with whatever you want given that it does not conflicts with a category name
 
-Keep in mind to **clear the browser cache**, **clear PS cache** under smarty->cache and smarty->compile
+Keep in mind to 
+* **clear the browser cache**
+* **clear PS cache** (under smarty -> cache and smarty -> compile)
 
 UNINSTALLATION
 --------

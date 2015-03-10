@@ -24,7 +24,7 @@ class cleanurls extends Module
 	{
 		$this->name = 'cleanurls';
 		$this->tab = 'seo';
-		$this->version = '0.6';
+		$this->version = '0.7';
 		$this->need_instance = 0;
 		$this->author = 'ZiZuu Store';
 

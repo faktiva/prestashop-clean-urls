@@ -14,12 +14,17 @@ In the modules tab, click on **add a new module**. Click on Browse to open the d
 ###Make sure your seo and url settings are as follows:
  
 This is __MANDATORY__
-* products:         {category:/}{rewrite} (**NO .html** at the end)
+* products:         {categories:/}{rewrite}              (**NO .html** at the end)
 * categories:       {parent_categories:/}{rewrite}/
-* manufacturers:    {rewrite}
-* CMS:              "WHAT YOU WANT"/{rewrite} (ex info/{rewrite})
- 
-Keep in mind to clear browser cache / PS cache under smarty/cache and smarty/compile
+* manufacturers:    manufactures/{rewrite}
+* suppliers:        suppliers/{rewrite}
+* CMS page:         info/{rewrite}
+* CMS category:     info/{rewrite}/
+* modules:          modules/{module}{/:controller}
+
+You can replace "info" with whatever you want given that it does not conflicts with a category name
+
+Keep in mind to **clear the browser cache**, **clear PS cache** under smarty->cache and smarty->compile
 
 UNINSTALLATION
 --------

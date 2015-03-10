@@ -21,15 +21,12 @@ class Link extends LinkCore
 	 * @param string $selected_filters Url parameter to autocheck filters of the module blocklayered
 	 * @return string
 	 */
-	public function getCategoryLink($category, $alias = NULL, $id_lang = NULL, $selected_filters = NULL, $id_shop = NULL)
+	public function getCategoryLink($category, $alias = NULL, $id_lang = NULL, $selected_filters = NULL, $id_shop = NULL, $relative_protocol = false)
 	{
-	
-		$dispatcher = Dispatcher::getInstance();
-		
 		if (!$id_lang)
 			$id_lang = Context::getContext()->language->id;
 
-		$url = $this->getBaseLink($id_shop).$this->getLangLink($id_lang, null, $id_shop);
+		$url = $this->getBaseLink($id_shop, null, $relative_protocol).$this->getLangLink($id_lang, null, $id_shop);
 
 		if (!is_object($category))
 			$category = new Category($category, $id_lang);
@@ -38,8 +35,8 @@ class Link extends LinkCore
 		$params = array();
 		$params['id']            = $category->id;
 		$params['rewrite']       = (!$alias) ? $category->link_rewrite : $alias;
-		$params['meta_keywords'] = Tools::str2url($category->meta_keywords);
-		$params['meta_title']    = Tools::str2url($category->meta_title);
+                $params['meta_keywords'] = Tools::str2url($category->getFieldByLang('meta_keywords'));
+                $params['meta_title']    = Tools::str2url($category->getFieldByLang('meta_title'));
 
 		// Selected filters is used by the module blocklayered
 		$selected_filters = is_null($selected_filters) ? '' : $selected_filters;
@@ -51,7 +48,10 @@ class Link extends LinkCore
 			$rule = 'layered_rule';
 			$params['selected_filters'] = $selected_filters;
 		}
-	
+
+		$dispatcher = Dispatcher::getInstance();
+
+		//XXX: replace 'category_rule' with $rule ? 
 		if ($dispatcher->hasKeyword('category_rule', $id_lang, 'parent_categories'))
 		{
 			//Retrieve all parent categories
@@ -69,7 +69,7 @@ class Link extends LinkCore
 			$params['parent_categories'] = implode('/', array_reverse($cats));
 		}
 		
-		return $url.Dispatcher::getInstance()->createUrl($rule, $id_lang, $params, $this->allow, '', $id_shop);
+		return $url.$dispatcher->createUrl($rule, $id_lang, $params, $this->allow, '', $id_shop);
 	}
 
 

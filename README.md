@@ -1,4 +1,4 @@
-[ABOUT](https://github.com/ZiZuu-store/PrestaShop-modules-CleanURLs)
+[ABOUT](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 ===============================================================
 It works on our 1.6.0.9. We are going to merge other users' contributions and ideas as soon as we note them and find the time to test.
 

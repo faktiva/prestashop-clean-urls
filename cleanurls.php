@@ -12,11 +12,14 @@
 * This code is provided as is without any warranty.
 * No promise of being safe or secure
 *
-*  @author      Ha!*!*y <ha99ys@gmail.com>
+*  @author      ZiZuu.com <info@zizuu.com>
 *  @copyright   2012-2013 Ha!*!*y
 *  @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  @code sorce: http://prestashop.com
+*  @source      https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
 */
+
+if (!defined('_PS_VERSION_'))
+	  exit;
 
 class cleanurls extends Module
 {

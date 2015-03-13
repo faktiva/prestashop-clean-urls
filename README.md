@@ -19,8 +19,8 @@ This is __MANDATORY__
 * manufacturers:    manufactures/{rewrite}
 * suppliers:        suppliers/{rewrite}
 * CMS page:         info/{rewrite}
-* CMS category:     info/{rewrite}/
-* modules:          modules/{module}{/:controller}
+* CMS category:     info/{rewrite}**/**
+* modules:          module/{module}{/:controller}
 
 You can replace "info" with whatever you want given that it does not conflicts with a category name
 

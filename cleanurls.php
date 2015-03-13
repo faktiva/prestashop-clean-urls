@@ -44,12 +44,12 @@ class CleanUrls extends Module
 
 	public function getContent()
 	{
-		$output = '<div style="display:block;" class="hint">
+		$output = '<p>
 				On some versions you have to disable Cache save than open your shop home page than go back and enable it.<br />
 				Advanced Parameters > Performance > Clear Smarty cache<br /><br />
 				Go to back office -> Preferences -> SEO and URLs -> Set userfriendly URL off -> Save<br />
 				Go to back office -> Preferences -> SEO and URLs -> Set userfriendly URL on -> Save<br />
-				</div><br />';
+				</p>';
 
 		$sql = 'SELECT * FROM `'._DB_PREFIX_.'product_lang`
 			WHERE `link_rewrite`
@@ -61,8 +61,8 @@ class CleanUrls extends Module
 
 		if ($results = Db::getInstance()->ExecuteS($sql))
 		{
-			$output .= 'You need to fix duplicate URL entries<br />';
-			foreach ($results AS $row)
+			$this->adminDisplayWarning('You need to fix duplicate URL entries.');
+			foreach ($results as $row)
 			{
 				$language_info = $this->context->language->getLanguage($row['id_lang']);
 				$output .= $row['name'].' ('.$row['id_product'] .') - '. $row['link_rewrite'].'<br />';
@@ -71,42 +71,13 @@ class CleanUrls extends Module
 			}
 		}
 		else
-			$output .= 'Nice you don\'t have any duplicate URL entries.';
+			$output .= '<strong>Nice you don\'t have any duplicate URL entries.</strong>';
 
 		return $output;
 	}
 
-	// TODO: rewrite to have a robust install process
-	function checkWritable($directories)
-	{
-		foreach ($directories as $dir) {
-			if (!file_exists(_PS_ROOT_DIR_ . '/' . $dir) 
-				&& 0 === strpos($dir, 'override/', 0)
-				&& !copy(_PS_ROOT_DIR_ .'/modules/'._MODULE_NAME.'/'.$dir, _PS_ROOT_DIR_ . '/' . $dir))
-				return false;
-			if (!is_writable(_PS_ROOT_DIR_ . '/' . $dir))
-				return false;
-		}
-		return true;
-	}
-    
 	public function install()
 	{
-		$overrides = array('override/classes/Dispatcher.php',
-			'override/classes/Link.php',
-			'override/controllers/front/CategoryController.php',
-			'override/controllers/front/CmsController.php',
-			'override/controllers/front/ManufacturerController.php',
-			'override/controllers/front/ProductController.php',
-			'override/controllers/front/SupplierController.php',
-		);
-
-		if (!$this->checkWritable($overrides))
-		{
-			$this->_errors[] = $this->l('Files in /override folder are not writable, these files need to be writable:'
-					.'classes: Dispatcher.php, Link.php; controllers/front: CategoryController.php, CmsController.php, ManufacturerController.php, ProductController.php, SupplierController.php');
-			 return false;
-		}
 		// add link_rewrite as index to improve search
 		$table_list = array('category_lang','cms_category_lang','cms_lang','product_lang');
 		foreach($table_list as $table)
@@ -115,17 +86,11 @@ class CleanUrls extends Module
 				Db::getInstance()->Execute('ALTER TABLE `'._DB_PREFIX_.$table.'` ADD INDEX ( `link_rewrite` )');
 		}
 
-		if (!parent::install())
-			return false;
-
-		return true;
+		return parent::install();
 	}
 
 	public function uninstall()
 	{
-		// TODO: restore previous override state
-		if (!parent::uninstall())
-			return false;
-		return true;
+		return parent::uninstall();
 	}
 }

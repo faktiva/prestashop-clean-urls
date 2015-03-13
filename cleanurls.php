@@ -22,9 +22,11 @@ if (!defined('_PS_VERSION_'))
 
 class CleanUrls extends Module
 {
+	const _MODULE_NAME = 'cleanurls';
+
 	public function __construct()
 	{
-		$this->name = 'cleanurls';
+		$this->name = _MODULE_NAME;
 		$this->tab = 'seo';
 		$this->version = '0.8';
 		$this->author = 'ZiZuu Store';
@@ -37,7 +39,7 @@ class CleanUrls extends Module
 		$this->displayName = $this->l('ZiZuu Clean URLs');
 		$this->description = $this->l('This override-Module allows you to remove URL ID\'s.');
 
-		$this->confirmUninstall = $this->l('Are you sure you want to uninstall "cleanurls"?');
+		$this->confirmUninstall = $this->l('Are you sure you want to uninstall "'._MODULE_NAME.'"?');
 	}
 
 	public function getContent()
@@ -54,7 +56,6 @@ class CleanUrls extends Module
 			IN (SELECT `link_rewrite` FROM `'._DB_PREFIX_.'product_lang`
 			GROUP BY `link_rewrite`, `id_lang`
 			HAVING count(`link_rewrite`) > 1)';
-
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 			$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
 
@@ -75,12 +76,13 @@ class CleanUrls extends Module
 		return $output;
 	}
 
+	// TODO: rewrite to have a robust install process
 	function checkWritable($directories)
 	{
 		foreach ($directories as $dir) {
 			if (!file_exists(_PS_ROOT_DIR_ . '/' . $dir) 
 				&& 0 === strpos($dir, 'override/', 0)
-				&& !copy(_PS_ROOT_DIR_ .'/modules/cleanurls/'.$dir, _PS_ROOT_DIR_ . '/' . $dir))
+				&& !copy(_PS_ROOT_DIR_ .'/modules/'._MODULE_NAME.'/'.$dir, _PS_ROOT_DIR_ . '/' . $dir))
 				return false;
 			if (!is_writable(_PS_ROOT_DIR_ . '/' . $dir))
 				return false;

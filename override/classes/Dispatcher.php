@@ -315,7 +315,7 @@ class Dispatcher extends DispatcherCore
 									break;
 							}
 							
-							if ($isTemplate == false)
+							if (!$isTemplate)
 							{
 								$findRoute = $route;
 								break;

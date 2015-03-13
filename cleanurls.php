@@ -26,7 +26,7 @@ class CleanUrls extends Module
 
 	public function __construct()
 	{
-		$this->name = _MODULE_NAME;
+		$this->name = self::_MODULE_NAME;
 		$this->tab = 'seo';
 		$this->version = '0.8';
 		$this->author = 'ZiZuu Store';
@@ -39,7 +39,7 @@ class CleanUrls extends Module
 		$this->displayName = $this->l('ZiZuu Clean URLs');
 		$this->description = $this->l('This override-Module allows you to remove URL ID\'s.');
 
-		$this->confirmUninstall = $this->l('Are you sure you want to uninstall "'._MODULE_NAME.'"?');
+		$this->confirmUninstall = $this->l('Are you sure you want to uninstall "'.self::_MODULE_NAME.'"?');
 	}
 
 	public function getContent()

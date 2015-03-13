@@ -113,7 +113,7 @@ class Dispatcher extends DispatcherCore
 				'meta_keywords'     => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
 				'meta_title'        => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
 				'parent_categories' => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
-				),
+			),
 		),
 	);
 	
@@ -131,12 +131,9 @@ class Dispatcher extends DispatcherCore
 		
 		$sql = 'SELECT `id_product`
 			FROM `'._DB_PREFIX_.'product_lang`
-			WHERE `link_rewrite` = \''.$explode_product_link[$count-1].'\' AND `id_lang` = '. Context::getContext()->language->id;
-
+			WHERE `link_rewrite` = \''.pSQL($explode_product_link[$count-1]).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
-		{
 			$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
-		}
 
 		$id_product = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 			
@@ -155,12 +152,9 @@ class Dispatcher extends DispatcherCore
 		$categories = explode('/', $short_link);
 		
 		$sql = 'SELECT `id_category` FROM `'._DB_PREFIX_.'category_lang`
-				WHERE `link_rewrite` = \''.$categories[0].'\' AND `id_lang` = '. Context::getContext()->language->id;
-
+				WHERE `link_rewrite` = \''.pSQL($categories[0]).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
-		{
 			$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
-		}
 		
 		$id_category = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 					
@@ -182,12 +176,9 @@ class Dispatcher extends DispatcherCore
 		$sql = 'SELECT l.`id_cms`
 			FROM `'._DB_PREFIX_.'cms_lang` l
 			LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
-			WHERE l.`link_rewrite` = \''.$explode_cms_link[$count-1].'\'';
-
+			WHERE l.`link_rewrite` = \''.pSQL($explode_cms_link[$count-1]).'\'';
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
-		{
 			$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
-		}
 
 		$id_cms = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 					
@@ -206,17 +197,14 @@ class Dispatcher extends DispatcherCore
 		$explode_manufacturer_link = explode('/', $short_link);
 		$count = count($explode_manufacturer_link);
 		
-		$name_manufacturer = str_replace('-', '%', $explode_manufacturer_link[$count-1]);
+		$manufacturer = str_replace('-', '%', $explode_manufacturer_link[$count-1]);
 
 		$sql = 'SELECT m.`id_manufacturer`
 			FROM `'._DB_PREFIX_.'manufacturer` m
 			LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
-			WHERE m.`name` LIKE \''.$name_manufacturer.'\'';
-	
+			WHERE m.`name` LIKE \''.pSQL($manufacturer).'\'';
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
-		{
 			$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
-		}
 
 		$id_manufacturer = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 					
@@ -235,17 +223,14 @@ class Dispatcher extends DispatcherCore
 		$explode_supplier_link = explode('/', $short_link);
 		$count = count($explode_supplier_link);
 		
-		$name_supplier = str_replace('-', '%', $explode_supplier_link[$count-1]);
+		$supplier = str_replace('-', '%', $explode_supplier_link[$count-1]);
 
 		$sql = 'SELECT sp.`id_supplier`
 			FROM `'._DB_PREFIX_.'supplier` sp
 			LEFT JOIN `'._DB_PREFIX_.'supplier_shop` s ON (sp.`id_supplier` = s.`id_supplier`)
-			WHERE sp.`name` LIKE \''.$name_supplier.'\'';
-
+			WHERE sp.`name` LIKE \''.pSQL($supplier).'\'';
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
-		{
 			$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
-		}
 
 		$id_supplier = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 					
@@ -260,14 +245,15 @@ class Dispatcher extends DispatcherCore
 	public function getController($id_shop = null)
 	{	
 		if (defined('_PS_ADMIN_DIR_'))
-			$_GET['controllerUri'] = Tools::getvalue('controller');		
+			$_GET['controllerUri'] = Tools::getvalue('controller');
+
 		if ($this->controller)
 		{
 			$_GET['controller'] = $this->controller;
 			return $this->controller;
 		}
 
-		if ($id_shop === null)
+		if (null === $id_shop)
 			$id_shop = (int)Context::getContext()->shop->id;
 
 		$controller = Tools::getValue('controller');
@@ -277,7 +263,7 @@ class Dispatcher extends DispatcherCore
 			$controller = $m[1];
 			if (isset($_GET['controller']))
 				$_GET[$m[2]] = $m[3];
-			else if (isset($_POST['controller']))
+			elseif (isset($_POST['controller']))
 				$_POST[$m[2]] = $m[3];
 		}
 
@@ -314,10 +300,8 @@ class Dispatcher extends DispatcherCore
 								case 'supplier':
 								case 'manufacturer':
 									// these two can be processed in normal way and also as template
-									if(strpos($route['rule'], '{') !== false)
-									{
+									if (false !== strpos($route['rule'], '{'))
 										$isTemplate = true;
-									}
 									break;
 									
 								case 'cms':
@@ -326,14 +310,12 @@ class Dispatcher extends DispatcherCore
 									break;
 								case 'category':
 									// category can be processed in two ways
-									if(strpos($route['rule'], 'selected_filters') === false)
-									{
+									if (false === strpos($route['rule'], 'selected_filters'))
 										$isTemplate = true;
-									}
 									break;
 							}
 							
-							if($isTemplate == false)
+							if ($isTemplate == false)
 							{
 								$findRoute = $route;
 								break;
@@ -342,17 +324,16 @@ class Dispatcher extends DispatcherCore
 					}
 					
 					// if route is not found, we have to find rewrite link in database
-					if(empty($findRoute))
+					if (empty($findRoute))
 					{
-						$req_url = substr($this->request_uri, 1);   // remove '/' from begining
-						$req_url = explode('?', $req_url);          // remove all after '?'
-						$short_link = $req_url[0];
+						// get the path from requested URI, and remove "/" at the beginning
+						$short_link = ltrim(parse_url($this->request_uri, PHP_URL_PATH), '/');
 						
-						if(!Dispatcher::isProductLink($short_link))
-							if(!Dispatcher::isCategoryLink($short_link))
-								if(!Dispatcher::isCmsLink($short_link))
-									if(!Dispatcher::isManufacturerLink($short_link))
-										if(!Dispatcher::isSupplierLink($short_link))
+						if (!Dispatcher::isProductLink($short_link))
+							if (!Dispatcher::isCategoryLink($short_link))
+								if (!Dispatcher::isCmsLink($short_link))
+									if (!Dispatcher::isManufacturerLink($short_link))
+										if (!Dispatcher::isSupplierLink($short_link))
 											{}
 										else
 											$findRoute = $this->routes[$id_shop][Context::getContext()->language->id]['supplier_rule'];
@@ -366,7 +347,7 @@ class Dispatcher extends DispatcherCore
 							$findRoute = $this->routes[$id_shop][Context::getContext()->language->id]['product_rule'];
 					}
 
-					if(!empty($findRoute))
+					if (!empty($findRoute))
 					{
 						if (preg_match($findRoute['regexp'], $this->request_uri, $m))
 						{
@@ -405,6 +386,7 @@ class Dispatcher extends DispatcherCore
 
 		$this->controller = str_replace('-', '', $this->controller);
 		$_GET['controller'] = $this->controller;
+
 		return $this->controller;
 	}
 }

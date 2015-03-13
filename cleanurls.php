@@ -99,9 +99,9 @@ class CleanUrls extends Module
 			'override/controllers/front/SupplierController.php',
 		);
 
-		if (!$this->checkWritable($overrides)
+		if (!$this->checkWritable($overrides))
 		{
-			$this->_errors[] = $this->l('Files in /override folder are not writable, these files need to be writable:')
+			$this->_errors[] = $this->l('Files in /override folder are not writable, these files need to be writable:'
 					.'classes: Dispatcher.php, Link.php; controllers/front: CategoryController.php, CmsController.php, ManufacturerController.php, ProductController.php, SupplierController.php');
 			 return false;
 		}

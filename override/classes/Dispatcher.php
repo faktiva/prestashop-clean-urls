@@ -25,7 +25,7 @@ class Dispatcher extends DispatcherCore
 	public $default_routes = array(
 		'supplier_rule' => array(
 			'controller' => 'supplier',
-			'rule'       => 'supplier/{rewrite}/',
+			'rule'       => 'supplier/{rewrite}',
 			'keywords'   => array(
 				'id'            => array('regexp' => '[0-9]+'),
 				'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'supplier_rewrite'),
@@ -35,7 +35,7 @@ class Dispatcher extends DispatcherCore
 		),
 		'manufacturer_rule' => array(
 			'controller' =>	'manufacturer',
-			'rule'       => 'manufacturer/{rewrite}/',
+			'rule'       => 'manufacturer/{rewrite}',
 			'keywords'   => array(
 				'id'            => array('regexp' => '[0-9]+'),
 				'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'manufacturer_rewrite'),
@@ -125,13 +125,9 @@ class Dispatcher extends DispatcherCore
 	 */
 	public static function isProductLink($short_link)
 	{
-		// check if any keyword
-		$explode_product_link = explode('/', $short_link);
-		$count = count($explode_product_link);
-		
 		$sql = 'SELECT `id_product`
 			FROM `'._DB_PREFIX_.'product_lang`
-			WHERE `link_rewrite` = \''.pSQL($explode_product_link[$count-1]).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+			WHERE `link_rewrite` = \''.pSQL(basename($short_link, '.html')).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 			$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
 
@@ -169,14 +165,10 @@ class Dispatcher extends DispatcherCore
 	 */
 	public static function isCmsLink($short_link)
 	{
-		// check if any keyword
-		$explode_cms_link = explode('/', $short_link);
-		$count = count($explode_cms_link);
-	
 		$sql = 'SELECT l.`id_cms`
 			FROM `'._DB_PREFIX_.'cms_lang` l
 			LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
-			WHERE l.`link_rewrite` = \''.pSQL($explode_cms_link[$count-1]).'\'';
+			WHERE l.`link_rewrite` = \''.pSQL(basename($short_link, '.html')).'\'';
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 			$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
 
@@ -193,11 +185,7 @@ class Dispatcher extends DispatcherCore
 	 */
 	public static function isManufacturerLink($short_link)
 	{
-		// check if any keyword
-		$explode_manufacturer_link = explode('/', $short_link);
-		$count = count($explode_manufacturer_link);
-		
-		$manufacturer = str_replace('-', '%', $explode_manufacturer_link[$count-1]);
+		$manufacturer = str_replace('-', '%', basename($short_link));
 
 		$sql = 'SELECT m.`id_manufacturer`
 			FROM `'._DB_PREFIX_.'manufacturer` m
@@ -219,11 +207,7 @@ class Dispatcher extends DispatcherCore
 	 */
 	public static function isSupplierLink($short_link)
 	{
-		// check if any keyword
-		$explode_supplier_link = explode('/', $short_link);
-		$count = count($explode_supplier_link);
-		
-		$supplier = str_replace('-', '%', $explode_supplier_link[$count-1]);
+		$supplier = str_replace('-', '%', basename($short_link));
 
 		$sql = 'SELECT sp.`id_supplier`
 			FROM `'._DB_PREFIX_.'supplier` sp

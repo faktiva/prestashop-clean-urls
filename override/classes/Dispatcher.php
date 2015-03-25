@@ -284,6 +284,8 @@ class Dispatcher extends DispatcherCore
 				if ($this->empty_route)
 					$this->addRoute($this->empty_route['routeID'], $this->empty_route['rule'], $this->empty_route['controller'], Context::getContext()->language->id, array(), array(), $id_shop);
 
+				list($uri) = explode('?', $this->request_uri);
+
 				if (isset($this->routes[$id_shop][Context::getContext()->language->id]))
 				{
 					$findRoute = array();
@@ -291,7 +293,7 @@ class Dispatcher extends DispatcherCore
 					// check, whether request_uri is template or not
 					foreach ($this->routes[$id_shop][Context::getContext()->language->id] as $route)
 					{
-						if (preg_match($route['regexp'], $this->request_uri, $m))
+						if (preg_match($route['regexp'], $uri, $m))
 						{
 							$isTemplate = false;
 							
@@ -327,7 +329,7 @@ class Dispatcher extends DispatcherCore
 					if (empty($findRoute))
 					{
 						// get the path from requested URI, and remove "/" at the beginning
-						$short_link = ltrim(parse_url($this->request_uri, PHP_URL_PATH), '/');
+						$short_link = ltrim(parse_url($uri, PHP_URL_PATH), '/');
 						
 						if (!Dispatcher::isProductLink($short_link))
 							if (!Dispatcher::isCategoryLink($short_link))
@@ -349,7 +351,7 @@ class Dispatcher extends DispatcherCore
 
 					if (!empty($findRoute))
 					{
-						if (preg_match($findRoute['regexp'], $this->request_uri, $m))
+						if (preg_match($findRoute['regexp'], $uri, $m))
 						{
 							// Route found ! Now fill $_GET with parameters of uri
 							foreach ($m as $k => $v)

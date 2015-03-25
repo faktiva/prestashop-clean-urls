@@ -22,13 +22,11 @@ if (!defined('_PS_VERSION_'))
 
 class CleanUrls extends Module
 {
-	const _MODULE_NAME = 'cleanurls';
-
 	public function __construct()
 	{
-		$this->name = self::_MODULE_NAME;
+		$this->name = 'cleanurls';
 		$this->tab = 'seo';
-		$this->version = '0.8';
+		$this->version = '0.8.1';
 		$this->author = 'ZiZuu Store';
 		$this->need_instance = 1;
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
@@ -39,17 +37,19 @@ class CleanUrls extends Module
 		$this->displayName = $this->l('ZiZuu Clean URLs');
 		$this->description = $this->l('This override-Module allows you to remove URL ID\'s.');
 
-		$this->confirmUninstall = $this->l('Are you sure you want to uninstall "'.self::_MODULE_NAME.'"?');
+		$this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
 	}
 
 	public function getContent()
 	{
-		$output = '<p>
-				On some versions you have to disable Cache save than open your shop home page than go back and enable it.<br />
-				Advanced Parameters > Performance > Clear Smarty cache<br /><br />
-				Go to back office -> Preferences -> SEO and URLs -> Set userfriendly URL off -> Save<br />
-				Go to back office -> Preferences -> SEO and URLs -> Set userfriendly URL on -> Save<br />
-				</p>';
+		$output = '<p class="info">'
+			.nl2br($this->l('On some versions you could have to disable Cache, '
+				.'save, open your shop home page, than go back and enable it:
+	
+				Advanced Parameters > Performance > Clear Smarty cache
+				Preferences -> SEO and URLs -> Set userfriendly URL off -> Save
+				Preferences -> SEO and URLs -> Set userfriendly URL on -> Save'))
+			.'</p>';
 
 		$sql = 'SELECT * FROM `'._DB_PREFIX_.'product_lang`
 			WHERE `link_rewrite`
@@ -59,38 +59,46 @@ class CleanUrls extends Module
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 			$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
 
-		if ($results = Db::getInstance()->ExecuteS($sql))
+		if ($res = Db::getInstance()->ExecuteS($sql))
 		{
-			$this->adminDisplayWarning('You need to fix duplicate URL entries.');
-			foreach ($results as $row)
+			$err = $this->l('You need to fix duplicate URL entries:').'<br />';
+			foreach ($res as $row)
 			{
-				$language_info = $this->context->language->getLanguage($row['id_lang']);
-				$output .= $row['name'].' ('.$row['id_product'] .') - '. $row['link_rewrite'].'<br />';
-				$shop_info = $this->context->shop->getShop($language_info['id_shop']);
-				$output .= 'Language:'. $language_info['name'] . '<br /> Shop:' . $shop_info['name'].'<br /><br />';
+				$lang = $this->context->language->getLanguage($row['id_lang']);
+				$err .= $row['name'].' ('.$row['id_product'].') - '.$row['link_rewrite'].'<br />';
+
+				$shop = $this->context->shop->getShop($lang['id_shop']);
+				$err .= $this->l('Language: ').$lang['name'].'<br />'.$this->l('Shop: ').$shop['name'].'<br /><br />';
 			}
+			$output .= $this->displayError($err);
 		}
 		else
-			$output .= '<strong>Nice you don\'t have any duplicate URL entries.</strong>';
+			$output .= $this->displayConfirmation($this->l('Nice. You have no duplicate URL entry.'));
 
-		return $output;
+		return '<div class="panel">'.$output.'</div>';
 	}
 
 	public function install()
 	{
 		// add link_rewrite as index to improve search
-		$table_list = array('category_lang','cms_category_lang','cms_lang','product_lang');
-		foreach($table_list as $table)
+		$tables = array('category_lang','cms_category_lang','cms_lang','product_lang');
+		foreach($tables as $tab)
 		{
-			if (!Db::getInstance()->ExecuteS('SHOW INDEX FROM `'._DB_PREFIX_.$table.'` WHERE Key_name = \'link_rewrite\''))
-				Db::getInstance()->Execute('ALTER TABLE `'._DB_PREFIX_.$table.'` ADD INDEX ( `link_rewrite` )');
+			if (!Db::getInstance()->ExecuteS('SHOW INDEX FROM `'._DB_PREFIX_.$tab.'` WHERE Key_name = \'link_rewrite\''))
+				Db::getInstance()->Execute('ALTER TABLE `'._DB_PREFIX_.$tab.'` ADD INDEX ( `link_rewrite` )');
 		}
 
-		return parent::install();
+		if (!parent::install())
+			return false;
+
+		return true;
 	}
 
 	public function uninstall()
 	{
-		return parent::uninstall();
+		if (!parent::uninstall())
+			return false;
+
+		return true;
 	}
 }

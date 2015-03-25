@@ -19,6 +19,7 @@
 
 class FrontController extends FrontControllerCore
 {
+
 	public function __construct()
 	{
 		parent::__construct();

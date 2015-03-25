@@ -26,8 +26,7 @@ class CmsController extends CmsControllerCore
 			$sql = 'SELECT l.`id_cms`
 				FROM `'._DB_PREFIX_.'cms_lang` l
 				LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
-				WHERE l.`link_rewrite` = \''.pSQL($cms_rewrite).'\'';
-
+				WHERE l.`link_rewrite` = \''.pSQL(str_replace('.html', '', $cms_rewrite)).'\'';
 			if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 				$sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
 

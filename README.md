@@ -14,11 +14,11 @@ In the modules tab, click on **add a new module**. Click on Browse to open the d
 ###Make sure your SEO and URL settings are as follows:
  
 This is __MANDATORY__
-* products:         {categories:/}{rewrite}              (** you can add .html** at the end)
+* products:         {categories:/}{rewrite}              (**you can add .html** at the end)
 * categories:       {parent_categories:/}{rewrite}**/**
 * manufacturers:    manufactures/{rewrite}
 * suppliers:        suppliers/{rewrite}
-* CMS page:         info/{rewrite}                       (** you can add .html** at the end)
+* CMS page:         info/{rewrite}                       (**you can add .html** at the end)
 * CMS category:     info/{rewrite}**/**
 * modules:          module/{module}{/:controller}
 

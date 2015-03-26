@@ -19,18 +19,6 @@
 
 class Link extends LinkCore
 {
-	public function __construct($protocol_link = null, $protocol_content = null)
-	{
-		parent::__construct($protocol_link, $protocol_content);
-
-		/* TODO
-		 * add a configuration switch to hide or show the Home category
-
-		// Re-add Home category
-		Link::$category_disable_rewrite = array_diff(Link::$category_disable_rewrite, array(Configuration::get('PS_HOME_CATEGORY')));
-		*/
-	}
-
 	/**
 	 * Create a link to a category
 	 *

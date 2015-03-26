@@ -26,7 +26,7 @@ class CleanUrls extends Module
 	{
 		$this->name = 'cleanurls';
 		$this->tab = 'seo';
-		$this->version = '0.8.1';
+		$this->version = '0.9';
 		$this->author = 'ZiZuu Store';
 		$this->need_instance = 1;
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);

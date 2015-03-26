@@ -12,9 +12,9 @@
  * This code is provided as is without any warranty.
  * No promise of being safe or secure
  *
- *  @author      ZiZuu.com <info@zizuu.com>
- *  @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- *  @source      https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
+ * @author   ZiZuu.com <info@zizuu.com>
+ * @license  http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @source   https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
  */
 
 class SupplierController extends SupplierControllerCore
@@ -25,9 +25,6 @@ class SupplierController extends SupplierControllerCore
 		{
 			$supplier_rewrite = str_replace('-', '%', $supplier_rewrite);
 
-			/* TODO: need to core update Prestashop code and DB for link_rewrite for suppliers
-			 * Should we use the Mysql FullText Index Search ??
-			 */
 			$sql = 'SELECT sp.`id_supplier`
 				FROM `'._DB_PREFIX_.'supplier` sp
 				LEFT JOIN `'._DB_PREFIX_.'supplier_shop` s ON (sp.`id_supplier` = s.`id_supplier`)

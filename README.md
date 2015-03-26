@@ -1,6 +1,8 @@
 [ABOUT](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 ===============================================================
+
 It has been tested on PS 1.6.0.9 - 1.6.0.14
+
 We are going to merge other users' contributions and ideas as soon as we note them and find the time to test.
 
 If you fork please make every change the way we can pull, don't reinvent the wheel .. make every custom changeon a private branch, so you can merge your own changes to the community mintained full branch every time a new release is out.

@@ -1,21 +1,21 @@
 <?php
 
 /**
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the Academic Free License (AFL 3.0)
-* It is available through the world-wide-web at this URL:
-* http://opensource.org/licenses/afl-3.0.php
-*
-* DISCLAIMER
-* This code is provided as is without any warranty.
-* No promise of being safe or secure
-*
-*  @author	  ZiZuu.com <info@zizuu.com>
-*  @license	 http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  @source	  https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
-*/
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * It is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ *
+ * DISCLAIMER
+ * This code is provided as is without any warranty.
+ * No promise of being safe or secure
+ *
+ * @author	 ZiZuu.com <info@zizuu.com>
+ * @license  http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @source   https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
+ */
 
 class Link extends LinkCore
 {
@@ -70,22 +70,21 @@ class Link extends LinkCore
 
 		$dispatcher = Dispatcher::getInstance();
 
-		// XXX: replace 'category_rule' with $rule ? 
 		if ($dispatcher->hasKeyword('category_rule', $id_lang, 'parent_categories'))
 		{
 			// Retrieve all parent categories
-			$cats = array();
-			foreach ($category->getParentsCategories($id_lang) as $cat)
+			$p_cats = array();
+			foreach ($category->getParentsCategories($id_lang) as $p_cat)
 			{
 				self::$category_disable_rewrite[] = $category->id;
 
 				// remove root and current category from the URL
-				if (!in_array($cat['id_category'], self::$category_disable_rewrite)) {
-					$cats[] = $cat['link_rewrite'];
+				if (!in_array($p_cat['id_category'], self::$category_disable_rewrite)) {
+					$p_cats[] = $p_cat['link_rewrite'];
 				}
 			}
 			// add the URL slashes among categories, in reverse order
-			$params['parent_categories'] = implode('/', array_reverse($cats));
+			$params['parent_categories'] = implode('/', array_reverse($p_cats));
 		}
 		
 		return $url.$dispatcher->createUrl($rule, $id_lang, $params, $this->allow, '', $id_shop);

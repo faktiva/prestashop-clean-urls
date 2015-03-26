@@ -12,9 +12,9 @@
  * This code is provided as is without any warranty.
  * No promise of being safe or secure
  *
- *  @author      ZiZuu.com <info@zizuu.com>
- *  @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- *  @source      https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
+ * @author   ZiZuu.com <info@zizuu.com>
+ * @license  http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @source   https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
  */
 
 class ProductController extends ProductControllerCore
@@ -35,12 +35,11 @@ class ProductController extends ProductControllerCore
 			$id_product = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 			if ($id_product > 0)
 				$_GET['id_product'] = $id_product;
-			elseif (preg_match($url_id_pattern, $this->request_uri, $url_split))
+			elseif (preg_match($url_id_pattern, $this->request_uri, $url_parts))
 			{
 				$sql = 'SELECT `id_product`
 					FROM `'._DB_PREFIX_.'product_lang`
-					WHERE `id_product` = \''.pSQL($url_split[1]).'\' AND `id_lang` = '.$lang_id;
-
+					WHERE `id_product` = \''.pSQL($url_parts[1]).'\' AND `id_lang` = '.$lang_id;
 				if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 					$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
 					

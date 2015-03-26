@@ -12,22 +12,19 @@
  * This code is provided as is without any warranty.
  * No promise of being safe or secure
  *
- *  @author      ZiZuu.com <info@zizuu.com>
- *  @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- *  @source      https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
+ * @author   ZiZuu.com <info@zizuu.com>
+ * @license  http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ * @source   https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
  */
 
 class ManufacturerController extends ManufacturerControllerCore
 {
 	public function init()
 	{
-		if (Tools::getValue('manufacturer_rewrite'))
+		if ($manufacturer_rewrite = Tools::getValue('manufacturer_rewrite'))
 		{
-			$manufacturer_rewrite = str_replace('-', '%', Tools::getValue('manufacturer_rewrite'));
+			$manufacturer_rewrite = str_replace('-', '%', $manufacturer_rewrite);
 
-			/* TODO: need to core update Prestashop code and DB for link_rewrite for manufacturers
-			 * Should we use the Mysql FullText Index Search ??
-			 */
 			$sql = 'SELECT m.`id_manufacturer`
 				FROM `'._DB_PREFIX_.'manufacturer` m
 				LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)

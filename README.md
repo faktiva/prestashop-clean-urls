@@ -1,3 +1,5 @@
+# Prestashop module "ZiZuu CLean URLs"
+
 [ABOUT](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 ===============================================================
 

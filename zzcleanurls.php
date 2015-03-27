@@ -20,15 +20,15 @@
 if (!defined('_PS_VERSION_'))
 	exit;
 
-class CleanUrls extends Module
+class zzCleanUrls extends Module
 {
 	public function __construct()
 	{
-		$this->name = 'cleanurls';
+		$this->name = 'zzcleanurls';
 		$this->tab = 'seo';
 		$this->version = '0.9';
 		$this->author = 'ZiZuu Store';
-		$this->need_instance = 1;
+		$this->need_instance = 0;
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
 		$this->bootstrap = true;
 
@@ -37,7 +37,7 @@ class CleanUrls extends Module
 		$this->displayName = $this->l('ZiZuu Clean URLs');
 		$this->description = $this->l('This override-Module allows you to remove URL ID\'s.');
 
-		$this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
+		$this->confirmUninstall = $this->l('Are you sure you want to uninstall "ZiZuu Clean URLs"?');
 	}
 
 	public function getContent()

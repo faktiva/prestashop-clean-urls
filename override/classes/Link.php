@@ -65,7 +65,7 @@ class Link extends LinkCore
 			foreach ($category->getParentsCategories($id_lang) as $p_cat)
 			{
 				// remove root and current category from the URL
-				if (!in_array($p_cat['id_category'], self::$category_disable_rewrite + array($category->id))) {
+				if (!in_array($p_cat['id_category'], array_merge(self::$category_disable_rewrite, array($category->id)))) {
 					$p_cats[] = $p_cat['link_rewrite'];
 				}
 			}

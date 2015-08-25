@@ -29,7 +29,7 @@ class zzCleanUrls extends Module
 		$this->version = '0.9';
 		$this->author = 'ZiZuu Store';
 		$this->need_instance = 0;
-		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => _PS_VERSION_);
+		$this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);
 		$this->bootstrap = true;
 
 		parent::__construct();

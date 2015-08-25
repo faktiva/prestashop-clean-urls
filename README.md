@@ -3,7 +3,7 @@
 [ABOUT](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 ===============================================================
 
-It has been reported to work on PS 1.5.6 - 1.6.1.x
+It has been reported to work on **PS 1.5.6 - 1.6.1.x**
 
 We are going to merge other users' contributions and ideas as soon as we note them and find the time to test.
 
@@ -12,7 +12,7 @@ If you fork please make every change the way we can pull, don't reinvent the whe
 INSTALLATION
 --------
 
-Install the module from the Backoffice (administration panel), download the release ZIP binary as it already contains the right folder name (cleanurls, not cleanurls-version_x.y.z !)
+Install the module from the Backoffice (administration panel), download the release ZIP binary as it already contains the right folder name (zzcleanurls, **not** zzcleanurls-version_x.y.z !)
 
 In the modules tab, click on **add a new module**. Click on Browse to open the dialogue box letting you search your computer, select the file then validate the dialogue box. Finally click on Upload this module.
 
@@ -36,7 +36,7 @@ Remember to
 UNINSTALLATION
 --------
 
-* Go to modules -> Find and uninstall "**zzcleanurl**"
+* Go to modules -> Find and uninstall "**zzcleanurls**"
 
 **It should suffice!**
 

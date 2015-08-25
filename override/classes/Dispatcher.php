@@ -145,10 +145,10 @@ class Dispatcher extends DispatcherCore
 	public static function isCategoryLink($short_link)
 	{
 		// check if parent categories
-		$categories = explode('/', $short_link);
+		$category = basename($short_link);
 		
 		$sql = 'SELECT `id_category` FROM `'._DB_PREFIX_.'category_lang`
-				WHERE `link_rewrite` = \''.pSQL($categories[0]).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+				WHERE `link_rewrite` = \''.pSQL($category).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
 		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP)
 			$sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
 		

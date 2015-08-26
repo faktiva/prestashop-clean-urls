@@ -19,21 +19,21 @@
 
 class FrontController extends FrontControllerCore
 {
-	protected function canonicalRedirection($canonical_url = '')
-	{
-		$excluded_keys = array(
-			'product_rewrite',
-			'category_rewrite',
-			'manufacturer_rewrite',
-			'supplier_rewrite',
-			'cms_rewrite',
-			'cms_category_rewrite',
-		);
+    protected function canonicalRedirection($canonical_url = '')
+    {
+        $excluded_keys = array(
+            'product_rewrite',
+            'category_rewrite',
+            'manufacturer_rewrite',
+            'supplier_rewrite',
+            'cms_rewrite',
+            'cms_category_rewrite',
+        );
 
-		// hack original behavior on cananocalRedirection: remove *_rewrite from _GET
-		$unfiltered_GET = $_GET;
-		$_GET = array_diff_key($_GET, array_flip($excluded_keys));
-		parent::canonicalRedirection($canonical_url);
-		$_GET = $unfiltered_GET;
-	}				       
+        // hack original behavior on cananocalRedirection: remove *_rewrite from _GET
+        $unfiltered_GET = $_GET;
+        $_GET = array_diff_key($_GET, array_flip($excluded_keys));
+        parent::canonicalRedirection($canonical_url);
+        $_GET = $unfiltered_GET;
+    }
 }

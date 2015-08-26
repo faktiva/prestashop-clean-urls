@@ -3,7 +3,8 @@
 [ABOUT](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 ===============================================================
 
-It has been reported to work on **PS 1.5.6 - 1.6.1.x**
+It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >= 1.5 too.
+**If you succesfully use this module on some older version please report**
 
 We are going to merge other users' contributions and ideas as soon as we note them and find the time to test.
 

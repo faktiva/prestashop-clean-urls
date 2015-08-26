@@ -27,7 +27,7 @@ class zzcleanurls extends Module
     {
         $this->name = 'zzcleanurls';
         $this->tab = 'seo';
-        $this->version = '0.9';
+        $this->version = '0.10.0';
         $this->author = 'ZiZuu Store';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);

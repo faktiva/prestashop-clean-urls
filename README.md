@@ -1,4 +1,4 @@
-[Prestashop module "ZiZuu CLean URLs"](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
+[Prestashop module "ZiZuu Clean URLs"](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 ==
 
 * For production use the **latest stable [release](https://github.com/ZiZuu-store/PrestaShop_module-zzCleanURLs/releases/)**
@@ -34,8 +34,7 @@ Remember to
  * **clear the browser cache**
  * **clear PS cache** (under smarty -> cache and smarty -> compile)
 
-UNINSTALLATION
---------
+## UNINSTALLATION
 
 * Go to modules -> Find and uninstall "**zzcleanurls**"
 

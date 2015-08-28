@@ -13,6 +13,8 @@ It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >=
 
 ## INSTALLATION
 
+[![Join the chat at https://gitter.im/ZiZuu-store/PrestaShop_module-zzCleanURLs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ZiZuu-store/PrestaShop_module-zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Install the module from the Backoffice (administration panel), download the release ZIP binary as it already contains the right folder name (zzcleanurls, **not** zzcleanurls-version_x.y.z !)
 
 In the modules tab, click on **add a new module**. Click on Browse to open the dialogue box letting you search your computer, select the file then validate the dialogue box. Finally click on Upload this module.

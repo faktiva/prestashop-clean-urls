@@ -1,6 +1,8 @@
 [Prestashop module "ZiZuu Clean URLs"](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 ==
 
+[![Join the chat at https://gitter.im/ZiZuu-store/PrestaShop_module-zzCleanURLs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ZiZuu-store/PrestaShop_module-zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 * For production use the **latest stable [release](https://github.com/ZiZuu-store/PrestaShop_module-zzCleanURLs/releases/)**
 * For developing or Pull Request please use only the "**[dev](https://github.com/ZiZuu-store/PrestaShop_module-zzCleanURLs/tree/dev)**" branch
 
@@ -12,8 +14,6 @@ It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >=
 **If you succesfully use this module on some older version please report**
 
 ## INSTALLATION
-
-[![Join the chat at https://gitter.im/ZiZuu-store/PrestaShop_module-zzCleanURLs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ZiZuu-store/PrestaShop_module-zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Install the module from the Backoffice (administration panel), download the release ZIP binary as it already contains the right folder name (zzcleanurls, **not** zzcleanurls-version_x.y.z !)
 

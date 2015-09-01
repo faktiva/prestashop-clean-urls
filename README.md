@@ -1,10 +1,10 @@
 [Prestashop module "ZiZuu Clean URLs"](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 ==
 
-[![Join the chat at https://gitter.im/ZiZuu-store/PrestaShop_module-zzCleanURLs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ZiZuu-store/PrestaShop_module-zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ZiZuu-store/zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-* For production use the **latest stable [release](https://github.com/ZiZuu-store/PrestaShop_module-zzCleanURLs/releases/)**
-* For developing or Pull Request please use only the "**[dev](https://github.com/ZiZuu-store/PrestaShop_module-zzCleanURLs/tree/dev)**" branch
+* For production use the **latest stable [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/)**
+* For developing or Pull Request please use only the "**[dev](https://github.com/ZiZuu-store/zzCleanURLs/tree/dev)**" branch
 
 We are going to merge other users' contributions and ideas as soon as we note them and find the time to test.
 
@@ -15,7 +15,7 @@ It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >=
 
 ## INSTALLATION
 
-Install the module from the Backoffice (administration panel), download the release ZIP binary as it already contains the right folder name (zzcleanurls, **not** zzcleanurls-version_x.y.z !)
+Install the module from the Backoffice (administration panel), download the release ZIP file as it already contains the right folder name (zzcleanurls, **not** zzcleanurls-version_x.y.z !)
 
 In the modules tab, click on **add a new module**. Click on Browse to open the dialogue box letting you search your computer, select the file then validate the dialogue box. Finally click on Upload this module.
 

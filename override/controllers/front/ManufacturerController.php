@@ -25,9 +25,9 @@ class ManufacturerController extends ManufacturerControllerCore
             $manufacturer_rewrite = str_replace('-', '%', $manufacturer_rewrite);
 
             $sql = 'SELECT m.`id_manufacturer`
-				FROM `'._DB_PREFIX_.'manufacturer` m
-				LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
-				WHERE m.`name` LIKE \''.pSQL($manufacturer_rewrite).'\'';
+                FROM `'._DB_PREFIX_.'manufacturer` m
+                LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
+                WHERE m.`name` LIKE \''.pSQL($manufacturer_rewrite).'\'';
 
             if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
                 $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();

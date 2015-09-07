@@ -12,7 +12,7 @@
  * This code is provided as is without any warranty.
  * No promise of being safe or secure
  *
- * @author	 ZiZuu.com <info@zizuu.com>
+ * @author   ZiZuu.com <info@zizuu.com>
  * @license  http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  * @source   https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
  */
@@ -71,7 +71,7 @@ class Link extends LinkCore
             // add the URL slashes among categories, in reverse order
             $params['parent_categories'] = implode('/', array_reverse($p_cats));
         }
-        
+
         return $url.$dispatcher->createUrl($rule, $id_lang, $params, $this->allow, '', $id_shop);
     }
 
@@ -143,13 +143,13 @@ class Link extends LinkCore
                 return $url;
             }
         }
-        
+
         $vars['requestUrl'] = $url;
 
         if ($type && $id_object) {
             $vars['id_'.$type] = (is_object($id_object) ? (int)$id_object->id : (int)$id_object);
         }
-            
+
         if (!$this->allow == 1) {
             $vars['controller'] = Dispatcher::getInstance()->getController();
         }

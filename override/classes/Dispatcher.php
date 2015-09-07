@@ -116,7 +116,7 @@ class Dispatcher extends DispatcherCore
             ),
         ),
     );
-    
+
     /**
      * Check if $short_link is a Product Link
      *
@@ -126,17 +126,17 @@ class Dispatcher extends DispatcherCore
     public static function isProductLink($short_link)
     {
         $sql = 'SELECT `id_product`
-			FROM `'._DB_PREFIX_.'product_lang`
-			WHERE `link_rewrite` = \''.pSQL(basename($short_link, '.html')).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+            FROM `'._DB_PREFIX_.'product_lang`
+            WHERE `link_rewrite` = \''.pSQL(basename($short_link, '.html')).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
         }
 
         $id_product = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
-            
+
         return ($id_product > 0);
     }
-    
+
     /**
      * Check if $short_link is a Category Link
      *
@@ -147,15 +147,15 @@ class Dispatcher extends DispatcherCore
     {
         // check if parent categories
         $category = basename($short_link);
-        
+
         $sql = 'SELECT `id_category` FROM `'._DB_PREFIX_.'category_lang`
-				WHERE `link_rewrite` = \''.pSQL($category).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+            WHERE `link_rewrite` = \''.pSQL($category).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
         }
-        
+
         $id_category = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
-                    
+
         return ($id_category > 0);
     }
 
@@ -168,18 +168,18 @@ class Dispatcher extends DispatcherCore
     public static function isCmsLink($short_link)
     {
         $sql = 'SELECT l.`id_cms`
-			FROM `'._DB_PREFIX_.'cms_lang` l
-			LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
-			WHERE l.`link_rewrite` = \''.pSQL(basename($short_link, '.html')).'\'';
+            FROM `'._DB_PREFIX_.'cms_lang` l
+            LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
+            WHERE l.`link_rewrite` = \''.pSQL(basename($short_link, '.html')).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
 
         $id_cms = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
-                    
+
         return ($id_cms > 0);
     }
-    
+
     /**
      * Check if $short_link is a Manufacturer Link
      *
@@ -191,15 +191,15 @@ class Dispatcher extends DispatcherCore
         $manufacturer = str_replace('-', '%', basename($short_link));
 
         $sql = 'SELECT m.`id_manufacturer`
-			FROM `'._DB_PREFIX_.'manufacturer` m
-			LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
-			WHERE m.`name` LIKE \''.pSQL($manufacturer).'\'';
+            FROM `'._DB_PREFIX_.'manufacturer` m
+            LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
+            WHERE m.`name` LIKE \''.pSQL($manufacturer).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
 
         $id_manufacturer = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
-                    
+
         return ($id_manufacturer > 0);
     }
 
@@ -214,15 +214,15 @@ class Dispatcher extends DispatcherCore
         $supplier = str_replace('-', '%', basename($short_link));
 
         $sql = 'SELECT sp.`id_supplier`
-			FROM `'._DB_PREFIX_.'supplier` sp
-			LEFT JOIN `'._DB_PREFIX_.'supplier_shop` s ON (sp.`id_supplier` = s.`id_supplier`)
-			WHERE sp.`name` LIKE \''.pSQL($supplier).'\'';
+            FROM `'._DB_PREFIX_.'supplier` sp
+            LEFT JOIN `'._DB_PREFIX_.'supplier_shop` s ON (sp.`id_supplier` = s.`id_supplier`)
+            WHERE sp.`name` LIKE \''.pSQL($supplier).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
 
         $id_supplier = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
-                    
+
         return ($id_supplier > 0);
     }
 
@@ -247,7 +247,7 @@ class Dispatcher extends DispatcherCore
         }
 
         $controller = Tools::getValue('controller');
-    
+
         if (isset($controller) && is_string($controller) && preg_match('/^([0-9a-z_-]+)\?(.*)=(.*)$/Ui', $controller, $m)) {
             $controller = $m[1];
             if (isset($_GET['controller'])) {
@@ -260,14 +260,14 @@ class Dispatcher extends DispatcherCore
         if (!Validate::isControllerName($controller)) {
             $controller = false;
         }
-    
+
         // Use routes ? (for url rewriting)
         if ($this->use_routes && !$controller && !defined('_PS_ADMIN_DIR_')) {
             if (!$this->request_uri) {
                 return strtolower($this->controller_not_found);
             }
             $controller = $this->controller_not_found;
-            
+
             // If the request_uri matches a static file, then there is no need to check the routes, we keep "controller_not_found" (a static file should not go through the dispatcher) 
             if (!preg_match('/\.(gif|jpe?g|png|css|js|ico)$/i', $this->request_uri)) {
                 // Add empty route as last route to prevent this greedy regexp to match request uri before right time
@@ -279,12 +279,12 @@ class Dispatcher extends DispatcherCore
 
                 if (isset($this->routes[$id_shop][Context::getContext()->language->id])) {
                     $findRoute = array();
-                    
+
                     // check, whether request_uri is template or not
                     foreach ($this->routes[$id_shop][Context::getContext()->language->id] as $route) {
                         if (preg_match($route['regexp'], $uri, $m)) {
                             $isTemplate = false;
-                            
+
                             switch ($route['controller']) {
                                 case 'supplier':
                                 case 'manufacturer':
@@ -293,7 +293,7 @@ class Dispatcher extends DispatcherCore
                                         $isTemplate = true;
                                     }
                                     break;
-                                    
+
                                 case 'cms':
                                 case 'product':
                                     $isTemplate = true;
@@ -305,19 +305,19 @@ class Dispatcher extends DispatcherCore
                                     }
                                     break;
                             }
-                            
+
                             if (!$isTemplate) {
                                 $findRoute = $route;
                                 break;
                             }
                         }
                     }
-                    
+
                     // if route is not found, we have to find rewrite link in database
                     if (empty($findRoute)) {
                         // get the path from requested URI, and remove "/" at the beginning
                         $short_link = ltrim(parse_url($uri, PHP_URL_PATH), '/');
-                        
+
                         if (!Dispatcher::isProductLink($short_link)) {
                             if (!Dispatcher::isCategoryLink($short_link)) {
                                 if (!Dispatcher::isCmsLink($short_link)) {
@@ -348,21 +348,21 @@ class Dispatcher extends DispatcherCore
                                     $_GET[$k] = $v;
                                 }
                             }
-        
+
                             $controller = $findRoute['controller'] ? $findRoute['controller'] : $_GET['controller'];
                             if (!empty($findRoute['params'])) {
                                 foreach ($findRoute['params'] as $k => $v) {
                                     $_GET[$k] = $v;
                                 }
                             }
-        
+
                             // A patch for module friendly urls
                             if (preg_match('#module-([a-z0-9_-]+)-([a-z0-9]+)$#i', $controller, $m)) {
                                 $_GET['module'] = $m[1];
                                 $_GET['fc'] = 'module';
                                 $controller = $m[2];
                             }
-        
+
                             if (isset($_GET['fc']) && $_GET['fc'] == 'module') {
                                 $this->front_controller = self::FC_MODULE;
                             }
@@ -370,7 +370,7 @@ class Dispatcher extends DispatcherCore
                     }
                 }
             }
-            
+
             if ($controller == 'index' || $this->request_uri == '/index.php') {
                 $controller = $this->default_controller;
             }

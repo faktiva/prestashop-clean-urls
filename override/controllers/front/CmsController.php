@@ -23,9 +23,9 @@ class CmsController extends CmsControllerCore
     {
         if ($cms_rewrite = Tools::getValue('cms_rewrite')) {
             $sql = 'SELECT l.`id_cms`
-				FROM `'._DB_PREFIX_.'cms_lang` l
-				LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
-				WHERE l.`link_rewrite` = \''.pSQL(str_replace('.html', '', $cms_rewrite)).'\'';
+                FROM `'._DB_PREFIX_.'cms_lang` l
+                LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
+                WHERE l.`link_rewrite` = \''.pSQL(str_replace('.html', '', $cms_rewrite)).'\'';
             if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
                 $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
             }
@@ -36,8 +36,8 @@ class CmsController extends CmsControllerCore
             }
         } elseif ($cms_category_rewrite = Tools::getValue('cms_category_rewrite')) {
             $sql = 'SELECT `id_cms_category`
-				FROM `'._DB_PREFIX_.'cms_category_lang`
-				WHERE `link_rewrite` = \''.pSQL($cms_category_rewrite).'\'';
+                FROM `'._DB_PREFIX_.'cms_category_lang`
+                WHERE `link_rewrite` = \''.pSQL($cms_category_rewrite).'\'';
 
             if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
                 $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();

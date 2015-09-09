@@ -72,20 +72,49 @@ class Link extends LinkCore
         return $url.$dispatcher->createUrl($rule, $id_lang, $params, $this->allow, '', $id_shop);
     }
 
+    /**
+     * XXX TODO
+     * Create a link to a module
+     *
+     * @since 1.5.0
+     * @param string $module Module name
+     * @param string $process Action name
+     * @param int $id_lang
+     * @return string
+     */
+    public function getModuleLink($module, $controller = 'default', array $params = array(), $ssl = null, $id_lang = null, $id_shop = null, $relative_protocol = false)
+    {
+        if (!$id_lang) {
+            $id_lang = Context::getContext()->language->id;
+        }
+
+        $url = $this->getBaseLink($id_shop, $ssl, $relative_protocol).$this->getLangLink($id_lang, null, $id_shop);
+
+        // Set available keywords
+        $params['module'] = $module;
+        $params['controller'] = $controller ? $controller : 'default';
+
+        // If the module has its own route ... just use it !
+        if (Dispatcher::getInstance()->hasRoute('module-'.$module.'-'.$controller, $id_lang, $id_shop)) {
+            return $this->getPageLink('module-'.$module.'-'.$controller, $ssl, $id_lang, $params);
+        } else {
+            return $url.Dispatcher::getInstance()->createUrl('module', $id_lang, $params, $this->allow, '', $id_shop);
+        }
+    }
 
     /**
      * Get pagination link
      *
      * @param string $type Controller name
      * @param int $id_object
-     * @param boolean $nb Show nb element per page attribute
-     * @param boolean $sort Show sort attribute
-     * @param boolean $pagination Show page number attribute
-     * @param boolean $array If false return an url, if true return an array
+     * @param bool $nb Show nb element per page attribute
+     * @param bool $sort Show sort attribute
+     * @param bool $pagination Show page number attribute
+     * @param bool $array If false return an url, if true return an array
      */
     public function getPaginationLink($type, $id_object, $nb = false, $sort = false, $pagination = false, $array = false)
     {
-        // if no parameter $type, try to get it by using the controller name
+        // If no parameter $type, try to get it by using the controller name
         if (!$type && !$id_object) {
             $method_name = 'get'.Dispatcher::getInstance()->getController().'Link';
             if (method_exists($this, $method_name) && isset($_GET['id_'.Dispatcher::getInstance()->getController()])) {
@@ -111,12 +140,10 @@ class Link extends LinkCore
         $vars_pagination = array('p');
 
         foreach ($_GET as $k => $value) {
-            // strip var of the form "*_rewrite" from url
-            if ($k != 'id_'.$type && $k != $type.'_rewrite' && $k != 'controller') {
+            if ($k != 'id_'.$type && $k != 'controller' && $k != $type.'_rewrite') { /*XXX skip *_rewrite */
                 if (Configuration::get('PS_REWRITING_SETTINGS') && ($k == 'isolang' || $k == 'id_lang')) {
                     continue;
                 }
-
                 $if_nb = (!$nb || ($nb && !in_array($k, $vars_nb)));
                 $if_sort = (!$sort || ($sort && !in_array($k, $vars_sort)));
                 $if_pagination = (!$pagination || ($pagination && !in_array($k, $vars_pagination)));
@@ -135,7 +162,7 @@ class Link extends LinkCore
 
         if (!$array) {
             if (count($vars)) {
-                return $url.(($this->allow == 1 || $url == $this->url) ? '?' : '&').http_build_query($vars, '', '&');
+                return $url.(!strstr($url, '?') && ($this->allow == 1 || $url == $this->url) ? '?' : '&').http_build_query($vars, '', '&');
             } else {
                 return $url;
             }
@@ -150,7 +177,6 @@ class Link extends LinkCore
         if (!$this->allow == 1) {
             $vars['controller'] = Dispatcher::getInstance()->getController();
         }
-
         return $vars;
     }
 }

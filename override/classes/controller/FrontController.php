@@ -27,10 +27,9 @@ class FrontController extends FrontControllerCore
             'cms_category_rewrite',
         );
 
-        // hack original behavior on cananocalRedirection: remove *_rewrite from _GET
         $unfiltered_GET = $_GET;
-        $_GET = array_diff_key($_GET, array_flip($excluded_keys));
+        $_GET = array_diff_key($_GET, array_flip($excluded_keys)); // hack original behavior on cananocalRedirection: remove *_rewrite from _GET
         parent::canonicalRedirection($canonical_url);
-        $_GET = $unfiltered_GET;
+        $_GET = $unfiltered_GET;                                   //restore original _GET
     }
 }

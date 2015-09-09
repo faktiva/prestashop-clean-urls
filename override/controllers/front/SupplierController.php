@@ -1,20 +1,17 @@
 <?php
 
-/**
+/*
+ * This file is part of the zzCleanURLs module.
  *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License (AFL 3.0)
- * It is available through the world-wide-web at this URL:
- * http://opensource.org/licenses/afl-3.0.php
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
  *
  * DISCLAIMER
  * This code is provided as is without any warranty.
  * No promise of being safe or secure
  *
  * @author   ZiZuu.com <info@zizuu.com>
- * @license  http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- * @source   https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
+ * @source   https://github.com/ZiZuu-store/zzCleanURLs
  */
 
 class SupplierController extends SupplierControllerCore

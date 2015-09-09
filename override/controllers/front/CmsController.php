@@ -35,7 +35,6 @@ class CmsController extends CmsControllerCore
             $sql = 'SELECT `id_cms_category`
                 FROM `'._DB_PREFIX_.'cms_category_lang`
                 WHERE `link_rewrite` = \''.pSQL($cms_category_rewrite).'\'';
-
             if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
                 $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
             }

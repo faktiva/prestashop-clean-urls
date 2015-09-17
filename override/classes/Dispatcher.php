@@ -1,118 +1,108 @@
 <?php
 
-/*
- * This file is part of the zzCleanURLs module.
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- *
- * DISCLAIMER
- * This code is provided as is without any warranty.
- * No promise of being safe or secure
- *
- * @author   ZiZuu.com <info@zizuu.com>
- * @source   https://github.com/ZiZuu-store/zzCleanURLs
- */
-
 class Dispatcher extends DispatcherCore
 {
-    /**
-     * @var array List of default routes
-     */
-    public $default_routes = array(
-        'supplier_rule' => array(
-            'controller' => 'supplier',
-            'rule'       => 'supplier/{rewrite}',
-            'keywords'   => array(
-                'id'            => array('regexp' => '[0-9]+'),
-                'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'supplier_rewrite'),
-                'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+    public function __construct()
+    {
+        parent::__construct();
+        /**
+         * @var array List of default routes
+         */
+        $this->default_routes = array(
+            'supplier_rule' => array(
+                'controller' => 'supplier',
+                'rule'       => 'supplier/{rewrite}',
+                'keywords'   => array(
+                    'id'            => array('regexp' => '[0-9]+'),
+                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'supplier_rewrite'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                ),
             ),
-        ),
-        'manufacturer_rule' => array(
-            'controller' =>    'manufacturer',
-            'rule'       => 'manufacturer/{rewrite}',
-            'keywords'   => array(
-                'id'            => array('regexp' => '[0-9]+'),
-                'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'manufacturer_rewrite'),
-                'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+            'manufacturer_rule' => array(
+                'controller' =>    'manufacturer',
+                'rule'       => 'manufacturer/{rewrite}',
+                'keywords'   => array(
+                    'id'            => array('regexp' => '[0-9]+'),
+                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'manufacturer_rewrite'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                ),
             ),
-        ),
-        'cms_rule' => array(
-            'controller' =>    'cms',
-            'rule'       =>    'info/{rewrite}',
-            'keywords'   => array(
-                'id'            => array('regexp' => '[0-9]+'),
-                'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_rewrite'),
-                'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+            'cms_rule' => array(
+                'controller' =>    'cms',
+                'rule'       =>    'info/{rewrite}',
+                'keywords'   => array(
+                    'id'            => array('regexp' => '[0-9]+'),
+                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_rewrite'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                ),
             ),
-        ),
-        'cms_category_rule' => array(
-            'controller' =>    'cms',
-            'rule'       =>    'info/{rewrite}/',
-            'keywords'   => array(
-                'id'            => array('regexp' => '[0-9]+'),
-                'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_category_rewrite'),
-                'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+            'cms_category_rule' => array(
+                'controller' =>    'cms',
+                'rule'       =>    'info/{rewrite}/',
+                'keywords'   => array(
+                    'id'            => array('regexp' => '[0-9]+'),
+                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_category_rewrite'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                ),
             ),
-        ),
-        'module' => array(
-            'controller' =>    null,
-            'rule'       =>    'module/{module}{/:controller}',
-            'keywords'   => array(
-                'module'     =>    array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
-                'controller' => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'controller'),
+            'module' => array(
+                'controller' =>    null,
+                'rule'       =>    'module/{module}{/:controller}',
+                'keywords'   => array(
+                    'module'     =>    array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
+                    'controller' => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'controller'),
+                ),
+                'params'     => array(
+                    'fc' => 'module',
+                ),
             ),
-            'params'     => array(
-                'fc' => 'module',
+            'product_rule' => array(
+                'controller' =>    'product',
+                'rule'       => '{categories:/}{rewrite}',
+                'keywords'   => array(
+                    'id'            => array('regexp' => '[0-9]+'),
+                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'product_rewrite'),
+                    'ean13'         => array('regexp' => '[0-9\pL]*'),
+                    'category'      => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
+                    'reference'     => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'manufacturer'  => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'supplier'      => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'price'         => array('regexp' => '[0-9\.,]*'),
+                    'tags'          => array('regexp' => '[a-zA-Z0-9\pL-]*'),
+                ),
             ),
-        ),
-        'product_rule' => array(
-            'controller' =>    'product',
-            'rule'       => '{categories:/}{rewrite}',
-            'keywords'   => array(
-                'id'            => array('regexp' => '[0-9]+'),
-                'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'product_rewrite'),
-                'ean13'         => array('regexp' => '[0-9\pL]*'),
-                'category'      => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
-                'reference'     => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'manufacturer'  => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'supplier'      => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'price'         => array('regexp' => '[0-9\.,]*'),
-                'tags'          => array('regexp' => '[a-zA-Z0-9\pL-]*'),
+            'layered_rule' => array(
+                'controller' =>    'category',
+                'rule'       => '{rewrite}/filter{selected_filters}',
+                'keywords'   => array(
+                    'id'               => array('regexp' => '[0-9]+'),
+                    /* Selected filters is used by the module blocklayered */
+                    'selected_filters' => array('regexp' => '.*', 'param' => 'selected_filters'),
+                    'rewrite'          => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'category_rewrite'),
+                    'meta_keywords'    => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
+                    'meta_title'       => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
+                ),
             ),
-        ),
-        'layered_rule' => array(
-            'controller' =>    'category',
-            'rule'       => '{rewrite}/filter/{selected_filters}',
-            'keywords'   => array(
-                'id'               => array('regexp' => '[0-9]+'),
-                /* Selected filters is used by the module blocklayered */
-                'selected_filters' => array('regexp' => '.*', 'param' => 'selected_filters'),
-                'rewrite'          => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'category_rewrite'),
-                'meta_keywords'    => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
-                'meta_title'       => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
+            'category_rule' => array(
+                'controller' =>    'category',
+                'rule'       =>        '{categories:/}{rewrite}/',
+                'keywords'   => array(
+                    'id'            => array('regexp' => '[0-9]+'),
+                    'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
+                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'category_rewrite'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                ),
             ),
-        ),
-        'category_rule' => array(
-            'controller' =>    'category',
-            'rule'       =>        '{parent_categories:/}{rewrite}/',
-            'keywords'   => array(
-                'id'                => array('regexp' => '[0-9]+'),
-                'rewrite'           => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'category_rewrite'),
-                'meta_keywords'     => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'meta_title'        => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                'parent_categories' => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
-            ),
-        ),
-    );
+        );
+    }
 
     /**
      * Check if $short_link is a Product Link
@@ -226,6 +216,7 @@ class Dispatcher extends DispatcherCore
     /**
      * Retrieve the controller from url or request uri if routes are activated
      *
+     * @param int $id_shop, defaults null
      * @return string
      */
     public function getController($id_shop = null)

@@ -1,19 +1,5 @@
 <?php
 
-/*
- * This file is part of the zzCleanURLs module.
- *
- * For the full copyright and license information, please view the LICENSE.md
- * file that was distributed with this source code.
- *
- * DISCLAIMER
- * This code is provided as is without any warranty.
- * No promise of being safe or secure
- *
- * @author   ZiZuu.com <info@zizuu.com>
- * @source   https://github.com/ZiZuu-store/zzCleanURLs
- */
-
 class Link extends LinkCore
 {
     /**

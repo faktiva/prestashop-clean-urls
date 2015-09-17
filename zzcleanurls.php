@@ -66,7 +66,7 @@ class zzcleanurls extends Module
                 $shop = $this->context->shop->getShop($lang['id_shop']);
                 $err .= $this->l('Language: ').$lang['name'].'<br />'.$this->l('Shop: ').$shop['name'].'<br /><br />';
             }
-            $output .= $this->displayError($err);
+            $output .= $this->displayWarning($err);
         } else {
             $output .= $this->displayConfirmation($this->l('Nice. You have no duplicate URL entry.'));
         }

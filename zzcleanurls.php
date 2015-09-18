@@ -41,12 +41,11 @@ class zzcleanurls extends Module
     public function getContent()
     {
         $output = '<p class="info">'
-            .nl2br($this->l('On some versions you could have to disable Cache, '
-                .'save, open your shop home page, than go back and enable it:
-                Advanced Parameters > Performance > Clear Smarty cache
-                Preferences -> SEO and URLs -> Set userfriendly URL off -> Save
-                Preferences -> SEO and URLs -> Set userfriendly URL on -> Save'))
-            .'</p>';
+            . $this->l('On some versions you could have to disable Cache, save, open your shop home page, than go back and enable it:').'<br><br>'
+            . sprintf('', $this->l('Advanced Parameters'), $this->l('Performance'), $this->l('Clear Smarty cache')).'<br>'
+            . sprintf('', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL off'), $this->l('Save')).'<br>'
+            . sprintf('', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL on'), $this->l('Save')).'<br>'
+            . '</p>';
 
         $sql = 'SELECT * FROM `'._DB_PREFIX_.'product_lang`
             WHERE `link_rewrite`
@@ -58,13 +57,13 @@ class zzcleanurls extends Module
         }
 
         if ($res = Db::getInstance()->ExecuteS($sql)) {
-            $err = $this->l('You need to fix duplicate URL entries:').'<br />';
+            $err = $this->l('You need to fix duplicate URL entries:').'<br>';
             foreach ($res as $row) {
                 $lang = $this->context->language->getLanguage($row['id_lang']);
-                $err .= $row['name'].' ('.$row['id_product'].') - '.$row['link_rewrite'].'<br />';
+                $err .= $row['name'].' ('.$row['id_product'].') - '.$row['link_rewrite'].'<br>';
 
                 $shop = $this->context->shop->getShop($lang['id_shop']);
-                $err .= $this->l('Language: ').$lang['name'].'<br />'.$this->l('Shop: ').$shop['name'].'<br /><br />';
+                $err .= $this->l('Language: ').$lang['name'].'<br>'.$this->l('Shop: ').$shop['name'].'<br><br>';
             }
             $output .= $this->displayWarning($err);
         } else {

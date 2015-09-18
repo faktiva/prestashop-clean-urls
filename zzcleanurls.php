@@ -42,9 +42,9 @@ class zzcleanurls extends Module
     {
         $output = '<p class="info">'
             . $this->l('On some versions you could have to disable Cache, save, open your shop home page, than go back and enable it:').'<br><br>'
-            . sprintf('', $this->l('Advanced Parameters'), $this->l('Performance'), $this->l('Clear Smarty cache')).'<br>'
-            . sprintf('', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL off'), $this->l('Save')).'<br>'
-            . sprintf('', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL on'), $this->l('Save')).'<br>'
+            . sprintf('%s -> %s -> %s', $this->l('Advanced Parameters'), $this->l('Performance'), $this->l('Clear Smarty cache')).'<br>'
+            . sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL off'), $this->l('Save')).'<br>'
+            . sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL on'), $this->l('Save')).'<br>'
             . '</p>';
 
         $sql = 'SELECT * FROM `'._DB_PREFIX_.'product_lang`

@@ -11,21 +11,16 @@ class FrontController extends FrontControllerCore
      */
     protected function canonicalRedirection($canonical_url = '')
     {
-        /*
-         * TODO: replace with a generic "*_rewrite" filter
-         */
-        $excluded_keys = array(
-            'product_rewrite',
-            'category_rewrite',
-            'manufacturer_rewrite',
-            'supplier_rewrite',
-            'cms_rewrite',
-            'cms_category_rewrite',
-        );
+        $_unfiltered_GET = $_GET;
 
-        $unfiltered_GET = $_GET;
-        $_GET = array_diff_key($_GET, array_flip($excluded_keys)); // hack original behavior on cananocalRedirection: remove *_rewrite from _GET
+        // hack original behavior on cananocalRedirection: remove *_rewrite from _GET
+        $_GET = array_filter($_GET, function ($v) {
+            return '_rewrite' === substr($v, -8);
+        });
+
         parent::canonicalRedirection($canonical_url);
-        $_GET = $unfiltered_GET;                                   //restore original _GET
+
+        //restore original _GET
+        $_GET = $_unfiltered_GET;
     }
 }

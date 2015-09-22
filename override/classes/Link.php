@@ -42,7 +42,7 @@ class Link extends LinkCore
 
         $dispatcher = Dispatcher::getInstance();
 
-        if ($dispatcher->hasKeyword('category_rule', $id_lang, 'parent_categories')) {
+        if ($dispatcher->hasKeyword('category_rule', $id_lang, 'categories')) {
             // Retrieve all parent categories
             $p_cats = array();
             foreach ($category->getParentsCategories($id_lang) as $p_cat) {
@@ -52,7 +52,7 @@ class Link extends LinkCore
                 }
             }
             // add the URL slashes among categories, in reverse order
-            $params['parent_categories'] = implode('/', array_reverse($p_cats));
+            $params['categories'] = implode('/', array_reverse($p_cats));
         }
 
         return $url.$dispatcher->createUrl($rule, $id_lang, $params, $this->allow, '', $id_shop);

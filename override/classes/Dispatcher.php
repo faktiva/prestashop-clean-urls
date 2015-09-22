@@ -62,7 +62,7 @@ class Dispatcher extends DispatcherCore
             ),
             'product_rule' => array(
                 'controller' =>    'product',
-                'rule'       => '{categories:/}{rewrite}',
+                'rule'       => '{category:/}{rewrite}',
                 'keywords'   => array(
                     'id'            => array('regexp' => '[0-9]+'),
                     'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'product_rewrite'),
@@ -80,7 +80,7 @@ class Dispatcher extends DispatcherCore
             ),
             'layered_rule' => array(
                 'controller' =>    'category',
-                'rule'       => '{rewrite}/filter{selected_filters}',
+                'rule'       => '{rewrite}/f{/:selected_filters}',
                 'keywords'   => array(
                     'id'               => array('regexp' => '[0-9]+'),
                     /* Selected filters is used by the module blocklayered */
@@ -91,8 +91,8 @@ class Dispatcher extends DispatcherCore
                 ),
             ),
             'category_rule' => array(
-                'controller' =>    'category',
-                'rule'       =>        '{categories:/}{rewrite}/',
+                'controller' => 'category',
+                'rule'       => '{rewrite}/',
                 'keywords'   => array(
                     'id'            => array('regexp' => '[0-9]+'),
                     'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),

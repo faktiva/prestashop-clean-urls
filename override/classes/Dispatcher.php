@@ -256,7 +256,7 @@ class Dispatcher extends DispatcherCore
             }
             $controller = $this->controller_not_found;
 
-            // If the request_uri matches a static file, then there is no need to check the routes, we keep "controller_not_found" (a static file should not go through the dispatcher) 
+            // If the request_uri matches a static file, then there is no need to check the routes, we keep "controller_not_found" (a static file should not go through the dispatcher)
             if (!preg_match('/\.(gif|jpe?g|png|css|js|ico)$/i', $this->request_uri)) {
                 // Add empty route as last route to prevent this greedy regexp to match request uri before right time
                 if ($this->empty_route) {
@@ -272,8 +272,8 @@ class Dispatcher extends DispatcherCore
                     foreach ($this->routes[$id_shop][Context::getContext()->language->id] as $route) {
                         if (preg_match($route['regexp'], $uri, $m)) {
                             $isTemplate = false;
-
-                            switch ($route['controller']) {
+                            $module = isset($route['params']['module']) ? $route['params']['module'] : '';
+                            switch ($route['controller'].$module) { // Avoid name collision between core and modules' controllers
                                 case 'supplier':
                                 case 'manufacturer':
                                     // these two can be processed in normal way and also as template

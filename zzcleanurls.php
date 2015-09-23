@@ -1,20 +1,17 @@
 <?php
 
-/**
- * 
- * NOTICE OF LICENSE
+/*
+ * This file is part of the zzCleanURLs module.
  *
- * This source file is subject to the Academic Free License (AFL 3.0)
- * It is available through the world-wide-web at this URL:
- * http://opensource.org/licenses/afl-3.0.php
+ * For the full copyright and license information, please view the LICENSE.md
+ * file that was distributed with this source code.
  *
  * DISCLAIMER
  * This code is provided as is without any warranty.
  * No promise of being safe or secure
  *
- *  @author      ZiZuu.com <info@zizuu.com>
- *  @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- *  @source      https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs
+ * @author   ZiZuu.com <info@zizuu.com>
+ * @source   https://github.com/ZiZuu-store/zzCleanURLs
  */
 
 if (!defined('_PS_VERSION_')) {
@@ -27,7 +24,7 @@ class zzcleanurls extends Module
     {
         $this->name = 'zzcleanurls';
         $this->tab = 'seo';
-        $this->version = '0.10.0';
+        $this->version = '0.11.0';
         $this->author = 'ZiZuu Store';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);
@@ -44,12 +41,11 @@ class zzcleanurls extends Module
     public function getContent()
     {
         $output = '<p class="info">'
-            .nl2br($this->l('On some versions you could have to disable Cache, '
-                .'save, open your shop home page, than go back and enable it:
-                Advanced Parameters > Performance > Clear Smarty cache
-                Preferences -> SEO and URLs -> Set userfriendly URL off -> Save
-                Preferences -> SEO and URLs -> Set userfriendly URL on -> Save'))
-            .'</p>';
+            . $this->l('On some versions you could have to disable Cache, save, open your shop home page, than go back and enable it:').'<br><br>'
+            . sprintf('%s -> %s -> %s', $this->l('Advanced Parameters'), $this->l('Performance'), $this->l('Clear Smarty cache')).'<br>'
+            . sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL off'), $this->l('Save')).'<br>'
+            . sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL on'), $this->l('Save')).'<br>'
+            . '</p>';
 
         $sql = 'SELECT * FROM `'._DB_PREFIX_.'product_lang`
             WHERE `link_rewrite`
@@ -61,15 +57,15 @@ class zzcleanurls extends Module
         }
 
         if ($res = Db::getInstance()->ExecuteS($sql)) {
-            $err = $this->l('You need to fix duplicate URL entries:').'<br />';
+            $err = $this->l('You need to fix duplicate URL entries:').'<br>';
             foreach ($res as $row) {
                 $lang = $this->context->language->getLanguage($row['id_lang']);
-                $err .= $row['name'].' ('.$row['id_product'].') - '.$row['link_rewrite'].'<br />';
+                $err .= $row['name'].' ('.$row['id_product'].') - '.$row['link_rewrite'].'<br>';
 
                 $shop = $this->context->shop->getShop($lang['id_shop']);
-                $err .= $this->l('Language: ').$lang['name'].'<br />'.$this->l('Shop: ').$shop['name'].'<br /><br />';
+                $err .= $this->l('Language: ').$lang['name'].'<br>'.$this->l('Shop: ').$shop['name'].'<br><br>';
             }
-            $output .= $this->displayError($err);
+            $output .= $this->displayWarning($err);
         } else {
             $output .= $this->displayConfirmation($this->l('Nice. You have no duplicate URL entry.'));
         }

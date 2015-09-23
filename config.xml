@@ -2,7 +2,7 @@
 <module>
 	<name>zzcleanurls</name>
 	<displayName><![CDATA[ZiZuu Clean URLs]]></displayName>
-	<version><![CDATA[0.10.0]]></version>
+	<version><![CDATA[0.11.0]]></version>
 	<description><![CDATA[This override allows you to remove URL IDs. This version is actively maintained by ZiZuu Store, as we need it working for our store.]]></description>
 	<author><![CDATA[ZiZuu Store]]></author>
 	<tab><![CDATA[seo]]></tab>

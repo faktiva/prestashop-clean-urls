@@ -4,7 +4,6 @@ class Dispatcher extends DispatcherCore
 {
     public function __construct()
     {
-        parent::__construct();
         /**
          * @var array List of default routes
          */
@@ -83,7 +82,6 @@ class Dispatcher extends DispatcherCore
                 'rule'       => '{rewrite}/f{/:selected_filters}',
                 'keywords'   => array(
                     'id'               => array('regexp' => '[0-9]+'),
-                    /* Selected filters is used by the module blocklayered */
                     'selected_filters' => array('regexp' => '.*', 'param' => 'selected_filters'),
                     'rewrite'          => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'category_rewrite'),
                     'meta_keywords'    => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
@@ -102,6 +100,8 @@ class Dispatcher extends DispatcherCore
                 ),
             ),
         );
+
+        parent::__construct();
     }
 
     /**

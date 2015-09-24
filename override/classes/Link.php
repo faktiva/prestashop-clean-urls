@@ -59,36 +59,6 @@ class Link extends LinkCore
     }
 
     /**
-     * XXX TODO
-     * Create a link to a module
-     *
-     * @since 1.5.0
-     * @param string $module Module name
-     * @param string $process Action name
-     * @param int $id_lang
-     * @return string
-     */
-    public function getModuleLink($module, $controller = 'default', array $params = array(), $ssl = null, $id_lang = null, $id_shop = null, $relative_protocol = false)
-    {
-        if (!$id_lang) {
-            $id_lang = Context::getContext()->language->id;
-        }
-
-        $url = $this->getBaseLink($id_shop, $ssl, $relative_protocol).$this->getLangLink($id_lang, null, $id_shop);
-
-        // Set available keywords
-        $params['module'] = $module;
-        $params['controller'] = $controller ? $controller : 'default';
-
-        // If the module has its own route ... just use it !
-        if (Dispatcher::getInstance()->hasRoute('module-'.$module.'-'.$controller, $id_lang, $id_shop)) {
-            return $this->getPageLink('module-'.$module.'-'.$controller, $ssl, $id_lang, $params);
-        } else {
-            return $url.Dispatcher::getInstance()->createUrl('module', $id_lang, $params, $this->allow, '', $id_shop);
-        }
-    }
-
-    /**
      * Get pagination link
      *
      * @param string $type Controller name
@@ -126,7 +96,7 @@ class Link extends LinkCore
         $vars_pagination = array('p');
 
         foreach ($_GET as $k => $value) {
-            if ($k != 'id_'.$type && $k != 'controller' && $k != $type.'_rewrite') { /*XXX skip *_rewrite */
+            if ($k != 'id_'.$type && $k != 'controller' && $k != $type.'_rewrite' /* skip *_rewrite */) {
                 if (Configuration::get('PS_REWRITING_SETTINGS') && ($k == 'isolang' || $k == 'id_lang')) {
                     continue;
                 }

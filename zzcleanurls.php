@@ -18,7 +18,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-class zzcleanurls extends Module
+class zzCleanUrls extends Module
 {
     public function __construct()
     {

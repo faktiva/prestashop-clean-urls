@@ -1,0 +1,18 @@
+global_exclude_dirs:
+    - translations
+    - upgrade
+
+exclude_patterns:
+    - lib/debug.inc.php
+    - index.php
+
+rules:
+    php.absolute_path_present:
+        enabled: true
+        allowed_paths: []
+    php.method_too_long:
+        enabled: true
+        max_length: 60
+        threshold: 5
+    php.psr1:
+        enabled: false

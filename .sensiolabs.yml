@@ -3,7 +3,6 @@ global_exclude_dirs:
     - upgrade
 
 exclude_patterns:
-    - lib/debug.inc.php
     - index.php
 
 rules:
@@ -12,7 +11,5 @@ rules:
         allowed_paths: []
     php.method_too_long:
         enabled: true
-        max_length: 60
-        threshold: 5
-    php.psr1:
-        enabled: false
+        max_length: 50
+        threshold: 15

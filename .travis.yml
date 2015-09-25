@@ -6,6 +6,10 @@ php:
 matrix:
   fast_finish: true
 
+addons:
+  ssh_known_hosts:
+    - github.com
+
 before_install:
   - sudo apt-get update
   - sudo apt-get install git

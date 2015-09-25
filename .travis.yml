@@ -18,7 +18,7 @@ before_script:
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   - sudo cp -f tests/travis-ci-apache-vhost.conf /etc/apache2/sites-available/default
   - sudo mkdir -p /var/www/prestashop.test
-  - sudo git archive --remote=https://github.com/PrestaShop/PrestaShop.git 1.6.1.1 | (cd /var/www/; tar x) 
+  - sudo git archive --remote=git@github.com:PrestaShop/PrestaShop.git 1.6.1.1 | (cd /var/www/prestashop.test/; tar -xf - ) 
   - sudo chmod 777 -R /var/www/
   - sudo service apache2 restart
 

@@ -21,8 +21,7 @@ before_script:
   - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   - sudo cp -f tests/travis-ci-apache-vhost.conf /etc/apache2/sites-available/default
-  - sudo mkdir -p /var/www/prestashop.test
-  - sudo git archive --remote=git@github.com:PrestaShop/PrestaShop.git 1.6.1.1 | (cd /var/www/prestashop.test/; tar -xf - ) 
+  - sudo git clone --single-branch --branch 1.6.1.1  https://github.com/PrestaShop/PrestaShop.git /var/www/prestashop.test
   - sudo chmod 777 -R /var/www/
   - sudo service apache2 restart
 

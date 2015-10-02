@@ -29,7 +29,7 @@ before_script:
   # configure apache virtual hosts
   - sudo cp -f tests/travis-ci-apache-vhost.conf /etc/apache2/sites-available/default
   - sudo sed -e "s#%TRAVIS_BUILD_DIR%#/var/www/PS_${PS_VERSION}#g" --in-place /etc/apache2/sites-available/default
-  - sudo chmod 777 -R /var/www/PS_${PS_VERSION}
+  - sudo chmod 777 -R /var/www
   - sudo service apache2 restart
   # setup PrestaShop
   - sudo git clone --single-branch --branch ${PS_VERSION}  https://github.com/PrestaShop/PrestaShop.git /var/www/PS_${PS_VERSION}

@@ -1,16 +1,19 @@
 language: php
 
 php:
-  - 5.4
   - 5.6
 
 env:
   - PS_VERSION="1.6.1.1"
-  - PS_VERSION="1.6.0.9"
+  - PS_VERSION="1.6.0.1"
+  - PS_VERSION="1.5.6.2"
+  - PS_VERSION="1.5.0.0"
 
 matrix:
   fast_finish: true
-  allow_failures: []
+  allow_failures:
+    - 1.5.6.2
+    - 1.5.0.0
 
 before_install:
   - sudo apt-get update
@@ -25,12 +28,12 @@ before_script:
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   # configure apache virtual hosts
   - sudo cp -f tests/travis-ci-apache-vhost.conf /etc/apache2/sites-available/default
-  - sudo sed -e "s?%TRAVIS_BUILD_DIR%?$(pwd)?g" --in-place /etc/apache2/sites-available/default
-  - sudo chmod 777 -R /var/www/
+  - sudo sed -e "s#%TRAVIS_BUILD_DIR%#/var/www/PS_${PS_VERSION}#g" --in-place /etc/apache2/sites-available/default
+  - sudo chmod 777 -R /var/www/PS_${PS_VERSION}
   - sudo service apache2 restart
   # setup PrestaShop
-  - sudo git clone --single-branch --branch ${PS_VERSION}  https://github.com/PrestaShop/PrestaShop.git /var/www/prestashop.test
-  - php /var/www/prestashop.test/install-dev/index_cli.php --language=en --country=us --domain=localhost --base_uri=/prestashop.test --db_name=prestashop.test --db_create=1 --name=prestashop.test --password=123456789
+  - sudo git clone --single-branch --branch ${PS_VERSION}  https://github.com/PrestaShop/PrestaShop.git /var/www/PS_${PS_VERSION}
+  - php /var/www/PS_${PS_VERSION}/install-dev/index_cli.php --language=en --country=us --domain=localhost --base_uri=/prestashop.test --db_name=prestashop.test --db_create=1 --name=prestashop.test --password=123456789
   
 script:
-  - grep '#   v1.' /var/www/prestashop.test/docs/CHANGELOG.txt | head -1
+  - grep '#   v1.' /var/www/PS_${PS_VERSION}/docs/CHANGELOG.txt | head -1

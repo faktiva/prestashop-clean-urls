@@ -14,9 +14,11 @@ matrix:
   allow_failures:
     - env: PS_VERSION="1.5.4.1"
 
+
 before_install:
   - sudo apt-get update
   - sudo apt-get install rsync
+
 
 before_script:
   - sudo apt-get install apache2 libapache2-mod-fastcgi
@@ -37,9 +39,10 @@ before_script:
   - sudo chmod -R 777 /var/www
   - rsync -a  ${TRAVIS_BUILD_DIR}/ /var/www/PS_${PS_VERSION}/modules/zzcleanurls/
 
+
 script:
   - cd /var/www/PS_${PS_VERSION}/
   - grep '#   v1.' ./docs/CHANGELOG.txt | head -1
-  - grep -i 'version' ./modules/zzcleanurls/zzcleanurls.php | head -1
+  - grep '$this->version' ./modules/zzcleanurls/zzcleanurls.php | head -1
 
 

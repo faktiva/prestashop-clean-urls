@@ -15,7 +15,7 @@
  */
 
 if (!defined('_PS_VERSION_')) {
-    exit;
+    return;
 }
 
 class zzCleanUrls extends Module

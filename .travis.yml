@@ -35,8 +35,11 @@ before_script:
   - php /var/www/PS_${PS_VERSION}/install-dev/index_cli.php --language=en --country=us --domain=localhost --base_uri=/prestashop.test --db_name=prestashop.test --db_create=1 --name=prestashop.test --password=123456789
   # install our module
   - sudo chmod -R 777 /var/www
-  - cd /var/www/PS_${PS_VERSION}/modules/ ; rsync -a  ${TRAVIS_BUILD_DIR}/ zzcleanurls/
+  - rsync -a  ${TRAVIS_BUILD_DIR}/ /var/www/PS_${PS_VERSION}/modules/zzcleanurls/
+
 script:
-  - grep '#   v1.' /var/www/PS_${PS_VERSION}/docs/CHANGELOG.txt | head -1
+  - cd /var/www/PS_${PS_VERSION}/
+  - grep '#   v1.' ./docs/CHANGELOG.txt | head -1
+  - grep -i 'version' ./modules/zzcleanurls/zzcleanurls.php | head -1
 
 

@@ -12,8 +12,8 @@ env:
 matrix:
   fast_finish: true
   allow_failures:
-    - 1.5.6.2
-    - 1.5.0.0
+    - PS_VERSION: 1.5.6.2
+    - PS_VERSION: 1.5.0.0
 
 before_install:
   - sudo apt-get update

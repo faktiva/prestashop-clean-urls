@@ -3,29 +3,28 @@ language: php
 php:
   - 5.6
 
+env:
+  - PS_VERSION="1.6.1.1"
+  - PS_VERSION="1.6.0.9"
+
 matrix:
   fast_finish: true
 
-addons:
-  ssh_known_hosts:
-    - github.com
-
 before_install:
   - sudo apt-get update
-  - sudo apt-get install git
 
 before_script:
   - sudo apt-get install apache2 libapache2-mod-fastcgi
   - cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
   - sudo a2enmod rewrite actions fastcgi alias
   - echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo 'date.timezone = "Europe/Rome"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
   - sudo cp -f tests/travis-ci-apache-vhost.conf /etc/apache2/sites-available/default
-  - sudo git clone --single-branch --branch 1.6.1.1  https://github.com/PrestaShop/PrestaShop.git /var/www/prestashop.test
+  - sudo git clone --single-branch --branch ${PS_VERSION}  https://github.com/PrestaShop/PrestaShop.git /var/www/prestashop.test
   - sudo chmod 777 -R /var/www/
   - sudo service apache2 restart
-
-script:
   - php /var/www/prestashop.test/install-dev/index_cli.php --language=en --country=us --domain=localhost --base_uri=/prestashop.test --db_name=prestashop.test --db_create=1 --name=prestashop.test --password=123456789
-  - cd /var/www/prestashop.test/tests && bash getcomposer.sh && php composer.phar install 
   
+script:
+  - head -40 /var/www/prestashop.test/web/docs/CHANGELOG.txt

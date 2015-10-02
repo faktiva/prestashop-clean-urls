@@ -14,7 +14,6 @@ matrix:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install tree
 
 before_script:
   - sudo apt-get install apache2 libapache2-mod-fastcgi
@@ -27,7 +26,7 @@ before_script:
   - sudo git clone --single-branch --branch ${PS_VERSION}  https://github.com/PrestaShop/PrestaShop.git /var/www/prestashop.test
   - sudo chmod 777 -R /var/www/
   - sudo service apache2 restart
+  - php /var/www/prestashop.test/install-dev/index_cli.php --language=en --country=us --domain=localhost --base_uri=/prestashop.test --db_name=prestashop.test --db_create=1 --name=prestashop.test --password=123456789
   
 script:
-  - php /var/www/prestashop.test/install-dev/index_cli.php --language=en --country=us --domain=localhost --base_uri=/prestashop.test --db_name=prestashop.test --db_create=1 --name=prestashop.test --password=123456789
-  - head -40 /var/www/prestashop.test/docs/CHANGELOG.txt
+  - grep '#   v1.' /var/www/prestashop.test/docs/CHANGELOG.txt | head -1

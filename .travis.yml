@@ -29,13 +29,13 @@ before_script:
   # configure apache virtual hosts
   - sudo cp -f tests/travis-ci-apache-vhost.conf /etc/apache2/sites-available/default
   - sudo sed -e "s#%DOC_ROOT_DIR%#/var/www/PS_${PS_VERSION}#g" --in-place /etc/apache2/sites-available/default
-  - sudo chmod 777 -R /var/www
   - sudo service apache2 restart
   # setup PrestaShop
   - sudo git clone --single-branch --branch ${PS_VERSION}  https://github.com/PrestaShop/PrestaShop.git /var/www/PS_${PS_VERSION}
   - php /var/www/PS_${PS_VERSION}/install-dev/index_cli.php --language=en --country=us --domain=localhost --base_uri=/prestashop.test --db_name=prestashop.test --db_create=1 --name=prestashop.test --password=123456789
   # install our module
-  - cd /var/www/PS_${PS_VERSION}/modules/ ; rsync -a  ${TRAVIS_BUILD_DIR}/ ./zzcleanurls/
+  - sudo chmod -R 777 /var/www
+  - cd /var/www/PS_${PS_VERSION}/modules/ ; rsync -a  ${TRAVIS_BUILD_DIR}/ zzcleanurls/
 script:
   - grep '#   v1.' /var/www/PS_${PS_VERSION}/docs/CHANGELOG.txt | head -1
 

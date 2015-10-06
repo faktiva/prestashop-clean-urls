@@ -1,3 +1,4 @@
+
 language: php
 
 php:
@@ -51,5 +52,4 @@ before_script:
 script:
   - grep '#   v1.' /var/www/PS_${PS_VERSION}/docs/CHANGELOG.txt | head -1
   - grep '$this->version' /var/www/PS_${PS_VERSION}/modules/zzcleanurls/zzcleanurls.php | head -1
-
 

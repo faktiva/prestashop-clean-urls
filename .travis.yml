@@ -45,6 +45,7 @@ before_script:
   - sh ./tests/setup/prestashop.sh
   - sudo chmod -R 777 /var/www
   - rsync -a ${TRAVIS_BUILD_DIR}/ /var/www/PS_${PS_VERSION}/modules/zzcleanurls/
+  - cd ./tests ; curl -sL https://raw.githubusercontent.com/jlipps/sausage-bun/master/givememysausage.php | php -- -t ${SAUCE_USERNAME} ${SAUCE_ACCESS_KEY} ; cd -
 
 
 script:

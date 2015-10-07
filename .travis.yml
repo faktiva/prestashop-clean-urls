@@ -5,6 +5,7 @@ php:
     #- 5.5
     - 5.6
     #- 7
+    #- hhvm
 env:
     global:
         - secure: "k/LW4Uijo8TI+4viDuDlQBkJrDHLErDfCJbqNtmS17zWOmG9kDA8oNxmBr8WxFyEj+RCUkGIQk+PglEdKovfN9CcPky6qRp369MckGuwmYl3s4NjY/zsHr6o4Vf2toD4DI9tNWUsQoDpuuDVnAPLXmBUHLBe5G4U+elxrcgn+GJRTPhTpD3K3EM0omdkVHq/xfzPSwx9wPZ3Oqt665xmFotyJYrvhTAjAeLaKdE0VRsoWzSChKQe80jfEym2i+TL9MjUTkHw5kTZmky5K6y2RoFtTc9JYH8Tdwwnpk4u7bUJ7Hr3c1ucZTuSl2+5DLIGgB11kMxvli0/XTVTOQe1PXKdqy/PQfVkBB67M7ragmQWbOxXw6LeBd1YefxnyWs0AOmS9gBW63G4VjgTWISSDiuK8+0XnrwhH7nPaNGisGJXgQIUlEtXqPi4vQJrWh3elHUFRku3+w4vYTXEEkI/OAVLfcWO6C6xyOjkNN9KJNN8a/L4pWVSKrEGWA34e4kAw0dGd1ruWweiuV4kIC8tVdcj0uI6Ou02g7PZdy24gZbpdAB13LQZytTz1GBiCQpOZSTLO0htcepEM67E+ucUDvo5LXqWTcYLGcPgPkFTKVescZr8jctbVyYmv1AyxwvuB2EicvaBM4Zu9C4D2TEJFRRtdIfFIULkHxbSYsS5myg="
@@ -21,31 +22,33 @@ matrix:
     fast_finish: true
     allow_failures:
         - php: 7
+        - php: hhvm
         - env: PS_VERSION="1.5.4.1"
 addons:
+    hosts:
+        - prestashop.test
+        - en.prestashop.test
+        #- it.prestashop.test
     sauce_connect: true
 
 
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -qq rsync
-    - ./tests/setup/xvfb.sh
-
-install: true
-
-before_script:
+    - sh ./tests/setup/xvfb.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
     - sudo chmod -R 777 /var/www
+install:
     - rsync -a ${TRAVIS_BUILD_DIR}/ /var/www/PS_${PS_VERSION}/modules/zzcleanurls/
+before_script:
     - cd ./tests ; curl -sL https://raw.githubusercontent.com/jlipps/sausage-bun/master/givememysausage.php | php -- -t ${SAUCE_USERNAME} ${SAUCE_ACCESS_KEY} ; cd -
-
 script:
     - grep '#     v1.' /var/www/PS_${PS_VERSION}/docs/CHANGELOG.txt | head -1
     - grep '$this->version' /var/www/PS_${PS_VERSION}/modules/zzcleanurls/zzcleanurls.php | head -1
-
+    - php ./tests/vendor/bin/phpunit -v ./tests/functional
 after_success:
-
+    #
 after_failure:
-
+    #
 

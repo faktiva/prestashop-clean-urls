@@ -4,7 +4,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 define('SAUCE_HOST', sprintf('%s:%s@ondemand.saucelabs.com', getenv('SAUCE_USERNAME'), getenv('SAUCE_ACCESS_KEY')));
 
-class PrestashopHttpTest extends PHPUnit_Extensions_Selenium2TestCase
+class PrestashopHttpTest extends WebDriverTestCase
 {
     protected $start_url = 'http://localhost/prestashop.test/';
 

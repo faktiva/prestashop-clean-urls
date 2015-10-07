@@ -25,10 +25,9 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
         $this->url($this->base_url);
     }
 
-    public function testPrestashop()
+    public function testTitle()
     {
         $this->verifyContains('Prestashop Shop', $this->title());
-        $this->verifyTextPresent("Prestashop");
     }
 
 

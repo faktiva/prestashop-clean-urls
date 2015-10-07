@@ -48,7 +48,7 @@ script:
     - grep '$this->version' /var/www/PS_${PS_VERSION}/modules/zzcleanurls/zzcleanurls.php | head -1
     - ls -lha tests
     - ls -lha tests/vendor
-    - cd test; php vendor/bin/phpunit -v ./functional
+    - cd tests; php ./vendor/bin/phpunit -v ./functional
 after_success:
     #
 after_failure:

@@ -4,9 +4,9 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 define('SAUCE_HOST', sprintf('%s:%s@ondemand.saucelabs.com', getenv('SAUCE_USERNAME'), getenv('SAUCE_ACCESS_KEY')));
 
-class PrestashopHttpTest extends WebDriverTestCase
+class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
 {
-    protected $start_url = 'http://localhost/prestashop.test/';
+    protected $base_url = 'http://localhost/prestashop.test/';
 
     public static $browsers = array(
         array(
@@ -20,14 +20,16 @@ class PrestashopHttpTest extends WebDriverTestCase
         ),
     );
 
-    protected function setUp()
+    protected function setUpPage()
     {
-        $this->setBrowserUrl('');
+        $this->url($this->base_url);
     }
 
-    public function testTitle()
+    public function testPrestashop()
     {
-        $this->url($this->start_url);
-        $this->assertContains('Prestashop Shop', $this->title());
+        $this->verifyContains('Prestashop Shop', $this->title());
+        $this->verifyTextPresent("Prestashop");
     }
+
+
 }

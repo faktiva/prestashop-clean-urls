@@ -1,43 +1,33 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
-define('__TEST_BASE_URL__', 'http://localhost/prestashop.test/');
+require_once __DIR__.'/vendor/autoload.php';
 
-class PrestashopHttpTest extends Sauce\Sausage\SeleniumRCTestCase
+define('SAUCE_HOST', 'ZiZuu:09b878d4-6b56-47dd-b4b8-c018b19b4f61@ondemand.saucelabs.com');
+
+class WebTest extends PHPUnit_Extensions_Selenium2TestCase
 {
+    protected $start_url = 'http://localhost/prestashop.test/';
+
     public static $browsers = array(
-        // FF 11 on Sauce
-        /*array(
-            'browser' => 'firefox',
-            'browserVersion' => '11',
-            'os' => 'Windows 2003'
-        ),*/
-        //Chrome on Linux on Sauce
         array(
-            'browser' => 'googlechrome',
-            'browserVersion' => '',
-            'os' => 'Linux'
+            'browserName' => 'firefox',
+            'host' => SAUCE_HOST,
+            'port' => 80,
+            'desiredCapabilities' => array(
+                'version' => '15',
+                'platform' => 'Windows 2012',
+            ),
         ),
-        //Chrome on local machine
-        /*array(
-            'browser' => 'googlechrome',
-            'local' => true
-        ),*/
     );
 
-    public function setUp()
+    protected function setUp()
     {
-        $this->setBrowserUrl(__TEST_BASE_URL__);
-    }
-
-    public function postSessionSetUp()
-    {
-        $this->open(__TEST_BASE_URL__);
+        $this->setBrowserUrl('');
     }
 
     public function testTitle()
     {
-        $this->assertTitle("Prestashop Shop");
+        $this->url($this->start_url);
+        $this->assertContains('Prestashop Shop', $this->title());
     }
-
 }

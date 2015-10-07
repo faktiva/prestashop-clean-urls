@@ -1,6 +1,6 @@
 <?php
 
-require_once '../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 define('__TEST_BASE_URL__', 'http://localhost/prestashop.test/');
 
 class PrestashopHttpTest extends Sauce\Sausage\SeleniumRCTestCase

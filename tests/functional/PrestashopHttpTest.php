@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
 define('SAUCE_HOST', $_ENV['SAUCE_USERNAME'].':'.$_ENV['SAUCE_ACCESS_KEY'].'@ondemand.saucelabs.com');
 

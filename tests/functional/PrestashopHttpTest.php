@@ -20,7 +20,7 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
         ),
     );
 
-    protected function setUpPage()
+    public function setUpPage()
     {
         $this->url($this->base_url);
     }

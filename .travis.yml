@@ -46,7 +46,9 @@ before_script:
 script:
     - grep '#     v1.' /var/www/PS_${PS_VERSION}/docs/CHANGELOG.txt | head -1
     - grep '$this->version' /var/www/PS_${PS_VERSION}/modules/zzcleanurls/zzcleanurls.php | head -1
-    - php ./tests/vendor/bin/phpunit -v ./tests/functional
+    - ls -lha tests
+    - ls -lha tests/vendor
+    - cd test; php vendor/bin/phpunit -v ./functional
 after_success:
     #
 after_failure:

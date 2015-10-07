@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-define('SAUCE_HOST', $_ENV['SAUCE_USERNAME'].':'.$_ENV['SAUCE_ACCESS_KEY'].'@ondemand.saucelabs.com');
+define('SAUCE_HOST', sprintf('%s:%s@ondemand.saucelabs.com', getenv('SAUCE_USERNAME'), getenv('SAUCE_ACCESS_KEY')));
 
 class PrestashopHttpTest extends PHPUnit_Extensions_Selenium2TestCase
 {

@@ -4,7 +4,6 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba/mini.png)](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba)
 [![Build Status](https://travis-ci.org/ZiZuu-store/zzCleanURLs.svg?branch=integrate-travis-ci)](https://travis-ci.org/ZiZuu-store/zzCleanURLs)
 
-==
 [![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ZiZuu-store/zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 * For production use the **latest stable [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/)**

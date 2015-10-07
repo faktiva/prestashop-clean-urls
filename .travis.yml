@@ -35,7 +35,7 @@ addons:
 before_install:
     - sudo apt-get update -q
     - sudo apt-get install -q rsync
-    - sh ./tests/setup/xvfb.sh
+    #- sh ./tests/setup/xvfb.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
     - sudo chmod -R 777 /var/www
@@ -44,10 +44,6 @@ install:
 before_script:
     - cd ./tests ; curl -sL https://raw.githubusercontent.com/jlipps/sausage-bun/master/givememysausage.php | php -- -t ${SAUCE_USERNAME} ${SAUCE_ACCESS_KEY} ; cd -
 script:
-    - grep '#     v1.' /var/www/PS_${PS_VERSION}/docs/CHANGELOG.txt | head -1
-    - grep '$this->version' /var/www/PS_${PS_VERSION}/modules/zzcleanurls/zzcleanurls.php | head -1
-    - ls -lha tests
-    - ls -lha tests/vendor
     - cd tests; php ./vendor/bin/phpunit -v ./functional
 after_success:
     #

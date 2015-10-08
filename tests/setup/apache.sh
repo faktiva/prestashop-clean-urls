@@ -15,6 +15,7 @@ sudo ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 
 # configure apache virtual hosts
 sudo cp -f ./tests/setup/apache-vhost.conf /etc/apache2/sites-available/default
-sudo sed -e "s#%DOC_ROOT_DIR%#${TEST_DOC_ROOT}#g" --in-place /etc/apache2/sites-available/default
+sudo sed -e "s#%DOCUMENT_ROOT%#${TEST_DOC_ROOT}#g" --in-place /etc/apache2/sites-available/default
+sudo sed -e "s#%SERVER_NAME%#${TEST_HOST:=localhost}#g" --in-place /etc/apache2/sites-available/default
 
 sudo service apache2 restart

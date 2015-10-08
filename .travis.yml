@@ -14,14 +14,14 @@ env:
         - SAUCE_TUNNEL_IDENTIFIER=${TRAVIS_JOB_NUMBER}
         - SAUCE_DONT_VERIFY_CERTS=1
     matrix:
-        - PS_VERSION="1.6.1.1" TEST_BASE_DIR="/"
-        #- PS_VERSION="1.6.0.1" TEST_BASE_DIR="/"
-        #- PS_VERSION="1.5.6.2" TEST_BASE_DIR="/"
-        #- PS_VERSION="1.5.4.1" TEST_BASE_DIR="/"
-        - PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.6.0.1" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.5.6.2" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.5.4.1" TEST_BASE_DIR="/base_dir/"
+        - PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
+        #- PS_VERSION="1.6.0.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
+        #- PS_VERSION="1.5.6.2" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
+        #- PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
+        #- PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
+        #- PS_VERSION="1.6.0.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
+        #- PS_VERSION="1.5.6.2" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
+        #- PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
 matrix:
     fast_finish: true
     allow_failures:
@@ -29,15 +29,13 @@ matrix:
         - php: hhvm
         - env: PS_VERSION="1.5.4.1"
 addons:
-    hosts:
-        - prestashop.test
-        - en.prestashop.test
-        #- it.prestashop.test
     sauce_connect: true
+    hosts:
+        - ${TEST_HOST}
 
 
 before_install:
-    - export TEST_DOC_ROOT="/var/www/PS_${PS_VERSION}${TEST_BASE_DIR}"
+    - source ./tests/setup/environment.sh
     - sudo apt-get update -q
     - sudo apt-get install -q rsync
     - sh ./tests/setup/apache.sh
@@ -48,9 +46,8 @@ install:
 before_script:
     - cd ./tests ; curl -sL https://raw.githubusercontent.com/jlipps/sausage-bun/master/givememysausage.php | php -- -t ${SAUCE_USERNAME} ${SAUCE_ACCESS_KEY} ; cd -
 script:
-    - cd tests; php ./vendor/bin/phpunit -v ./functional
+    - php .tests/vendor/bin/phpunit -v ./tests/functional
 after_success:
     #
 after_failure:
-    #
-
+    - echo -e "PS: ${PS_VERSION}\nProto: ${TEST_PROTO}\nHost: ${TEST_HOST}\nBase dir: ${TEST_BASE_DIR}\nDoc Root: ${TEST_DOC_ROOT}\n\n"

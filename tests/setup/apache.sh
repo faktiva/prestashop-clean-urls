@@ -18,4 +18,7 @@ sudo cp -f ./tests/setup/apache-vhost.conf /etc/apache2/sites-available/default
 sudo sed -e "s#%DOCUMENT_ROOT%#${TEST_DOC_ROOT}#g" --in-place /etc/apache2/sites-available/default
 sudo sed -e "s#%SERVER_NAME%#${TEST_HOST}#g" --in-place /etc/apache2/sites-available/default
 
+sudo mkdir -p ${TEST_DOC_ROOT}
+sudo chmod -R 777 ${TEST_DOC_ROOT}
+
 sudo service apache2 restart

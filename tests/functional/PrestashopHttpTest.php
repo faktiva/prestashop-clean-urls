@@ -15,7 +15,6 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
     public static $browsers = array(
         array(
             'browserName' => 'firefox',
-            'port' => 80,
             'desiredCapabilities' => array(
                 'version' => '15',
                 'platform' => 'VISTA',

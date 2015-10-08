@@ -1,11 +1,13 @@
 
 language: php
+
 php:
     #- 5.4
     #- 5.5
     - 5.6
     #- 7
     #- hhvm
+
 env:
     global:
         - secure: k/LW4Uijo8TI+4viDuDlQBkJrDHLErDfCJbqNtmS17zWOmG9kDA8oNxmBr8WxFyEj+RCUkGIQk+PglEdKovfN9CcPky6qRp369MckGuwmYl3s4NjY/zsHr6o4Vf2toD4DI9tNWUsQoDpuuDVnAPLXmBUHLBe5G4U+elxrcgn+GJRTPhTpD3K3EM0omdkVHq/xfzPSwx9wPZ3Oqt665xmFotyJYrvhTAjAeLaKdE0VRsoWzSChKQe80jfEym2i+TL9MjUTkHw5kTZmky5K6y2RoFtTc9JYH8Tdwwnpk4u7bUJ7Hr3c1ucZTuSl2+5DLIGgB11kMxvli0/XTVTOQe1PXKdqy/PQfVkBB67M7ragmQWbOxXw6LeBd1YefxnyWs0AOmS9gBW63G4VjgTWISSDiuK8+0XnrwhH7nPaNGisGJXgQIUlEtXqPi4vQJrWh3elHUFRku3+w4vYTXEEkI/OAVLfcWO6C6xyOjkNN9KJNN8a/L4pWVSKrEGWA34e4kAw0dGd1ruWweiuV4kIC8tVdcj0uI6Ou02g7PZdy24gZbpdAB13LQZytTz1GBiCQpOZSTLO0htcepEM67E+ucUDvo5LXqWTcYLGcPgPkFTKVescZr8jctbVyYmv1AyxwvuB2EicvaBM4Zu9C4D2TEJFRRtdIfFIULkHxbSYsS5myg=
@@ -22,26 +24,36 @@ env:
         #- PS_VERSION="1.6.0.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
         #- PS_VERSION="1.5.6.2" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
         #- PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
+
 matrix:
     fast_finish: true
     allow_failures:
         - php: 7
         - php: hhvm
         - env: PS_VERSION="1.5.4.1"
+
 addons:
     sauce_connect: true
     hosts:
         - ${TEST_HOST}
+    apt_packages:
+        - rsync
+
+cache:
+    apt: true
+    directories:
+        - tests/vendor
+
 notifications:
   email: false
+
 
 before_install:
     - composer self-update
     - sudo apt-get update -q
     - echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
 
-install:
-    - sudo apt-get install -q rsync
+install: true
 
 before_script:
     - source ./tests/setup/environment.sh

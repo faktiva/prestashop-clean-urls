@@ -44,28 +44,30 @@ addons:
 cache:
     apt: true
     directories:
+        - vendor
         - ${TEST_DOC_ROOT}
-        - tests/vendor
 
 before_cache:
     - rm -rf ${TEST_DOC_ROOT}/modules/zzcleanurls
+    - rm -f .php_cs.cache
+    - rm -f composer.lock
 
 notifications:
   email: false
 
 
 before_install:
-    - composer self-update
     - sudo apt-get update -q
+    - php composer.phar self-update
     - sudo sh -c 'echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash && ls -lha /bin/sh'
 
 install: true
 
 before_script:
-    - source ./tests/setup/environment.sh
+    - . ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
-    - cd ./tests ; curl -sL https://raw.githubusercontent.com/jlipps/sausage-bun/master/givememysausage.php | php -- -t ${SAUCE_USERNAME} ${SAUCE_ACCESS_KEY} ; cd -
+    - php composer.phar update
 
 script:
     - php ./tests/vendor/bin/phpunit -v ./tests/functional

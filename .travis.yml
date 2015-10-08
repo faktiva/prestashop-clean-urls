@@ -45,11 +45,10 @@ cache:
     directories:
         - vendor
         - ${TEST_DOC_ROOT}
-
+        - .php_cs.cache
+        - composer.lock
 before_cache:
     - rm -rf ${TEST_DOC_ROOT}/modules/zzcleanurls
-    - rm -f .php_cs.cache
-    - rm -f composer.lock
 
 notifications:
   email: false

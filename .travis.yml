@@ -46,7 +46,7 @@ install:
 before_script:
     - cd ./tests ; curl -sL https://raw.githubusercontent.com/jlipps/sausage-bun/master/givememysausage.php | php -- -t ${SAUCE_USERNAME} ${SAUCE_ACCESS_KEY} ; cd -
 script:
-    - php .tests/vendor/bin/phpunit -v ./tests/functional
+    - php ./tests/vendor/bin/phpunit -v ./tests/functional
 after_success:
     - echo "All Right!! :)"
 after_failure:

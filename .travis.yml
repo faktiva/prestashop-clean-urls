@@ -48,6 +48,7 @@ before_script:
 script:
     - php .tests/vendor/bin/phpunit -v ./tests/functional
 after_success:
-    #
+    - echo "All Right!! :)"
 after_failure:
-    - echo -e "PS: ${PS_VERSION}\nProto: ${TEST_PROTO}\nHost: ${TEST_HOST}\nBase dir: ${TEST_BASE_DIR}\nDoc Root: ${TEST_DOC_ROOT}\n\n"
+    - echo "Something went wrong ;("
+    - 'echo -e "PS: ${PS_VERSION}\nProto: ${TEST_PROTO}\nHost: ${TEST_HOST}\nBase dir: ${TEST_BASE_DIR}\nDoc Root: ${TEST_DOC_ROOT}\n\n"'

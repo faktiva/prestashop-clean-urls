@@ -36,20 +36,19 @@ notifications:
   email: false
 
 before_install:
+    - composer self-update
     - sudo apt-get update -q
+    - echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
+
+install:
     - sudo apt-get install -q rsync
+
+before_script:
     - source ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
-    - git clone --single-branch --branch ${PS_VERSION}  https://github.com/PrestaShop/PrestaShop.git ${PS_ROOT}
-    - php ${PS_ROOT}install-dev/index_cli.php --language=en --country=us --domain=${TEST_HOST} --base_uri=${TEST_BASE_DIR} --db_name=prestashop.test --db_create=1 --name='Test Shop' --password=123456789
-install:
-    - rsync -a ${TRAVIS_BUILD_DIR}/ ${TEST_DOC_ROOT}/modules/zzcleanurls/
-before_script:
+    - sh ./tests/setup/prestashop.sh
     - cd ./tests ; curl -sL https://raw.githubusercontent.com/jlipps/sausage-bun/master/givememysausage.php | php -- -t ${SAUCE_USERNAME} ${SAUCE_ACCESS_KEY} ; cd -
+
 script:
     - php ./tests/vendor/bin/phpunit -v ./tests/functional
-after_success:
-    - echo "All Right!! :)"
-after_failure:
-    - echo "Something went wrong ;("
-    - 'echo -e "PS: ${PS_VERSION}\nProto: ${TEST_PROTO}\nHost: ${TEST_HOST}\nBase dir: ${TEST_BASE_DIR}\nDoc Root: ${TEST_DOC_ROOT}\n\n"'
+

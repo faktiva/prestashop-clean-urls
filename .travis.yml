@@ -51,7 +51,7 @@ notifications:
 before_install:
     - composer self-update
     - sudo apt-get update -q
-    - echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash
+    - sudo sh -c 'echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash && ls -lha /bin/sh'
 
 install: true
 

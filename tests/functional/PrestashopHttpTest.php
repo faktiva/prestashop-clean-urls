@@ -18,7 +18,7 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
     public static $browsers = array(
         array(
             'browserName' => 'firefox',
-            'host' => SAUCE_HOST,
+            'host' => $this->sauce_host,
             'port' => 80,
             'desiredCapabilities' => array(
                 'version' => '15',
@@ -29,7 +29,7 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
 
     public function setUpPage()
     {
-        $this->url(BASE_URL);
+        $this->url($this->base_url);
     }
 
     public function testTitle()

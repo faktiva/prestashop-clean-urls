@@ -6,6 +6,7 @@ return Symfony\CS\Config\Config::create()
     ->setUsingCache(true)
     ->finder(
         Symfony\CS\Finder\DefaultFinder::create()
+            ->exclude('vendor')
             ->in(__DIR__)
     )
 ;

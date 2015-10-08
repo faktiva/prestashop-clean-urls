@@ -38,7 +38,6 @@ notifications:
 before_install:
     - sudo apt-get update -q
     - sudo apt-get install -q rsync
-    - sudo chmod -R 777 /var/www
     - source ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - git clone --single-branch --branch ${PS_VERSION}  https://github.com/PrestaShop/PrestaShop.git ${PS_ROOT}

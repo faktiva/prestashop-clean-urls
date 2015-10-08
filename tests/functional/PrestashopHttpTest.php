@@ -12,7 +12,7 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
         parent::__construct();
 
         $this->sauce_host = sprintf('%s:%s@ondemand.saucelabs.com', getenv('SAUCE_USERNAME'), getenv('SAUCE_ACCESS_KEY'));
-        $this->base_url = sprintf('%s://%s%s', getenv('TEST_PROTO'), getenv('TEST_HOST'), getenv('TEST_BASE_URI'));
+        $this->base_url = sprintf('%s://%s%s', getenv('TEST_PROTO'), getenv('TEST_HOST'), getenv('TEST_BASE_DIR'));
     }
 
     public static $browsers = array(

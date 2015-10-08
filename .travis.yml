@@ -42,7 +42,11 @@ addons:
 cache:
     apt: true
     directories:
+        - ${TEST_DOC_ROOT}
         - tests/vendor
+
+before_cache:
+    - rm -rf ${TEST_DOC_ROOT}/modules/zzcleanurls
 
 notifications:
   email: false

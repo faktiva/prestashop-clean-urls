@@ -18,6 +18,7 @@ env:
         #- PS_VERSION="1.6.0.1"
         #- PS_VERSION="1.5.6.2"
         #- PS_VERSION="1.5.4.1"
+        - TEST_BASE_DIR="/"
 matrix:
     fast_finish: true
     allow_failures:
@@ -33,7 +34,7 @@ addons:
 
 
 before_install:
-    - export TEST_DOC_ROOT="/var/www/PS_${PS_VERSION}"
+    - export TEST_DOC_ROOT="/var/www/PS_${PS_VERSION}${TEST_BASE_DIR}"
     - sudo apt-get update -q
     - sudo apt-get install -q rsync
     - sh ./tests/setup/apache.sh

@@ -70,5 +70,6 @@ before_script:
     - php composer.phar update
 
 script:
-    - php ./tests/vendor/bin/phpunit -v ./tests/functional
+    - php vendor/bin/php-cs-fixer -n -vvv fix
+    - php vendor/bin/phpunit -v ./tests/functional
 

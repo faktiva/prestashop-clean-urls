@@ -38,6 +38,8 @@ addons:
         - ${TEST_HOST}
     apt_packages:
         - rsync
+        - apache2
+        - libapache2-mod-fastcgi
 
 cache:
     apt: true

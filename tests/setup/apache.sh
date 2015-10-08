@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 
-echo "Install and setup apache+php-fpm"
-
-sudo apt-get install -q apache2 libapache2-mod-fastcgi
+echo "Setup apache+php-fpm"
 
 # enable php-fpm
 sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf

@@ -37,6 +37,6 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
 
     public function testTitle()
     {
-        $this->assertContains('PrestaShop', $this->title());
+        $this->assertContains('Test Shop', $this->title());
     }
 }

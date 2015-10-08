@@ -15,6 +15,6 @@ echo 'date.timezone = "Europe/Rome"' >> ~/.phpenv/versions/$(phpenv version-name
 
 # configure apache virtual hosts
 sudo cp -f ./tests/setup/apache-vhost.conf /etc/apache2/sites-available/default
-sudo sed -e "s#%DOC_ROOT_DIR%#/var/www/PS_${PS_VERSION}#g" --in-place /etc/apache2/sites-available/default
+sudo sed -e "s#%DOC_ROOT_DIR%#${$TEST_DOC_ROOT}#g" --in-place /etc/apache2/sites-available/default
 
 sudo service apache2 restart

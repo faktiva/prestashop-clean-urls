@@ -67,7 +67,7 @@ before_script:
     - . ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
-    - php composer.phar update
+    - php composer.phar update --prefer-source
 
 script:
     - php vendor/bin/php-cs-fixer -n -vvv fix

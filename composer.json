@@ -18,7 +18,6 @@
     },
     "require-dev": {
         "sauce/sausage": "^0.17.0",
-        "sauce/connect": "^3.1",
         "fabpot/php-cs-fixer": "dev-master"
     },
     "config": {

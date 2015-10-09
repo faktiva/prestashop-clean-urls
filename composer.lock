@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a9894357cba5d5a8e0a57d3e15b81c25",
-    "content-hash": "c1a44b4b21a9909f047e0ea8e7f61824",
+    "hash": "2fcdc51b8216ac48f84f8deab7aa964d",
+    "content-hash": "a59a14b985e04d869fa3bd1bbad1e016",
     "packages": [],
     "packages-dev": [
         {
@@ -803,58 +803,6 @@
                 "xunit"
             ],
             "time": "2014-11-02 09:23:27"
-        },
-        {
-            "name": "sauce/connect",
-            "version": "v3.1.32",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/saucelabs/sauce-connect-composer.git",
-                "reference": "936388a5b03d05e2fdc9e5c725eb93511a32ae4c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/saucelabs/sauce-connect-composer/zipball/936388a5b03d05e2fdc9e5c725eb93511a32ae4c",
-                "reference": "936388a5b03d05e2fdc9e5c725eb93511a32ae4c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0",
-                "sauce/sausage": ">=0.5.0"
-            },
-            "bin": [
-                "bin/sauce_connect"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Sauce": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Jonathan Lipps",
-                    "email": "jlipps@saucelabs.com",
-                    "homepage": "http://www.saucelabs.com",
-                    "role": "Lead"
-                }
-            ],
-            "description": "PHP package for the Sauce Connect Java binary",
-            "homepage": "http://github.com/saucelabs/sauce-connect-composer",
-            "keywords": [
-                "Sauce",
-                "SauceLabs",
-                "api",
-                "phpunit",
-                "selenium",
-                "testing",
-                "tunnel"
-            ],
-            "time": "2014-04-11 17:57:12"
         },
         {
             "name": "sauce/sausage",

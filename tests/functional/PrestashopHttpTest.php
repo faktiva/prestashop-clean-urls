@@ -6,21 +6,6 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
 {
     protected $base_url;
 
-    public static $browsers = array(
-        array(
-            'browserName' => 'chrome',
-            'desiredCapabilities' => array(
-                'platform' => 'VISTA',
-            ),
-        ),
-        array(
-            'browserName' => 'chrome',
-            'desiredCapabilities' => array(
-                'platform' => 'Linux',
-            ),
-        ),
-    );
-
     public function __construct()
     {
         parent::__construct();
@@ -29,6 +14,23 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
 
     public function setUpPage()
     {
+        $this->setUpSpecificBrowser(array(
+            array(
+                'browserName' => 'chrome',
+                'desiredCapabilities' => array(
+                    'tunnel-identifier' => getenv('TRAVIS_JOB_NUMBER'),
+                    'platform' => 'VISTA',
+                ),
+            ),
+            array(
+                'browserName' => 'chrome',
+                'desiredCapabilities' => array(
+                    'tunnel-identifier' => getenv('TRAVIS_JOB_NUMBER'),
+                    'platform' => 'Linux',
+                ),
+            ),
+        ));
+
         $this->url($this->base_url);
     }
 

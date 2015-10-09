@@ -1,7 +1,30 @@
 {
+    "name": "zizuu-store/cleanurls",
+    "type": "prestashop-module",
+    "description": "A PrestaShop module to remove IDs from URLs",
+    "license": "CC-BY-NC-SA-4.0",
+    "authors": [
+        {
+            "name": "ZiZuu Store",
+            "email": "info@zizuu.com"
+        }
+    ],
+    "support": {
+        "email": "info@zizuu.com",
+        "issues": "https://github.com/ZiZuu-store/zzCleanURLs/issues",
+        "chat": "https://gitter.im/ZiZuu-store/zzCleanURLs",
+        "docs": "https://github.com/ZiZuu-store/zzCleanURLs",
+        "source": "https://github.com/ZiZuu-store/zzCleanURLs"
+    },
     "require-dev": {
         "sauce/sausage": "^0.17.0",
         "sauce/connect": "^3.1",
-        "fabpot/php-cs-fixer": "^1.10"
+        "fabpot/php-cs-fixer": "dev-master"
+    },
+    "config": {
+        "cache-dir": ".cache"
+    },
+    "archive": {
+        "exclude": ["/.cache", "/vendor", "/composer.*", "/tests"]
     }
 }

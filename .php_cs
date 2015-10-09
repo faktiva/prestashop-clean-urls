@@ -1,9 +1,12 @@
 <?php
 
 return Symfony\CS\Config\Config::create()
-    ->fixers(array('-psr0'))
-    ->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
     ->setUsingCache(true)
+    ->setCacheFile(__DIR__.'/.cache/php_cs.cache')
+    ->setRules(array(
+        '@PSR2' => true,
+        'psr0' => false,
+    ))
     ->finder(
         Symfony\CS\Finder\DefaultFinder::create()
             ->exclude('vendor')

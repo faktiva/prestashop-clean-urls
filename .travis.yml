@@ -39,8 +39,7 @@ addons:
         - rsync
         - apache2
         - libapache2-mod-fastcgi
-    sauce_connect:
-        tunnel_domains: ${TEST_HOST}
+    sauce_connect: true
 
 cache:
     apt: true
@@ -48,6 +47,7 @@ cache:
         - .cache
         - vendor
         - ${TEST_DOC_ROOT}
+
 before_cache:
     - rm -rf ${TEST_DOC_ROOT}/modules/zzcleanurls
 

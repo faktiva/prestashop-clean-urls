@@ -63,6 +63,7 @@ install: true
 
 before_script:
     - . ./tests/setup/environment.sh
+    - php vendor/bin/sauce_config
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
     - php composer.phar update --prefer-source

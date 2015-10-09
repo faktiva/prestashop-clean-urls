@@ -63,7 +63,7 @@ before_install:
 install: true
 
 before_script:
-    - php composer.phar -vvv --prefer-source update
+    - php composer.phar -vvv --prefer-dist update
     - . ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh

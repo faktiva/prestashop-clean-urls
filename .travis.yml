@@ -44,8 +44,8 @@ addons:
 cache:
     apt: true
     directories:
-        - .cache
-        - vendor
+        - ${TRAVIS_JOB_NUMBER}/.cache
+        - ${TRAVIS_JOB_NUMBER}/vendor
         - ${TEST_DOC_ROOT}
 
 before_cache:

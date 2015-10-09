@@ -39,7 +39,8 @@ addons:
         - rsync
         - apache2
         - libapache2-mod-fastcgi
-    sauce_connect: true
+    sauce_connect:
+        tunnel_domains: ${TEST_HOST}
 
 cache:
     apt: true

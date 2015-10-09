@@ -2,6 +2,8 @@
 
 echo "Setting up defaults and values for environment variables"
 
+export PATH="${TRAVIS_BUILD_DIR}/vendor/bin:${PATH}"
+
 export TEST_PROTO="${TEST_PROTO:=http}"
 export TEST_HOST="${TEST_HOST:=localhost}"
 export TEST_BASE_DIR="${TEST_BASE_DIR:=/}"

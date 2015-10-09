@@ -44,10 +44,10 @@ addons:
 cache:
     apt: true
     directories:
-        - vendor
-        - ${TEST_DOC_ROOT}
         - .php_cs.cache
         - composer.lock
+        - vendor
+        - ${TEST_DOC_ROOT}
 before_cache:
     - rm -rf ${TEST_DOC_ROOT}/modules/zzcleanurls
 
@@ -63,7 +63,7 @@ before_install:
 install: true
 
 before_script:
-    - php composer.phar update --prefer-source
+    - php composer.phar -vv --prefer-source update
     - . ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh

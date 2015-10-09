@@ -39,6 +39,7 @@ addons:
         - rsync
         - apache2
         - libapache2-mod-fastcgi
+    sauce_connect: true
 
 cache:
     apt: true
@@ -63,7 +64,6 @@ install: true
 
 before_script:
     - php composer.phar update --prefer-source
-    - php vendor/bin/sauce_connect
     - . ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh

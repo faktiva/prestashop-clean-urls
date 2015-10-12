@@ -19,11 +19,11 @@ env:
     # COMPOSER_FLAGS: , TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
         ## 1.6 latest release
         - PS_VERSION="1.6.1.1"
-        #- PS_VERSION="1.6.1.1" TEST_HOST="mysite.test"
-        #- PS_VERSION="1.6.1.1" TEST_HOST="my.site.test"
+        #- PS_VERSION="1.6.1.1" TEST_HOST="site.test"
+        #- PS_VERSION="1.6.1.1" TEST_HOST="sub.site.test"
         #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="mysite.test"
-        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="my.site.test"
+        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="site.test"
+        - PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="sub.site.test"
         ## 1.6 first release
         - PS_VERSION="1.6.0.1"
         ## 1.5 latest release
@@ -44,8 +44,8 @@ addons:
         - apache2
         - libapache2-mod-fastcgi
     hosts:
-        - mysite.test
-        - my.site.test
+        - site.test
+        - sub.site.test
     sauce_connect: true
     
 # will only work on containers infrastructure .. 
@@ -72,7 +72,7 @@ before_install:
 install: true
 
 before_script:
-    - php composer.phar -vvv install $COMPOSER_FLAGS
+    - php composer.phar -vvv install $COMPOSER_FLAGS --prefer-source
     - source ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh

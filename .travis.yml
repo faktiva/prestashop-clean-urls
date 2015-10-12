@@ -68,7 +68,7 @@ install: true
 before_script:
     - php composer.phar -vvv install $COMPOSER_FLAGS --prefer-dist
     - source ./tests/setup/environment.sh
-    - sudo echo "127.0.0.1 ${TEST_HOST}" >> /etc/resolv.conf
+    - sudo sh -c "echo '127.0.0.1 ${TEST_HOST}' >> /etc/resolv.conf"
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
     

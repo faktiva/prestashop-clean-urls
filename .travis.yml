@@ -26,7 +26,7 @@ env:
         #- PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
         #- PS_VERSION="1.6.0.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
         #- PS_VERSION="1.5.6.2" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
-        - PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
+        #- PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
 
 matrix:
     fast_finish: true

@@ -36,8 +36,6 @@ matrix:
         - env: PS_VERSION="1.5.4.1"
 
 addons:
-    hosts:
-        - ${TEST_HOST}
     apt_packages:
         - rsync
         - apache2
@@ -70,10 +68,10 @@ install: true
 before_script:
     - php composer.phar -vvv install $COMPOSER_FLAGS --prefer-dist
     - source ./tests/setup/environment.sh
+    - sudo echo "127.0.0.1 ${TEST_HOST}" >> /etc/resolv.conf
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
-    - cat /etc/resolv.conf
-
+    
 script:
     - php vendor/bin/php-cs-fixer -n -vv fix
     - php vendor/bin/phpunit -v ./tests/functional

@@ -13,3 +13,6 @@ php ${PS_ROOT}install-dev/index_cli.php --language=en --country=us --domain=${TE
 
 #install our module
 rsync -av --exclude '/.*' --exclude '/composer.*' --exclude '/tests' --exclude '/vendor' ${TRAVIS_BUILD_DIR}/ ${PS_ROOT}modules/zzcleanurls/
+
+#FIXME
+ls -lha ${PS_ROOT}

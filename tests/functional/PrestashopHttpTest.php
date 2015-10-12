@@ -36,4 +36,10 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
     {
         $this->assertContains('Test Shop', $this->title());
     }
+    
+    public function testBacofficeTitle()
+    {
+        $this->url($this->base_url.'/admin-dev/');
+        $this->assertContains('Test Shop', $this->title());
+    }
 }

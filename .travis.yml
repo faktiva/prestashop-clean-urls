@@ -15,12 +15,15 @@ env:
         - SAUCE_BUILD=${TRAVIS_BUILD_ID}
         - SAUCE_TUNNEL_IDENTIFIER=${TRAVIS_JOB_NUMBER}
         - SAUCE_DONT_VERIFY_CERTS=1
-    matrix:
-        - PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
-        - PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
-        - PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="mysite.test" TEST_BASE_DIR="/"
-        - PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="mysite.test" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.6.0.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
+    matrix: # TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
+        - PS_VERSION="1.6.1.1"
+        - PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/"
+        - PS_VERSION="1.6.1.1" TEST_HOST="mysite.test" TEST_BASE_DIR="/"
+        - PS_VERSION="1.6.1.1" TEST_HOST="mysite.test" TEST_BASE_DIR="/base_dir/"
+        
+        - PS_VERSION="1.6.1.1" TEST_HOST="my.site.test" TEST_BASE_DIR="/" TEST_WAIT=180
+        - PS_VERSION="1.6.1.1" TEST_HOST="my.site.test" TEST_BASE_DIR="/base_dir/" TEST_WAIT=180
+        #- PS_VERSION="1.6.0.1" PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
         #- PS_VERSION="1.5.6.2" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
         #- PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
         #- PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
@@ -61,6 +64,7 @@ notifications:
 
 
 before_install:
+    - sleep ${TEST_WAIT:=0} # hack to handle more than 5 concurrent Sauce connection
     - sudo apt-get update -q
     - php composer.phar self-update
     # don't use dash

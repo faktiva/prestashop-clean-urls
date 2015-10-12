@@ -72,6 +72,7 @@ before_script:
     - source ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
+    - cat /etc/resolv.conf
 
 script:
     - php vendor/bin/php-cs-fixer -n -vv fix

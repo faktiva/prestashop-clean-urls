@@ -10,15 +10,17 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
         array(
             'browserName' => 'chrome',
             'desiredCapabilities' => array(
-                'platform' => 'VISTA',
-            ),
-        ),
-        array(
-            'browserName' => 'chrome',
-            'desiredCapabilities' => array(
                 'platform' => 'Linux',
             ),
         ),
+        /*
+        array(
+            'browserName' => 'chrome',
+            'desiredCapabilities' => array(
+                'platform' => 'VISTA',
+            ),
+        ),
+        */
     );
 
     public function __construct()

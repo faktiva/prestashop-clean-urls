@@ -2,7 +2,7 @@
 language: php
 
 php:
-    #- 5.4
+    - 5.4
     #- 5.5
     - 5.6
     #- 7
@@ -15,22 +15,22 @@ env:
         - SAUCE_BUILD=${TRAVIS_BUILD_ID}
         - SAUCE_TUNNEL_IDENTIFIER=${TRAVIS_JOB_NUMBER}
         - SAUCE_DONT_VERIFY_CERTS=1
-    matrix: # TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
+    matrix: 
+    # COMPOSER_FLAGS: , TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
+        # 1.6 latest release
         - PS_VERSION="1.6.1.1"
+        - PS_VERSION="1.6.1.1" TEST_HOST="mysite.test"
+        - PS_VERSION="1.6.1.1" TEST_HOST="my.site.test"
         - PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/"
-        - PS_VERSION="1.6.1.1" TEST_HOST="mysite.test" TEST_BASE_DIR="/"
-        - PS_VERSION="1.6.1.1" TEST_HOST="mysite.test" TEST_BASE_DIR="/base_dir/"
+        - PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="mysite.test"
+        - PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="my.site.test"
+        # 1.6 first release
+        - PS_VERSION="1.6.0.1"
+        # 1.5 latest release
+        - PS_VERSION="1.5.6.2"
+        # 1.5 first testable release
+        - PS_VERSION="1.5.4.1"
         
-        - PS_VERSION="1.6.1.1" TEST_HOST="my.site.test" TEST_BASE_DIR="/" TEST_WAIT=180
-        - PS_VERSION="1.6.1.1" TEST_HOST="my.site.test" TEST_BASE_DIR="/base_dir/" TEST_WAIT=180
-        #- PS_VERSION="1.6.0.1" PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
-        #- PS_VERSION="1.5.6.2" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
-        #- PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
-        #- PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.6.0.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.5.6.2" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/"
-
 matrix:
     fast_finish: true
     allow_failures:
@@ -43,11 +43,11 @@ addons:
         - rsync
         - apache2
         - libapache2-mod-fastcgi
-    sauce_connect: true
     hosts:
         - mysite.test
         - my.site.test
-
+    sauce_connect: true
+    
 # will only work on containers infrastructure .. 
 cache:
     apt: true
@@ -73,7 +73,7 @@ before_install:
 install: true
 
 before_script:
-    - php composer.phar -vvv install $COMPOSER_FLAGS --prefer-dist
+    - php composer.phar -vvv install $COMPOSER_FLAGS
     - source ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh

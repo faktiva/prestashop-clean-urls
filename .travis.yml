@@ -23,7 +23,7 @@ env:
         #- PS_VERSION="1.6.1.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
         #- PS_VERSION="1.6.0.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
         #- PS_VERSION="1.5.6.2" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="localhost" TEST_BASE_DIR="/base_dir/"
+        - PS_VERSION="1.5.4.1" TEST_PROTO="http" TEST_HOST="mysite.test" TEST_BASE_DIR="/base_dir/"
 
 matrix:
     fast_finish: true
@@ -41,6 +41,7 @@ addons:
         - libapache2-mod-fastcgi
     sauce_connect: true
 
+# will only work on containers infrastructure .. 
 cache:
     apt: true
     directories:
@@ -58,17 +59,18 @@ notifications:
 before_install:
     - sudo apt-get update -q
     - php composer.phar self-update
-    - sudo sh -c 'echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash && ls -lha /bin/sh'
+    # don't use dash
+    - sudo sh -c 'echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash'
 
 install: true
 
 before_script:
-    - php composer.phar -vvv --prefer-dist install
-    - . ./tests/setup/environment.sh
+    - php composer.phar -vvv install $COMPOSER_FLAGS --prefer-dist
+    - source ./tests/setup/environment.sh
     - sh ./tests/setup/apache.sh
     - sh ./tests/setup/prestashop.sh
 
 script:
-    - php vendor/bin/php-cs-fixer -n -vvv fix
+    - php vendor/bin/php-cs-fixer -n -vv fix
     - php vendor/bin/phpunit -v ./tests/functional
 

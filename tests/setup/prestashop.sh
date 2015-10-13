@@ -21,8 +21,8 @@ php ${PS_ROOT%%/}/install/index_cli.php \
     --db_name=prestashop_test \
     --db_create=1 \
     --name='Test Shop' \
-    --firstname='Test'
-    --lastname='Administrator'
+    --firstname='Test' \
+    --lastname='Administrator' \
     --email='test@example.com' \
     --password=0123456789 \
     --newsletter=0 \

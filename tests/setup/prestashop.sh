@@ -3,13 +3,18 @@
 echo "Install and setup Prestashop"
 
 #get it
-git clone --single-branch --branch ${PS_VERSION} https://github.com/PrestaShop/PrestaShop.git ${PS_ROOT}
+cd /tmp/
+wget "https://www.prestashop.com/download/old/prestashop_${PS_VERSION}.zip"
+unzip prestashop_${PS_VERSION}.zip
+mkdir -p ${PS_ROOT}
+rsync -av ./prestashop/ ${PS_ROOT%%/}/
+cd -
 
 #create DB as old PS did not
 mysql -uroot -e 'CREATE database IF NOT EXISTS prestashop_test;'
 
 #install & config
-php ${PS_ROOT}install-dev/index_cli.php \
+php ${PS_ROOT%%/}/install/index_cli.php \
     --language=en \
     --country=us \
     --domain=${TEST_HOST} \
@@ -25,11 +30,9 @@ php ${PS_ROOT}install-dev/index_cli.php \
     --send_email=0
 
 #install our module
-rsync -av --exclude '/.*' --exclude '/composer.*' --exclude '/tests' --exclude '/vendor' ${TRAVIS_BUILD_DIR}/ ${PS_ROOT}modules/zzcleanurls/
+rsync -av --exclude '/.*' --exclude '/composer.*' --exclude '/tests' --exclude '/vendor' ${TRAVIS_BUILD_DIR%%/}/ ${PS_ROOT%%/}/modules/zzcleanurls/
 
 #XXX
 echo ls -lha ${PS_ROOT}
-ls -lha ${PS_ROOT} 
-echo ls -lha ${PS_ROOT}/adm* 
-ls -lha ${PS_ROOT}/adm* 
+ls -lha ${PS_ROOT}
 

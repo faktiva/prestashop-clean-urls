@@ -71,7 +71,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $form->submit();
 
         // check if form was posted
-        $success = $this->byCssSelector('body.ps_back-office')->text();
+        $success = $this->byCssSelector('body')->text();
 
         // check the value
         $this->assertContains('Dashboard', $success);

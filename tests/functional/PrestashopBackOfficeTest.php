@@ -46,11 +46,11 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->url('/_admin/');
 
         $email = $this->byName('email');
-        $password = $this->byName('password');
+        $passwd = $this->byName('passwd');
         $submit = $this->byName('submitLogin');
 
         $this->assertEquals('', $email->value());
-        $this->assertEquals('', $password->value());
+        $this->assertEquals('', $passwd->value());
         $this->assertEquals('submit', $submit->type());
     }
 
@@ -64,12 +64,9 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         // get the form action
         $action = $form->attribute('action');
 
-        // check the action value
-        $this->assertEquals('#', $action);
-
         // fill in the form field values
         $this->byName('email')->value('test@example.com');
-        $this->byName('password')->value('0123456789');
+        $this->byName('passwd')->value('0123456789');
 
         // submit the form
         $form->submit();

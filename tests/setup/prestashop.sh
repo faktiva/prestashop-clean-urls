@@ -6,8 +6,7 @@ echo "Install and setup Prestashop"
 cd /tmp/
 wget "https://www.prestashop.com/download/old/prestashop_${PS_VERSION}.zip"
 unzip -q prestashop_${PS_VERSION}.zip
-mkdir -p ${PS_ROOT}
-rsync -av ./prestashop/ ${PS_ROOT%%/}/
+rsync -a ./prestashop/ ${PS_ROOT%%/}/
 cd -
 
 #create DB as old PS did not

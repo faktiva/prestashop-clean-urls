@@ -29,16 +29,6 @@ class PrestashopHttpTest extends Sauce\Sausage\WebDriverTestCase
         $this->base_url = sprintf('%s://%s%s', getenv('TEST_PROTO'), getenv('TEST_HOST'), getenv('TEST_BASE_DIR'));
     }
 
-    public function setUpPage()
-    {
-        $this->url($this->base_url);
-    }
-
-    public function testTitle()
-    {
-        $this->assertContains('Test Shop', $this->title());
-    }
-    
     public function testBackOfficeTitle()
     {
         $this->url($this->base_url.'_admin/');

@@ -27,3 +27,9 @@ php ${PS_ROOT}install-dev/index_cli.php \
 #install our module
 rsync -av --exclude '/.*' --exclude '/composer.*' --exclude '/tests' --exclude '/vendor' ${TRAVIS_BUILD_DIR}/ ${PS_ROOT}modules/zzcleanurls/
 
+#XXX
+echo ls -lha ${PS_ROOT}
+ls -lha ${PS_ROOT} 
+echo ls -lha ${PS_ROOT}/adm* 
+ls -lha ${PS_ROOT}/adm* 
+

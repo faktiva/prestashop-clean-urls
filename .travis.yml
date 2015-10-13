@@ -72,7 +72,7 @@ before_install:
 install: true
 
 before_script:
-    - php composer.phar -vvv install $COMPOSER_FLAGS --prefer-source
+    - php composer.phar -vvv install ${COMPOSER_FLAGS} --prefer-source
     - source tests/setup/environment.sh
     - sh tests/setup/apache.sh
     - sh tests/setup/prestashop.sh

@@ -18,6 +18,7 @@ sudo sed -e "s#%DOCUMENT_ROOT%#${TEST_DOC_ROOT%%/}/#g" --in-place /etc/apache2/s
 sudo sed -e "s#%SERVER_NAME%#${TEST_HOST}#g" --in-place /etc/apache2/sites-available/default
 
 sudo mkdir -p ${TEST_DOC_ROOT}
+sudo chown ${USER}:$(grep APACHE_RUN_GROUP /etc/apache2/envvars | cut -d= -f2) ${TEST_DOC_ROOT}
 sudo chmod -R 777 ${TEST_DOC_ROOT}
 
 sudo service apache2 restart

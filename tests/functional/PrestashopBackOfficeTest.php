@@ -13,14 +13,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
                 'platform' => 'Linux',
             ),
         ),
-        /*
-        array(
-            'browserName' => 'chrome',
-            'desiredCapabilities' => array(
-                'platform' => 'VISTA',
-            ),
-        ),
-        */
     );
 
     public function __construct()
@@ -37,7 +29,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
     public function testBackOfficeTitle()
     {
         $this->timeouts()->implicitWait(10000);
-        $this->timeouts()->pageLoad(10000);
         $this->timeouts()->asyncScript(10000);
 
         $url = $this->base_url.'/_admin/';

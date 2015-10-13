@@ -52,12 +52,12 @@ addons:
 cache:
     apt: true
     directories:
-        - ${TRAVIS_JOB_NUMBER}/.cache
-        - ${TRAVIS_JOB_NUMBER}/vendor
+        - .cache
+        - vendor
         - ${TEST_DOC_ROOT}
 
 before_cache:
-    - rm -rf ${TEST_DOC_ROOT}/modules/zzcleanurls
+    - rm -rf ${TEST_DOC_ROOT%%/}/modules/zzcleanurls
 
 notifications:
   email: false
@@ -73,9 +73,9 @@ install: true
 
 before_script:
     - php composer.phar -vvv install $COMPOSER_FLAGS --prefer-source
-    - source ./tests/setup/environment.sh
-    - sh ./tests/setup/apache.sh
-    - sh ./tests/setup/prestashop.sh
+    - source tests/setup/environment.sh
+    - sh tests/setup/apache.sh
+    - sh tests/setup/prestashop.sh
     
 script:
     - php vendor/bin/php-cs-fixer -n -vv fix

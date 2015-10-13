@@ -26,14 +26,18 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         );
     }
     
-    public function testBackOfficeTitle()
+    public function setUpPage()
     {
         $this->timeouts()->implicitWait(10000);
         $this->timeouts()->asyncScript(10000);
-
-        $url = $this->base_url.'/_admin/';
         
-        $this->url($url);
+        $this->url($this->base_url);
+    }
+    
+    public function testBackOfficeTitle()
+    {
+        $this->url('/_admin/');
+
         $this->assertContains('Test Shop', $this->title());
     }
 }

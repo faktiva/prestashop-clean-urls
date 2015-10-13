@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-echo "Setup apache+php-fpm"
+echo -e "\033[33mSetup apache + php-fpm\033[0m"
 
 # enable php-fpm
 sudo cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf

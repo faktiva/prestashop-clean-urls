@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-echo "Setting up defaults and values for environment variables"
+echo -e "\033[33mSetting up defaults and values for environment variables\033[0m"
 
 export PATH="${TRAVIS_BUILD_DIR%%/}/vendor/bin:${PATH}"
 

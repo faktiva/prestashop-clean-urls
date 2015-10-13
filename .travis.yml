@@ -15,7 +15,7 @@ env:
         - SAUCE_BUILD=${TRAVIS_BUILD_ID}
         - SAUCE_TUNNEL_IDENTIFIER=${TRAVIS_JOB_NUMBER}
         - SAUCE_DONT_VERIFY_CERTS=1
-    matrix: 
+    matrix:
     # COMPOSER_FLAGS: , TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
         ## 1.6 latest release
         - PS_VERSION="1.6.1.1"
@@ -29,7 +29,7 @@ env:
         ## 1.5 latest release
         #- PS_VERSION="1.5.6.2"
         ## 1.5 first testable release
-        #- PS_VERSION="1.5.4.1"
+        - PS_VERSION="1.5.4.1"
 
 matrix:
     fast_finish: true
@@ -47,8 +47,8 @@ addons:
         - site.test
         - sub.site.test
     sauce_connect: true
-    
-# will only work on containers infrastructure .. 
+
+# will only work on containers infrastructure ...
 cache:
     apt: true
     directories:
@@ -76,7 +76,7 @@ before_script:
     - source tests/setup/environment.sh
     - sh tests/setup/apache.sh
     - sh tests/setup/prestashop.sh
-    
+
 script:
     - php vendor/bin/php-cs-fixer -n -vv fix
     - php vendor/bin/phpunit -v ./tests/functional

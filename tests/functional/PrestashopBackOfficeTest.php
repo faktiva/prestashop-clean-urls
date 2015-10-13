@@ -51,7 +51,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 
         $this->assertEquals('', $email->value());
         $this->assertEquals('', $passwd->value());
-        $this->assertEquals('submit', $submit->type());
     }
 
     public function testSubmitToSelf()
@@ -71,7 +70,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         // submit the form
         $form->submit();
 
-        $this->timeouts()->waitForPageToLoad();
+        $this->waitForPageToLoad();
 
         // check if form was posted
         $success = $this->byCssSelector('body.ps_back-office')->text();

@@ -5,7 +5,7 @@ echo "Install and setup Prestashop"
 #get it
 cd /tmp/
 wget "https://www.prestashop.com/download/old/prestashop_${PS_VERSION}.zip"
-unzip prestashop_${PS_VERSION}.zip
+unzip -q prestashop_${PS_VERSION}.zip
 mkdir -p ${PS_ROOT}
 rsync -av ./prestashop/ ${PS_ROOT%%/}/
 cd -
@@ -31,6 +31,9 @@ php ${PS_ROOT%%/}/install/index_cli.php \
 
 #install our module
 rsync -av --exclude '/.*' --exclude '/composer.*' --exclude '/tests' --exclude '/vendor' ${TRAVIS_BUILD_DIR%%/}/ ${PS_ROOT%%/}/modules/zzcleanurls/
+
+mv ${PS_ROOT%%/}/admin ${PS_ROOT%%/}/_admin
+mv ${PS_ROOT%%/}/install ${PS_ROOT%%/}/_install
 
 #XXX
 echo ls -lha ${PS_ROOT}

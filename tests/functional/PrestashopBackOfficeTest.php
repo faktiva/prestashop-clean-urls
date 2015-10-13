@@ -26,14 +26,20 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
     public function __construct()
     {
         parent::__construct();
-        $this->base_url = sprintf('%s://%s%s', getenv('TEST_PROTO'), getenv('TEST_HOST'), getenv('TEST_BASE_DIR'));
+        
+        $_base_url = sprintf('%s://%s%s', getenv('TEST_PROTO'), getenv('TEST_HOST'), getenv('TEST_BASE_DIR'));
+        $this->base_url = rtrim($base_url), '/');
     }
-
+    
     public function testBackOfficeTitle()
     {
         $this->timeouts()->implicitWait(10000);
+        $this->timeouts()->pageLoad(10000);
+        $this->timeouts()->asyncScript(10000);
 
-        $this->url($this->base_url.'_admin/');
+        $url = $this->base_url.'/_admin/';
+        
+        $this->url($url);
         $this->assertContains('Test Shop', $this->title());
     }
 }

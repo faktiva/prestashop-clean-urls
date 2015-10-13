@@ -70,8 +70,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         // submit the form
         $form->submit();
 
-        $this->waitForPageToLoad();
-
         // check if form was posted
         $success = $this->byCssSelector('body.ps_back-office')->text();
 

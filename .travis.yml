@@ -82,6 +82,6 @@ script:
     - php vendor/bin/phpunit -v ./tests/functional
 
 after_failure:
-    - tail -50 /var/log/apache2/access.log
-    - tail -50 /var/log/apache2/error.log
+    - sudo tail -50 /var/log/apache2/access.log
+    - sudo tail -50 /var/log/apache2/error.log
     - env

@@ -34,13 +34,14 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->byName('passwd')->value('0123456789');
         $this->byId('login_form')->submit();
 
-        $this->assertTextPresent('Dashboard', $this->byCss('body'));
+        $this->assertTextPresent('Dashboard');
     }
 
     protected function doLogout()
     {
         $this->url('/_admin/index.php?controller=AdminLogin&logout');
-        $this->assertTextPresent('Logged out');
+
+        $this->byId('login_form');
     }
 
     public function setUpPage()
@@ -80,11 +81,11 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->doAdminLogin('test@example.com', '0123456789');
 
         $this->click('//li[@id=\'subtab-AdminModules\']/a');
-        $this->spinAssert('Modules', $this->title());
+        $this->assertContains('Modules', $this->title());
 
         $this->click('xpath=(//a[contains(@data-module-name, \'zzcleanurls\')])');
         $this->click('id=proceed-install-anyway');
-        $this->spinAssert((bool)preg_match('/^Modules[\s\S]*$/', $this->title()));
-        $this->assertContains('configure=zzcleanurls', $this->location());
+        $this->assertContains('Modules', $this->title());
+        $this->assertContains('configure=zzcleanurls', $this->url());
     }
 }

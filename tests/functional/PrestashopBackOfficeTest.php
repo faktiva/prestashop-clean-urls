@@ -26,6 +26,23 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         );
     }
 
+    protected function doAdminLogin($user, $passwd)
+    {
+        $this->url('/_admin/');
+
+        $this->byName('email')->value('test@example.com');
+        $this->byName('passwd')->value('0123456789');
+        $this->byId('login_form')->submit();
+
+        $this->assertTextPresent('Dashboard', $this->byCss('body'));
+    }
+
+    protected function doLogout()
+    {
+        $this->url('/_admin/index.php?controller=AdminLogin&logout');
+        $this->assertTextPresent('Logged out');
+    }
+
     public function setUpPage()
     {
         $this->timeouts()->implicitWait(10000);
@@ -55,28 +72,19 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 
     public function testAdminLogin()
     {
-        $this->url('/_admin/');
-
-        $this->byName('email')->value('test@example.com');
-        $this->byName('passwd')->value('0123456789');
-        $this->byId('login_form')->submit();
-
-        $this->assertContains('Dashboard', $this->byCssSelector('body')->text());
+        $this->doAdminLogin('test@example.com', '0123456789');
     }
 
     public function testModuleInstall()
     {
-        $this->url('/_admin/');
-        $this->byName('email')->value('test@example.com');
-        $this->byName('passwd')->value('0123456789');
-        $this->byId('login_form')->submit();
-        
+        $this->doAdminLogin('test@example.com', '0123456789');
+
         $this->click('//li[@id=\'subtab-AdminModules\']/a');
-        $this->assertContains('Modules', $this->getTitle());
+        $this->assertContains('Modules', $this->title());
 
         $this->click('xpath=(//a[contains(@data-module-name, \'zzcleanurls\')])');
         $this->click('id=proceed-install-anyway');
-        $this->assertTrue((bool)preg_match('/^Modules[\s\S]*$/', $this->getTitle()));
-        $this->assertContains('configure=zzcleanurls', $this->getLocation());
+        $this->assertTrue((bool)preg_match('/^Modules[\s\S]*$/', $this->title()));
+        $this->assertContains('configure=zzcleanurls', $this->location());
     }
 }

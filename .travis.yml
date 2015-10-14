@@ -78,7 +78,7 @@ before_script:
     - sh tests/setup/prestashop.sh
 
 script:
-    - php vendor/bin/php-cs-fixer -n -vv fix
+    - php vendor/bin/php-cs-fixer -n fix --dry-run
     - php vendor/bin/phpunit -v ./tests/functional
 
 after_failure:

@@ -80,11 +80,11 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->doAdminLogin('test@example.com', '0123456789');
 
         $this->click('//li[@id=\'subtab-AdminModules\']/a');
-        $this->assertContains('Modules', $this->title());
+        $this->spinAssert('Modules', $this->title());
 
         $this->click('xpath=(//a[contains(@data-module-name, \'zzcleanurls\')])');
         $this->click('id=proceed-install-anyway');
-        $this->assertTrue((bool)preg_match('/^Modules[\s\S]*$/', $this->title()));
+        $this->spinAssert((bool)preg_match('/^Modules[\s\S]*$/', $this->title()));
         $this->assertContains('configure=zzcleanurls', $this->location());
     }
 }

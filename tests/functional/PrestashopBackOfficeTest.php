@@ -67,19 +67,16 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
     public function testModuleInstall()
     {
         $this->url('/_admin/');
-        $this->assertTrue($this->isElementPresent('id=login'));
-        $this->type('id=email', 'test@example.com');
-        $this->type('id=passwd', '0123456789');
-        $this->click('name=submitLogin');
-        $this->waitForPageToLoad(30000);
-
+        $this->byName('email')->value('test@example.com');
+        $this->byName('passwd')->value('0123456789');
+        $this->byId('login_form')->submit();
+        
         $this->click('//li[@id=\'subtab-AdminModules\']/a');
         $this->waitForPageToLoad(30000);
         $this->assertContains('Modules', $this->getTitle());
 
         $this->click('xpath=(//a[contains(@data-module-name, \'zzcleanurls\')])');
         $this->click('id=proceed-install-anyway');
-        $this->waitForPageToLoad(30000);
         $this->assertTrue((bool)preg_match('/^Modules[\s\S]*$/', $this->getTitle()));
         $this->assertContains('configure=zzcleanurls', $this->getLocation());
     }

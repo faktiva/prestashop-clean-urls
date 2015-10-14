@@ -72,7 +72,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->byId('login_form')->submit();
         
         $this->click('//li[@id=\'subtab-AdminModules\']/a');
-        $this->waitForPageToLoad(30000);
         $this->assertContains('Modules', $this->getTitle());
 
         $this->click('xpath=(//a[contains(@data-module-name, \'zzcleanurls\')])');

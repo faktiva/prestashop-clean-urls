@@ -53,7 +53,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->assertEquals('', $passwd->value());
     }
 
-    public function testSubmitToSelf()
+    public function testAdminLogin()
     {
         $this->url('/_admin/');
 
@@ -75,5 +75,25 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 
         // check the value
         $this->assertContains('Dashboard', $success);
+    }
+
+    public function testModuleInstall()
+    {
+        $this->open("/_bo/");
+        $this->assertTrue($this->isElementPresent("id=login"));
+        $this->type("id=email", "test@example.com");
+        $this->type("id=passwd", "0123456789");
+        $this->click("name=submitLogin");
+        $this->waitForPageToLoad("30000");
+
+        $this->click("//li[@id='subtab-AdminModules']/a");
+        $this->waitForPageToLoad("30000");
+        $this->assertTrue((bool)preg_match('/^Modules[\s\S]*$/', $this->getTitle()));
+
+        $this->click("xpath=(//a[contains(@data-module-name, 'zzcleanurls')])");
+        $this->click("id=proceed-install-anyway");
+        $this->waitForPageToLoad("30000");
+        $this->assertTrue((bool)preg_match('/^Modules[\s\S]*$/', $this->getTitle()));
+        $this->assertTrue((bool)preg_match('/^[\s\S]*configure=zzcleanurls[\s\S]*$/', $this->getLocation()));
     }
 }

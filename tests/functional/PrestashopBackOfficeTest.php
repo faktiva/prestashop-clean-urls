@@ -32,7 +32,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 
         $this->byName('email')->value('test@example.com');
         $this->byName('passwd')->value('0123456789');
-        $this->byId('login_form')->submit();
+        $this->byName('submitLogin')->click();
 
         $this->assertTextPresent('Dashboard');
     }
@@ -46,10 +46,10 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 
     public function setUpPage()
     {
+    /*
         $this->timeouts()->implicitWait(2000);
         $this->timeouts()->asyncScript(2000);
-
-        $this->url($this->base_url);
+     */
     }
 
 

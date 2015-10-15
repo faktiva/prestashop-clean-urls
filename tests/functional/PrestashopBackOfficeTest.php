@@ -46,10 +46,8 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 
     public function setUpPage()
     {
-    /*
-        $this->timeouts()->implicitWait(2000);
-        $this->timeouts()->asyncScript(2000);
-     */
+        $this->timeouts()->implicitWait(10000);
+        $this->timeouts()->asyncScript(10000);
     }
 
 

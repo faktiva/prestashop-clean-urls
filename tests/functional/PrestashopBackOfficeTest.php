@@ -71,7 +71,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->assertEquals('', $email->value());
         $this->assertEquals('', $passwd->value());
     }
-/*
+
     public function testAdminLogin()
     {
         $this->doAdminLogin('test@example.com', '0123456789');
@@ -89,5 +89,4 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->assertContains('Modules', $this->title());
         $this->assertContains('configure=zzcleanurls', $this->url());
     }
- */
 }

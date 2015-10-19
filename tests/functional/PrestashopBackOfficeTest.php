@@ -26,14 +26,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         );
     }
     
-    protected function tokenUrl($url)
-    {
-        $qs = parse_str(parse_url($this->url(), PHP_URL_QUERY));
-        $delim = (false !== strpos($url, '?')) ? '?' : '&';
-
-        return $this->url($url.$delim.'token='.$qs['token']);
-    }
-
     protected function doAdminLogin($user, $passwd)
     {
         $this->url('/_admin/');
@@ -78,7 +70,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
     {
         $this->doAdminLogin('test@example.com', '0123456789');
         
-        $this->tokenUrl('/_admin/index.php?controller=AdminModules');
+        $this->url('/_admin/index.php?controller=AdminModules');
         $this->assertContains('Modules', $this->title());
 
         $this->byXpath('(//a[contains(@data-module-name, \'zzcleanurls\')])')->click();

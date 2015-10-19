@@ -31,7 +31,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $qs = parse_str(parse_url($this->url(), PHP_URL_QUERY));
         $delim = (false !== strpos($url, '?')) ? '?' : '&';
 
-        return $this->url($url.$delim'token='.$qs['token']);
+        return $this->url($url.$delim.'token='.$qs['token']);
     }
 
     protected function doAdminLogin($user, $passwd)

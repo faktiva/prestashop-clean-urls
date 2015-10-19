@@ -5,6 +5,7 @@
 [![Travis CI build status][travis]](https://travis-ci.org/ZiZuu-store/zzCleanURLs)
 
 [![Join our Gitter chat][gitter]](https://gitter.im/ZiZuu-store/zzCleanURLs)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ZiZuu-store/zzcleanurls/trend.png)](https://bitdeli.com/free "Bitdeli Stats")
 
 [insight]: https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba/mini.png
 [travis]: https://travis-ci.org/ZiZuu-store/zzCleanURLs.svg?branch=integrate-travis-ci

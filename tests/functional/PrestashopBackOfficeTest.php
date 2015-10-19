@@ -84,6 +84,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->byId('proceed-install-anyway')->click();
 
         $this->assertContains('configure=zzcleanurls', $this->url());
-        $this->assertTextPresent('Module(s) installed successfully')
+        $this->assertTextPresent('Module(s) installed successfully');
     }
 }

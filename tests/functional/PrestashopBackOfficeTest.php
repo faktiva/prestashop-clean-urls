@@ -30,7 +30,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
     {
         $qs = parse_url($this->getCurrentUrl(), PHP_URL_QUERY);
 
-        return $this->url($url.'&token='.$qs['token']));
+        return $this->url($url.'&token='.$qs['token']);
     }
 
     protected function doAdminLogin($user, $passwd)

@@ -44,12 +44,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->byId('login_form');
     }
 
-    public function setUp()
-    {
-        $this->timeouts()->implicitWait(10000);
-        $this->timeouts()->asyncScript(10000);
-    }
-
 
     public function testBackOfficeTitle()
     {

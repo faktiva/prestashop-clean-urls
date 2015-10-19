@@ -8,7 +8,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 
     public static $browsers = array(
         array(
-            'browserName' => 'chrome',
+            'browserName' => 'firefox',
             'desiredCapabilities' => array(
                 'platform' => 'Linux',
             ),
@@ -44,7 +44,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->byId('login_form');
     }
 
-    public function setUpPage()
+    public function setUp()
     {
         $this->timeouts()->implicitWait(10000);
         $this->timeouts()->asyncScript(10000);

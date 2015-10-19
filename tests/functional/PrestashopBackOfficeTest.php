@@ -28,7 +28,7 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
     
     protected function tokenUrl($url)
     {
-        $qs = parse_url($this->getCurrentUrl(), PHP_URL_QUERY);
+        $qs = parse_url($this->getBrowserUrl(), PHP_URL_QUERY);
 
         return $this->url($url.'&token='.$qs['token']);
     }

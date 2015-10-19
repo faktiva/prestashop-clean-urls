@@ -25,6 +25,13 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
             rtrim(getenv('TEST_BASE_DIR'), '/')
         );
     }
+    
+    protected function tokenUrl($url)
+    {
+        $qs = parse_url($this->getCurrentUrl(), PHP_URL_QUERY);
+
+        return $this->url($url.'&token='.$qs['token']));
+    }
 
     protected function doAdminLogin($user, $passwd)
     {
@@ -59,9 +66,6 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $email = $this->byName('email');
         $passwd = $this->byName('passwd');
         $submit = $this->byName('submitLogin');
-
-        $this->assertEquals('', $email->value());
-        $this->assertEquals('', $passwd->value());
     }
 
     public function testAdminLogin()
@@ -72,13 +76,14 @@ class PrestashopBackOfficeTest extends Sauce\Sausage\WebDriverTestCase
     public function testModuleInstall()
     {
         $this->doAdminLogin('test@example.com', '0123456789');
-
-        $this->url('/_admin/index.php?controller=AdminModules');
+        
+        $this->tokenUrl('/_admin/index.php?controller=AdminModules');
         $this->assertContains('Modules', $this->title());
 
         $this->byXpath('(//a[contains(@data-module-name, \'zzcleanurls\')])')->click();
         $this->byId('proceed-install-anyway')->click();
-        $this->assertContains('Modules', $this->title());
+
         $this->assertContains('configure=zzcleanurls', $this->url());
+        $this->assertTextPresent('Module(s) installed successfully')
     }
 }

@@ -57,7 +57,7 @@ cache:
         - ${TEST_DOC_ROOT}
 
 before_cache:
-    - rm -rf ${TEST_DOC_ROOT%%/}/modules/zzcleanurls
+    - rm -rf ${TEST_DOC_ROOT}/modules/zzcleanurls
 
 notifications:
   email: false
@@ -76,6 +76,7 @@ before_script:
     - source tests/setup/environment.sh
     - sh tests/setup/apache.sh
     - sh tests/setup/prestashop.sh
+    - cd ${TEST_DOC_ROOT}/modules/zzcleanurls
 
 script:
     - php vendor/bin/php-cs-fixer -n fix --dry-run

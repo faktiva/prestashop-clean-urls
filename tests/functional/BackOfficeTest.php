@@ -2,9 +2,9 @@
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
-require_once __DIR__.'/../../../../config/config.inc.php';
-require_once __DIR__.'/../../../../classes/Tab.php';
-require_once __DIR__.'/../../../../classes/Tools.php';
+require_once getenv('PS_ROOT').'/config/config.inc.php';
+require_once _PS_ROOT_DIR_.'/classes/Tab.php';
+require_once _PS_ROOT_DIR_.'/classes/Tools.php';
 
 class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 {

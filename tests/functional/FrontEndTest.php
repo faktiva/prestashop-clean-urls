@@ -9,6 +9,7 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
     public static $browsers = array(
         array(
             'browserName' => 'firefox',
+            'seleniumServerRequestsTimeout' => 120,
             'desiredCapabilities' => array(
                 'platform' => 'Linux',
                 'tags' => array('zzCleanURLs', 'frontend'),

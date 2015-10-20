@@ -28,31 +28,25 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
     
     public function testWhenDisabled()
     {
-
     }
 
     public function testHomePage()
     {
-
     }
 
     public function testProductPage()
     {
-
     }
     
     public function testCategoryPage()
     {
-
     }
     
     public function testCmsPage()
     {
-
     }
     
     public function testCmsCategoryPage()
     {
-
     }
 }

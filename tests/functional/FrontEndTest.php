@@ -35,7 +35,7 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
     public function testHomePage()
     {
         $this->url('/');
-        $this->assertTrue($this->byCss('body#index'));
+        $this->assertTrue((bool)$this->byCss('body#index'));
     }
 
     public function testProductPage()

@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
-class PrestashopFrontEndTest extends Sauce\Sausage\WebDriverTestCase
+class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
 {
     protected $base_url;
 

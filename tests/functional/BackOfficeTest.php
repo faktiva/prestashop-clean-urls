@@ -18,6 +18,7 @@ class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
                 'tags' => array('zzCleanURLs', 'backoffice'),
                 'recordVideo' => false,
                 'captureHtml' => true,
+                'idleTimeout' => 90,
             ),
         ),
     );

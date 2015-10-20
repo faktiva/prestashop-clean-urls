@@ -19,7 +19,7 @@ class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
                 'recordVideo' => false,
                 'captureHtml' => true,
                 'idleTimeout' => 90,
-                'commandTimeout', => 300,
+                'commandTimeout' => 300,
             ),
         ),
     );

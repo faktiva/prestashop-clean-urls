@@ -15,7 +15,7 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
                 'recordVideo' => false,
                 'captureHtml' => true,
                 'idleTimeout' => 90,
-                'commandTimeout', => 300,
+                'commandTimeout' => 300,
             ),
         ),
     );
@@ -40,16 +40,24 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
     public function testProductPage()
     {
     }
-    
+
     public function testCategoryPage()
     {
     }
-    
+
     public function testCmsPage()
     {
     }
-    
+
     public function testCmsCategoryPage()
+    {
+    }
+
+    public function testSuppliersPage()
+    {
+    }
+
+    public function testManufacturersPage()
     {
     }
 }

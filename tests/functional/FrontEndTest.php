@@ -14,6 +14,7 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
                 'tags' => array('zzCleanURLs', 'frontend'),
                 'recordVideo' => false,
                 'captureHtml' => true,
+                'idleTimeout' => 90,
             ),
         ),
     );

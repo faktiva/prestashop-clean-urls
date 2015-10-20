@@ -73,5 +73,4 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
         $this->url('/fashion-supplier');
         $this->assertTrue((bool)$this->byCss('body#supplier'));
     }
-
 }

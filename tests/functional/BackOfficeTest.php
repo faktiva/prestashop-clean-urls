@@ -2,6 +2,10 @@
 
 require_once __DIR__.'/../../vendor/autoload.php';
 
+require_once __DIR__.'/../../../../config/config.inc.php';
+require_once __DIR__.'/../../../../classes/Tab.php';
+require_once __DIR__.'/../../../../classes/Tools.php';
+
 class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
 {
     protected $base_url;
@@ -25,7 +29,16 @@ class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
             rtrim(getenv('TEST_BASE_DIR'), '/')
         );
     }
-    
+
+    protected static function getAdminToken($controller_name, $employee_id=1)
+    {
+        $str = $controller_name
+            . (int)Tab::getIdFromClassName($controller_name)
+            . (int)$employee_id;
+
+        return Tools::getAdminToken($str);
+    }
+
     protected function doAdminLogin($user, $passwd)
     {
         $this->url('/_admin/');
@@ -69,8 +82,8 @@ class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
     public function testModuleInstall()
     {
         $this->doAdminLogin('test@example.com', '0123456789');
-        
-        $this->url('/_admin/index.php?controller=AdminModules');
+
+        $this->url('/_admin/index.php?controller=AdminModules&token='.self::getAdminToken('AdminModules'));
         $this->assertContains('Modules', $this->title());
 
         $this->byXpath('(//a[contains(@data-module-name, \'zzcleanurls\')])')->click();

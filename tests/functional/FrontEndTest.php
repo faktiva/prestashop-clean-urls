@@ -28,13 +28,11 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
             rtrim(getenv('TEST_BASE_DIR'), '/')
         );
     }
-    
-    public function testWhenDisabled()
-    {
-    }
 
     public function testHomePage()
     {
+        $this->url('/');
+        $this->assertTrue($this->byCss('body#index'));
     }
 
     public function testProductPage()

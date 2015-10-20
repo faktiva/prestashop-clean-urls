@@ -11,6 +11,9 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
             'browserName' => 'firefox',
             'desiredCapabilities' => array(
                 'platform' => 'Linux',
+                'tags' => array('zzCleanURLs', 'frontend'),
+                'recordVideo' => false,
+                'captureHtml' => true,
             ),
         ),
     );

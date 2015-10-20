@@ -15,6 +15,9 @@ class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
             'browserName' => 'firefox',
             'desiredCapabilities' => array(
                 'platform' => 'Linux',
+                'tags' => array('zzCleanURLs', 'backoffice'),
+                'recordVideo' => false,
+                'captureHtml' => true,
             ),
         ),
     );

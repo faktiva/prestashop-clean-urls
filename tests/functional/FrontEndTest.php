@@ -40,25 +40,38 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
 
     public function testProductPage()
     {
+        $this->url('/evening-dresses/printed-dress');
+        $this->assertTrue((bool)$this->byCss('body#product'));
     }
 
     public function testCategoryPage()
     {
+        $this->url('/women');
+        $this->assertTrue((bool)$this->byCss('body#category'));
     }
 
     public function testCmsPage()
     {
+        $this->url('/content/about-us');
+        $this->assertTrue((bool)$this->byCss('body#cms'));
     }
 
-    public function testCmsCategoryPage()
+    public function testManufacturerPage()
     {
+        $this->url('/manifacturers');
+        $this->assertTrue((bool)$this->byCss('body#manufacturer'));
+        
+        $this->url('/fashion-manufacturer');
+        $this->assertTrue((bool)$this->byCss('body#manufacturer'));
     }
 
     public function testSuppliersPage()
     {
+        $this->url('/supplier');
+        $this->assertTrue((bool)$this->byCss('body#supplier'));
+        
+        $this->url('/fashion-supplier');
+        $this->assertTrue((bool)$this->byCss('body#supplier'));
     }
 
-    public function testManufacturersPage()
-    {
-    }
 }

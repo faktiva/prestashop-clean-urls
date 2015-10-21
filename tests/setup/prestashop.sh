@@ -35,6 +35,6 @@ mv ${PS_ROOT%%/}/admin ${PS_ROOT%%/}/_admin
 mv ${PS_ROOT%%/}/install ${PS_ROOT%%/}/_install
 
 #XXX
-echo ls -lha ${PS_ROOT}
+echo -e "\033[33mls -lha ${PS_ROOT}\033[0m"
 ls -lha ${PS_ROOT}
 

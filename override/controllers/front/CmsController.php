@@ -4,9 +4,9 @@ class CmsController extends CmsControllerCore
 {
     public function init()
     {
-		if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-			$shop_sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
-		}
+        if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
+            $shop_sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
+        }
 
         if ($cms_rewrite = Tools::getValue('cms_rewrite')) {
             $sql = 'SELECT l.`id_cms`

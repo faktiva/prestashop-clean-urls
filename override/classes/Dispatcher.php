@@ -332,18 +332,19 @@ class Dispatcher extends DispatcherCore
                         if (!Dispatcher::isProductLink($short_link)) {
                             if (!Dispatcher::isCategoryLink($short_link)) {
                                 if (!Dispatcher::isCmsLink($short_link)) {
-					if (!Dispatcher::isCmsCategoryLink($short_link)) {
-						if (!Dispatcher::isManufacturerLink($short_link)) {
-							if (!Dispatcher::isSupplierLink($short_link)) {
-							} else {
-								$findRoute = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
-							}
-						} else {
-							$findRoute = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
-						}
-					} else {
-						$findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];
-					}
+                                  if (!Dispatcher::isCmsCategoryLink($short_link)) {
+                                    if (!Dispatcher::isManufacturerLink($short_link)) {
+                                      if (!Dispatcher::isSupplierLink($short_link)) {
+                                      // 
+                                      } else {
+                                        $findRoute = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
+                                      }
+                                    } else {
+                                      $findRoute = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
+                                    }
+                                  } else {
+                                    $findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];
+                                  }
                                 } else {
                                     $findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_rule'];
                                 }

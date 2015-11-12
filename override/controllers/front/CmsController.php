@@ -21,10 +21,8 @@ class CmsController extends CmsControllerCore
             $sql = 'SELECT `id_cms_category`
                 FROM `'._DB_PREFIX_.'cms_category_lang`
                 LEFT JOIN `'._DB_PREFIX_.'cms_category_shop` s ON (l.`id_cms_category` = s.`id_cms_category`)
-				WHERE `link_rewrite` = \''.pSQL($cms_category_rewrite).'\''.$shop_sql;
+                WHERE `link_rewrite` = \''.pSQL($cms_category_rewrite).'\''.$shop_sql;
 			$id_cms_category = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
-
-			var_dump($sql);
             if ($id_cms_category > 0) {
                 $_GET['id_cms_category'] = $id_cms_category;
             }

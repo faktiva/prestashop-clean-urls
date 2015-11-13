@@ -181,7 +181,7 @@ class Dispatcher extends DispatcherCore
             WHERE l.`link_rewrite` = \''.basename($short_link).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
-		}
+        }
 
         $id_cms_cat = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
@@ -255,9 +255,9 @@ class Dispatcher extends DispatcherCore
             $id_shop = (int)Context::getContext()->shop->id;
         }
 
-		$controller = Tools::getValue('controller');
+        $controller = Tools::getValue('controller');
 
-		$curr_lang_id = Context::getContext()->language->id;
+        $curr_lang_id = Context::getContext()->language->id;
 
         if (isset($controller) && is_string($controller) && preg_match('/^([0-9a-z_-]+)\?(.*)=(.*)$/Ui', $controller, $m)) {
             $controller = $m[1];
@@ -332,19 +332,19 @@ class Dispatcher extends DispatcherCore
                         if (!Dispatcher::isProductLink($short_link)) {
                             if (!Dispatcher::isCategoryLink($short_link)) {
                                 if (!Dispatcher::isCmsLink($short_link)) {
-                                  if (!Dispatcher::isCmsCategoryLink($short_link)) {
-                                    if (!Dispatcher::isManufacturerLink($short_link)) {
-                                      if (!Dispatcher::isSupplierLink($short_link)) {
-                                      // 
-                                      } else {
-                                        $findRoute = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
-                                      }
+                                    if (!Dispatcher::isCmsCategoryLink($short_link)) {
+                                        if (!Dispatcher::isManufacturerLink($short_link)) {
+                                            if (!Dispatcher::isSupplierLink($short_link)) {
+                                                // 
+                                            } else {
+                                                $findRoute = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
+                                            }
+                                        } else {
+                                            $findRoute = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
+                                        }
                                     } else {
-                                      $findRoute = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
+                                        $findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];
                                     }
-                                  } else {
-                                    $findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];
-                                  }
                                 } else {
                                     $findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_rule'];
                                 }

@@ -6,7 +6,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/ZiZuu-store/zzCleanURLs.svg?style=plastic)](https://github.com/ZiZuu-store/zzCleanURLs/issues)
 
 [![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ZiZuu-store/zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module: "@ZiZuu Clean URLs"&url=https://github.com/ZiZuu-store/zzCleanURLs)
 
 * For production use the **latest stable [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/)**
 * For developing or Pull Request please use only the "**[dev](https://github.com/ZiZuu-store/zzCleanURLs/tree/dev)**" branch

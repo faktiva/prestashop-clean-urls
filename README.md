@@ -9,17 +9,6 @@
 
 [![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=plastic)](https://gitter.im/ZiZuu-store/zzCleanURLs)
 
-
-
-
-
-[![Github Releases](https://img.shields.io/github/downloads/atom/atom/latest/total.svg?style=plastic)](https://github.com/ZiZuu-store/zzCleanURLs/releases)
-[![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star)](https://github.com/ZiZuu-store/zzCleanURLs/stargazers)
-
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module by @ZiZuu_Store: "ZiZuu Clean URLs"&url=https://github.com/ZiZuu-store/zzCleanURLs)
-
-[![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=plastic)](https://gitter.im/ZiZuu-store/zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 ___
 
 We are going to merge other users' contributions and ideas as soon as we note them and find the time to test.

@@ -196,14 +196,14 @@ class Dispatcher extends DispatcherCore
      */
     public static function isManufacturerLink($short_link)
     {
-        $manufacturer = str_replace('-', '%', basename($short_link));
+        $manufacturer = str_replace('-', '_', basename($short_link));
 
         $sql = 'SELECT m.`id_manufacturer`
             FROM `'._DB_PREFIX_.'manufacturer` m
             LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
-            WHERE m.`name` LIKE \''.pSQL($manufacturer).'\'';
+            WHERE LOWER(m.`name`) = \''.pSQL($manufacturer).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
+            $sql .= ' AND s.`id_shop` LIKE '.(int)Shop::getContextShopID();
         }
 
         $id_manufacturer = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
@@ -219,12 +219,12 @@ class Dispatcher extends DispatcherCore
      */
     public static function isSupplierLink($short_link)
     {
-        $supplier = str_replace('-', '%', basename($short_link));
+        $supplier = str_replace('-', '_', basename($short_link));
 
         $sql = 'SELECT sp.`id_supplier`
             FROM `'._DB_PREFIX_.'supplier` sp
             LEFT JOIN `'._DB_PREFIX_.'supplier_shop` s ON (sp.`id_supplier` = s.`id_supplier`)
-            WHERE sp.`name` LIKE \''.pSQL($supplier).'\'';
+            WHERE LOWER(sp.`name`) LIKE \''.pSQL($supplier).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }

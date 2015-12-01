@@ -136,7 +136,7 @@ class Dispatcher extends DispatcherCore
         $category = basename($short_link);
 
         $sql = 'SELECT `id_category` FROM `'._DB_PREFIX_.'category_lang`
-            WHERE `link_rewrite` = \''.pSQL($category).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+            WHERE `link_rewrite` = \''.pSQL(basename($category, '.html')).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
         }
@@ -178,7 +178,7 @@ class Dispatcher extends DispatcherCore
         $sql = 'SELECT l.`id_cms_category`
             FROM `'._DB_PREFIX_.'cms_category_lang` l
             LEFT JOIN `'._DB_PREFIX_.'cms_category_shop` s ON (l.`id_cms_category` = s.`id_cms_category`)
-            WHERE l.`link_rewrite` = \''.basename($short_link).'\'';
+            WHERE l.`link_rewrite` = \''.basename($short_link, '.html').'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
@@ -196,6 +196,7 @@ class Dispatcher extends DispatcherCore
      */
     public static function isManufacturerLink($short_link, $route)
     {
+        $short_link = str_replace('.html', '', $short_link);
         if ($short_link == str_replace('{rewrite}', '', $route['rule'])) {
             // manufacturers list
             return true;
@@ -224,6 +225,7 @@ class Dispatcher extends DispatcherCore
      */
     public static function isSupplierLink($short_link, $route)
     {
+        $short_link = str_replace('.html', '', $short_link);
         if ($short_link == str_replace('{rewrite}', '', $route['rule'])) {
             // suppliers list
             return true;

@@ -194,14 +194,19 @@ class Dispatcher extends DispatcherCore
      * @param string $short_link: requested url without '?' part and without '/' on begining
      * @return bool true: it's a link to manufacturer, false: it isn't
      */
-    public static function isManufacturerLink($short_link)
+    public static function isManufacturerLink($short_link, $route)
     {
-        $manufacturer = str_replace('-', '%', basename($short_link));
+        if ($short_link == str_replace('{rewrite}', '', $route['rule'])) {
+            // manufacturers list
+            return true;
+        }
+
+        $manufacturer = str_replace('-', '_', basename($short_link));
 
         $sql = 'SELECT m.`id_manufacturer`
             FROM `'._DB_PREFIX_.'manufacturer` m
             LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
-            WHERE m.`name` LIKE \''.pSQL($manufacturer).'\'';
+            WHERE LOWER(m.`name`) LIKE \''.pSQL($manufacturer).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
@@ -217,14 +222,19 @@ class Dispatcher extends DispatcherCore
      * @param string $short_link: requested url without '?' part and without '/' on begining
      * @return bool true: it's a link to supplier, false: it isn't
      */
-    public static function isSupplierLink($short_link)
+    public static function isSupplierLink($short_link, $route)
     {
-        $supplier = str_replace('-', '%', basename($short_link));
+        if ($short_link == str_replace('{rewrite}', '', $route['rule'])) {
+            // suppliers list
+            return true;
+        }
+
+        $supplier = str_replace('-', '_', basename($short_link));
 
         $sql = 'SELECT sp.`id_supplier`
             FROM `'._DB_PREFIX_.'supplier` sp
             LEFT JOIN `'._DB_PREFIX_.'supplier_shop` s ON (sp.`id_supplier` = s.`id_supplier`)
-            WHERE sp.`name` LIKE \''.pSQL($supplier).'\'';
+            WHERE LOWER(sp.`name`) LIKE \''.pSQL($supplier).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
@@ -333,14 +343,16 @@ class Dispatcher extends DispatcherCore
                             if (!Dispatcher::isCategoryLink($short_link)) {
                                 if (!Dispatcher::isCmsLink($short_link)) {
                                     if (!Dispatcher::isCmsCategoryLink($short_link)) {
-                                        if (!Dispatcher::isManufacturerLink($short_link)) {
-                                            if (!Dispatcher::isSupplierLink($short_link)) {
-                                                // 
+                                        $_route = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
+                                        if (!Dispatcher::isManufacturerLink($short_link, $_route)) {
+                                            $_route = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
+                                            if (!Dispatcher::isSupplierLink($short_link, $_route)) {
+                                                //
                                             } else {
-                                                $findRoute = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
+                                                $findRoute = $_route;
                                             }
                                         } else {
-                                            $findRoute = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
+                                            $findRoute = $_route;
                                         }
                                     } else {
                                         $findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];

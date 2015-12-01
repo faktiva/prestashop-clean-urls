@@ -1,15 +1,22 @@
 [Prestashop module "ZiZuu Clean URLs"](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
-==
+=====
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba/mini.png)](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba)
-[![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ZiZuu-store/zzCleanURLs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![GitHub issues](https://img.shields.io/github/issues/ZiZuu-store/zzCleanURLs.svg?style=plastic)](https://github.com/ZiZuu-store/zzCleanURLs/issues)
 
-* For production use the **latest stable [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/)**
-* For developing or Pull Request please use only the "**[dev](https://github.com/ZiZuu-store/zzCleanURLs/tree/dev)**" branch
+[![GitHub stars](https://img.shields.io/github/stars/ZiZuu-store/zzCleanURLs.svg?style=social)](https://github.com/ZiZuu-store/zzCleanURLs/stargazers)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module by @ZiZuu_Store: "ZiZuu Clean URLs"&url=https://github.com/ZiZuu-store/zzCleanURLs)
+
+[![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=plastic)](https://gitter.im/ZiZuu-store/zzCleanURLs)
+
+___
 
 We are going to merge other users' contributions and ideas as soon as we note them and find the time to test.
 
 If you fork, please make every change the way we can pull, don't reinvent the wheel .. make every custom change on a private branch, so you can merge your own changes to the community mintained branch every time a new release is out.
+
+* For production use the **latest stable [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/)**
+* For developing or Pull Request please use only the "**[dev](https://github.com/ZiZuu-store/zzCleanURLs/tree/dev)**" branch
 
 It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >= 1.5 too.
 **If you succesfully use this module on some older version please report**

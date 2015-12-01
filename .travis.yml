@@ -1,0 +1,92 @@
+
+language: php
+
+php:
+    #- 5.4
+    #- 5.5
+    - 5.6
+    #- 7
+    #- hhvm
+
+env:
+    global:
+        - secure: k/LW4Uijo8TI+4viDuDlQBkJrDHLErDfCJbqNtmS17zWOmG9kDA8oNxmBr8WxFyEj+RCUkGIQk+PglEdKovfN9CcPky6qRp369MckGuwmYl3s4NjY/zsHr6o4Vf2toD4DI9tNWUsQoDpuuDVnAPLXmBUHLBe5G4U+elxrcgn+GJRTPhTpD3K3EM0omdkVHq/xfzPSwx9wPZ3Oqt665xmFotyJYrvhTAjAeLaKdE0VRsoWzSChKQe80jfEym2i+TL9MjUTkHw5kTZmky5K6y2RoFtTc9JYH8Tdwwnpk4u7bUJ7Hr3c1ucZTuSl2+5DLIGgB11kMxvli0/XTVTOQe1PXKdqy/PQfVkBB67M7ragmQWbOxXw6LeBd1YefxnyWs0AOmS9gBW63G4VjgTWISSDiuK8+0XnrwhH7nPaNGisGJXgQIUlEtXqPi4vQJrWh3elHUFRku3+w4vYTXEEkI/OAVLfcWO6C6xyOjkNN9KJNN8a/L4pWVSKrEGWA34e4kAw0dGd1ruWweiuV4kIC8tVdcj0uI6Ou02g7PZdy24gZbpdAB13LQZytTz1GBiCQpOZSTLO0htcepEM67E+ucUDvo5LXqWTcYLGcPgPkFTKVescZr8jctbVyYmv1AyxwvuB2EicvaBM4Zu9C4D2TEJFRRtdIfFIULkHxbSYsS5myg=
+        - secure: QK1KUODd8TyKZ8dT7816XwW5S4n+58va+dPJkeFZWQZcs4AwxtHoRy/cP+8wez4/Tjc/eXeDk7EeNlW4z/PPSD9KEBMiB2euuS10XnlkKbcjrU0arbUY3cD3AK4PHr6T7GXhv+uMGN/xBBjgqDVzVk1v8/NP0XM86FmdytRKVwp4OB+vcEuq/JUBN6SsWfA4ivN1rK3FrmGEhvhaMIt7qowcWGr3cpXi1BDMjtoXFYvy24BLJdHb9jdGOp/R/cHd6zJMt0+A8YNaMELXWFGmNd4mhl+BpvhuogjBOMcbEYCcrWPgJasmZ20B5Y7Ldi1eNMki5S8y8S0L257UaNV7Luzm88+M42It5N4im0b2lfY36hg9mbdqd6QZnzwh1S4e/OF3qou0s0wsQQKiUuVeb4y2GD0q2spylrjodv3moCGmj21Nx8jR91wjuraH42YWJCR3kf0YFWpDKTZVkgvgwvXm35A2gsrckaPMxvZ5lNxEisKH5CHtt1RxO2dAjFIdIFHnMshx2UrNAep/86K23/RLIDSkOLxQRa7HdvdVfzpjkkYcdrohXqHFgp34OqdoGkQ4n1dnAm3Xrgru9Ed9EZdLfn5nAk0YSbDO60rzG1G3n5G1xwwj3neMZCqk5BtSORrFi4e/OYREpI3T3trwMVRnuxIXfGWiLrB7eIDeLA0=
+        - SAUCE_BUILD=${TRAVIS_BUILD_ID}
+        - SAUCE_TUNNEL_IDENTIFIER=${TRAVIS_JOB_NUMBER}
+        - SAUCE_DONT_VERIFY_CERTS=1
+    matrix:
+    # COMPOSER_FLAGS: , TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
+        ## 1.6 latest release
+        - PS_VERSION="1.6.1.1"
+        #- PS_VERSION="1.6.1.1" TEST_HOST="site.test"
+        #- PS_VERSION="1.6.1.1" TEST_HOST="sub.site.test"
+        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/"
+        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="site.test"
+        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="sub.site.test"
+        ## 1.6 first release
+        #- PS_VERSION="1.6.0.1"
+        ## 1.5 latest release
+        #- PS_VERSION="1.5.6.2"
+        ## 1.5 first testable release
+        - PS_VERSION="1.5.4.1"
+
+matrix:
+    fast_finish: true
+    allow_failures:
+        - php: 7
+        - php: hhvm
+        - env: PS_VERSION="1.5.4.1"
+
+addons:
+    apt_packages:
+        - rsync
+        - apache2
+        - libapache2-mod-fastcgi
+    hosts:
+        - site.test
+        - sub.site.test
+    sauce_connect: true
+
+# will only work on containers infrastructure ...
+cache:
+    apt: true
+    directories:
+        - .cache
+        - vendor
+        - ${PS_ROOT}
+
+before_cache:
+    - rm -rf ${PS_ROOT}/modules/zzcleanurls
+
+notifications:
+  email: false
+  webhooks:
+    urls:
+        - https://webhooks.gitter.im/e/60d4e2af6fe2e9586aca
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always
+
+before_install:
+    - sudo apt-get update -q
+    - php composer.phar self-update
+    # don't use dash
+    - sudo sh -c 'echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash'
+
+install: true
+
+before_script:
+    - php composer.phar -vvv install ${COMPOSER_FLAGS} --prefer-source
+    - source tests/setup/environment.sh
+    - sh tests/setup/apache.sh
+    - sh tests/setup/prestashop.sh
+
+script:
+    - php vendor/bin/php-cs-fixer -n fix --dry-run
+    - php vendor/bin/phpunit -v ./tests/functional
+
+after_failure:
+    - sudo tail -50 /var/log/apache2/access.log
+    - sudo tail -50 /var/log/apache2/error.log
+    - env

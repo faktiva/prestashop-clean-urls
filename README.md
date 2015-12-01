@@ -1,8 +1,15 @@
 [Prestashop module "ZiZuu Clean URLs"](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
 =====
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba/mini.png)](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba)
-[![GitHub issues](https://img.shields.io/github/issues/ZiZuu-store/zzCleanURLs.svg?style=plastic)](https://github.com/ZiZuu-store/zzCleanURLs/issues)
+[![Sensio Labs Insight][insight]](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba)
+[![Travis CI build status][travis]](https://travis-ci.org/ZiZuu-store/zzCleanURLs)
+
+[![Join our Gitter chat][gitter]](https://gitter.im/ZiZuu-store/zzCleanURLs)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ZiZuu-store/zzcleanurls/trend.png)](https://bitdeli.com/free "Bitdeli Stats")
+
+[insight]: https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba/mini.png
+[travis]: https://travis-ci.org/ZiZuu-store/zzCleanURLs.svg?branch=integrate-travis-ci
+[gitter]: https://badges.gitter.im/Join%20Chat.svg
 
 [![GitHub stars](https://img.shields.io/github/stars/ZiZuu-store/zzCleanURLs.svg?style=social)](https://github.com/ZiZuu-store/zzCleanURLs/stargazers)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module by @ZiZuu_Store: "ZiZuu Clean URLs"&url=https://github.com/ZiZuu-store/zzCleanURLs)
@@ -28,7 +35,7 @@ Install the module from the Backoffice (administration panel), download the rele
 In the modules tab, click on **add a new module**. Click on Browse to open the dialogue box letting you search your computer, select the ZIP file then validate the dialogue box. Finally click on Upload this module.
 
 ### Make sure your SEO and URL settings are as follows:
- 
+
 This is __MANDATORY__
  * products:         {category:/}{rewrite}              (you **can** add .html at the end)
  * categories:       {categories:/}{rewrite}**/**
@@ -40,7 +47,7 @@ This is __MANDATORY__
 
 You can replace words such as "info", "suppliers", etc with whatever you want, given that it does not conflicts with a category name
 
-Remember to 
+Remember to
  * **clear the browser cache**
  * **clear PS cache** (under smarty -> cache and smarty -> compile)
 

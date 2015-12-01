@@ -168,19 +168,45 @@ class Dispatcher extends DispatcherCore
     }
 
     /**
+     * Check if $short_link is a Cms Category Link
+     *
+     * @param string $short_link: requested url without '?' part and without '/' on begining
+     * @return bool true: it's a link to cms page, false: it isn't
+     */
+    public static function isCmsCategoryLink($short_link)
+    {
+        $sql = 'SELECT l.`id_cms_category`
+            FROM `'._DB_PREFIX_.'cms_category_lang` l
+            LEFT JOIN `'._DB_PREFIX_.'cms_category_shop` s ON (l.`id_cms_category` = s.`id_cms_category`)
+            WHERE l.`link_rewrite` = \''.basename($short_link).'\'';
+        if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
+            $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
+        }
+
+        $id_cms_cat = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+
+        return ($id_cms_cat > 0);
+    }
+
+    /**
      * Check if $short_link is a Manufacturer Link
      *
      * @param string $short_link: requested url without '?' part and without '/' on begining
      * @return bool true: it's a link to manufacturer, false: it isn't
      */
-    public static function isManufacturerLink($short_link)
+    public static function isManufacturerLink($short_link, $route)
     {
-        $manufacturer = str_replace('-', '%', basename($short_link));
+        if ($short_link == str_replace('{rewrite}', '', $route['rule'])) {
+            // manufacturers list
+            return true;
+        }
+
+        $manufacturer = str_replace('-', '_', basename($short_link));
 
         $sql = 'SELECT m.`id_manufacturer`
             FROM `'._DB_PREFIX_.'manufacturer` m
             LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
-            WHERE m.`name` LIKE \''.pSQL($manufacturer).'\'';
+            WHERE LOWER(m.`name`) LIKE \''.pSQL($manufacturer).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
@@ -196,14 +222,19 @@ class Dispatcher extends DispatcherCore
      * @param string $short_link: requested url without '?' part and without '/' on begining
      * @return bool true: it's a link to supplier, false: it isn't
      */
-    public static function isSupplierLink($short_link)
+    public static function isSupplierLink($short_link, $route)
     {
-        $supplier = str_replace('-', '%', basename($short_link));
+        if ($short_link == str_replace('{rewrite}', '', $route['rule'])) {
+            // suppliers list
+            return true;
+        }
+
+        $supplier = str_replace('-', '_', basename($short_link));
 
         $sql = 'SELECT sp.`id_supplier`
             FROM `'._DB_PREFIX_.'supplier` sp
             LEFT JOIN `'._DB_PREFIX_.'supplier_shop` s ON (sp.`id_supplier` = s.`id_supplier`)
-            WHERE sp.`name` LIKE \''.pSQL($supplier).'\'';
+            WHERE LOWER(sp.`name`) LIKE \''.pSQL($supplier).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
@@ -236,6 +267,8 @@ class Dispatcher extends DispatcherCore
 
         $controller = Tools::getValue('controller');
 
+        $curr_lang_id = Context::getContext()->language->id;
+
         if (isset($controller) && is_string($controller) && preg_match('/^([0-9a-z_-]+)\?(.*)=(.*)$/Ui', $controller, $m)) {
             $controller = $m[1];
             if (isset($_GET['controller'])) {
@@ -260,16 +293,16 @@ class Dispatcher extends DispatcherCore
             if (!preg_match('/\.(gif|jpe?g|png|css|js|ico)$/i', $this->request_uri)) {
                 // Add empty route as last route to prevent this greedy regexp to match request uri before right time
                 if ($this->empty_route) {
-                    $this->addRoute($this->empty_route['routeID'], $this->empty_route['rule'], $this->empty_route['controller'], Context::getContext()->language->id, array(), array(), $id_shop);
+                    $this->addRoute($this->empty_route['routeID'], $this->empty_route['rule'], $this->empty_route['controller'], $curr_lang_id, array(), array(), $id_shop);
                 }
 
                 list($uri) = explode('?', $this->request_uri);
 
-                if (isset($this->routes[$id_shop][Context::getContext()->language->id])) {
+                if (isset($this->routes[$id_shop][$curr_lang_id])) {
                     $findRoute = array();
 
                     // check, whether request_uri is template or not
-                    foreach ($this->routes[$id_shop][Context::getContext()->language->id] as $route) {
+                    foreach ($this->routes[$id_shop][$curr_lang_id] as $route) {
                         if (preg_match($route['regexp'], $uri, $m)) {
                             $isTemplate = false;
                             $module = isset($route['params']['module']) ? $route['params']['module'] : '';
@@ -309,22 +342,29 @@ class Dispatcher extends DispatcherCore
                         if (!Dispatcher::isProductLink($short_link)) {
                             if (!Dispatcher::isCategoryLink($short_link)) {
                                 if (!Dispatcher::isCmsLink($short_link)) {
-                                    if (!Dispatcher::isManufacturerLink($short_link)) {
-                                        if (!Dispatcher::isSupplierLink($short_link)) {
+                                    if (!Dispatcher::isCmsCategoryLink($short_link)) {
+                                        $_route = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
+                                        if (!Dispatcher::isManufacturerLink($short_link, $_route)) {
+                                            $_route = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
+                                            if (!Dispatcher::isSupplierLink($short_link, $_route)) {
+                                                //
+                                            } else {
+                                                $findRoute = $_route;
+                                            }
                                         } else {
-                                            $findRoute = $this->routes[$id_shop][Context::getContext()->language->id]['supplier_rule'];
+                                            $findRoute = $_route;
                                         }
                                     } else {
-                                        $findRoute = $this->routes[$id_shop][Context::getContext()->language->id]['manufacturer_rule'];
+                                        $findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];
                                     }
                                 } else {
-                                    $findRoute = $this->routes[$id_shop][Context::getContext()->language->id]['cms_rule'];
+                                    $findRoute = $this->routes[$id_shop][$curr_lang_id]['cms_rule'];
                                 }
                             } else {
-                                $findRoute = $this->routes[$id_shop][Context::getContext()->language->id]['category_rule'];
+                                $findRoute = $this->routes[$id_shop][$curr_lang_id]['category_rule'];
                             }
                         } else {
-                            $findRoute = $this->routes[$id_shop][Context::getContext()->language->id]['product_rule'];
+                            $findRoute = $this->routes[$id_shop][$curr_lang_id]['product_rule'];
                         }
                     }
 

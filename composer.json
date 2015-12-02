@@ -1,0 +1,27 @@
+{
+  "name": "zizuu-store/zzcleanurls",
+  "description": "Prestashop module \"ZiZuu Clean URLs\". It removes objects' IDs from URL",
+  "homepage": "https://github.com/ZiZuu-store/zzCleanURLs",
+  "license": "Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)",
+  "authors": [
+    {
+      "name": "ZiZuu Store",
+      "email": "info@ZiZuu.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "type": "prestashop-module",
+  "require-dev": {
+    "fabpot/php-cs-fixer": "^1.11"
+  },
+  "scripts": {
+    "do-csfix": [
+      "php-cs-fixer -vv -n fix; echo"
+    ]
+  }
+}

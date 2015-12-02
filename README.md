@@ -4,10 +4,15 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba/mini.png)](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba)
 [![GitHub issues](https://img.shields.io/github/issues/ZiZuu-store/zzCleanURLs.svg?style=plastic)](https://github.com/ZiZuu-store/zzCleanURLs/issues)
 
+[![Packagist](https://img.shields.io/packagist/l/zizuu-store/zzcleanurls.svg?style=plastic)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![GitHub release](https://img.shields.io/github/release/ZiZuu-store/zzCleanURLs.svg?style=plastic&label=latest)](https://github.com/ZiZuu-store/zzCleanURLs/releases/latest)
+
+[![Packagist](https://img.shields.io/packagist/dt/zizuu-store/zzcleanurls.svg?style=plastic)](https://packagist.org/packages/zizuu-store/zzcleanurls)
 [![GitHub stars](https://img.shields.io/github/stars/ZiZuu-store/zzCleanURLs.svg?style=social)](https://github.com/ZiZuu-store/zzCleanURLs/stargazers)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module by @ZiZuu_Store: "ZiZuu Clean URLs"&url=https://github.com/ZiZuu-store/zzCleanURLs)
+[![GitHub forks](https://img.shields.io/github/forks/ZiZuu-store/zzCleanURLs.svg?style=social&label=Forks)]()
 
 [![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=plastic)](https://gitter.im/ZiZuu-store/zzCleanURLs)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module by @ZiZuu_Store: "ZiZuu Clean URLs"&url=https://github.com/ZiZuu-store/zzCleanURLs)
 
 ___
 
@@ -71,4 +76,4 @@ If you got any other override modules, you should now go to you back office, uni
 
 # License
 
-[LICENSE.md](LICENSE.md)
+See [LICENSE.md](LICENSE.md).

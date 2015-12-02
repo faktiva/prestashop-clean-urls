@@ -21,13 +21,13 @@ If you fork, please make every change the way we can pull, don't reinvent the wh
 It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >= 1.5 too.
 **If you succesfully use this module on some older version please report**
 
-## INSTALLATION
+# INSTALLATION
 
 Install the module from the Backoffice (administration panel), download the release ZIP file (***zzcleanurls.zip***) as it already contains the right folder name (`zzcleanurls`, **not** `zzcleanurls-version_x.y.z` !)
 
 In the modules tab, click on **add a new module**. Click on Browse to open the dialogue box letting you search your computer, select the ZIP file then validate the dialogue box. Finally click on Upload this module.
 
-### Make sure your SEO and URL settings are as follows:
+## Make sure your SEO and URL settings are as follows:
  
 This is __MANDATORY__
  * products:         {category:/}{rewrite}              (you **can** add .html at the end)
@@ -44,7 +44,7 @@ Remember to
  * **clear the browser cache**
  * **clear PS cache** (under smarty -> cache and smarty -> compile)
 
-## UNINSTALLATION
+# UNINSTALLATION
 
 * Go to modules -> Find and uninstall "**zzcleanurls**"
 
@@ -68,3 +68,7 @@ If something goes wrong do the following:
 
 
 If you got any other override modules, you should now go to you back office, uninstall them, and reinstall them again to work correctly.
+
+# License
+
+[LICENSE.md](LICENSE.md)

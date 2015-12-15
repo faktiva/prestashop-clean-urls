@@ -17,10 +17,12 @@
   },
   "type": "prestashop-module",
   "require-dev": {
-    "fabpot/php-cs-fixer": "^1.11"
+    "fabpot/php-cs-fixer": "^1.11",
+    "symfony/var-dumper": "^3.0",
+    "symfony/debug": "^3.0"
   },
   "scripts": {
-    "do-csfix": [
+    "csfix": [
       "php-cs-fixer -vv -n fix; echo"
     ]
   }

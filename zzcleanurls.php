@@ -14,8 +14,15 @@
  * @source   https://github.com/ZiZuu-store/zzCleanURLs
  */
 
+define('ZZ_DEBUG', true);
+
 if (!defined('_PS_VERSION_')) {
     return;
+}
+
+if (defined('ZZ_DEBUG') && ZZ_DEBUG) {
+    require(__DIR__.'/vendor/autoload.php');
+    Symfony\Component\Debug\Debug::enable();
 }
 
 class zzCleanUrls extends Module

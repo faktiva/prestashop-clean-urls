@@ -134,7 +134,7 @@ class Dispatcher extends DispatcherCore
     {
         $sql = 'SELECT `id_category`
             FROM `'._DB_PREFIX_.'category_lang`
-            WHERE `link_rewrite` = \''.pSQL(basename($category, '.html')).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+            WHERE `link_rewrite` = \''.pSQL(basename($short_link, '.html')).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
         }

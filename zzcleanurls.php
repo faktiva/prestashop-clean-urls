@@ -14,14 +14,15 @@
  * @source   https://github.com/ZiZuu-store/zzCleanURLs
  */
 
-define('ZZ_DEBUG', true);
-
 if (!defined('_PS_VERSION_')) {
     return;
 }
 
-if (defined('ZZ_DEBUG') && ZZ_DEBUG) {
-    require(__DIR__.'/vendor/autoload.php');
+// Set true to enable debugging
+define('ZZ_DEBUG', false);
+
+if (defined('ZZ_DEBUG') && ZZ_DEBUG && is_readable(__DIR__.'/vendor/autoload.php')) {
+    require __DIR__.'/vendor/autoload.php';
     Symfony\Component\Debug\Debug::enable();
 }
 

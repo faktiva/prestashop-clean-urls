@@ -8,6 +8,17 @@ class Dispatcher extends DispatcherCore
          * @var array List of default routes
          */
         $this->default_routes = array(
+            'category_rule' => array(
+                'controller' => 'category',
+                'rule'       => '{rewrite}/',
+                'keywords'   => array(
+                    'id'            => array('regexp' => '[0-9]+'),
+                    'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL\pS-]*'),
+                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'category_rewrite'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                ),
+            ),
             'supplier_rule' => array(
                 'controller' => 'supplier',
                 'rule'       => 'supplier/{rewrite}',
@@ -52,7 +63,7 @@ class Dispatcher extends DispatcherCore
                 'controller' =>    null,
                 'rule'       =>    'module/{module}{/:controller}',
                 'keywords'   => array(
-                    'module'     =>    array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
+                    'module'     => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
                     'controller' => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'controller'),
                 ),
                 'params'     => array(
@@ -83,20 +94,9 @@ class Dispatcher extends DispatcherCore
                 'keywords'   => array(
                     'id'               => array('regexp' => '[0-9]+'),
                     'selected_filters' => array('regexp' => '.*', 'param' => 'selected_filters'),
-                    'rewrite'          => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'category_rewrite'),
-                    'meta_keywords'    => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
-                    'meta_title'       => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
-                ),
-            ),
-            'category_rule' => array(
-                'controller' => 'category',
-                'rule'       => '{rewrite}/',
-                'keywords'   => array(
-                    'id'            => array('regexp' => '[0-9]+'),
-                    'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
-                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'category_rewrite'),
-                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'rewrite'          => array('regexp' => '[_a-zA-Z0-9\pL-]*', 'param' => 'category_rewrite'),
+                    'meta_keywords'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'       => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                 ),
             ),
         );
@@ -132,10 +132,8 @@ class Dispatcher extends DispatcherCore
      */
     public static function isCategoryLink($short_link)
     {
-        // check if parent categories
-        $category = basename($short_link);
-
-        $sql = 'SELECT `id_category` FROM `'._DB_PREFIX_.'category_lang`
+        $sql = 'SELECT `id_category`
+            FROM `'._DB_PREFIX_.'category_lang`
             WHERE `link_rewrite` = \''.pSQL(basename($category, '.html')).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();

@@ -23,7 +23,7 @@
   },
   "scripts": {
     "csfix": [
-      "php-cs-fixer -vv -n fix; echo"
+      "php-cs-fixer -vvv -n fix; echo"
     ]
   }
 }

@@ -9,7 +9,7 @@
 
 [![Packagist](https://img.shields.io/packagist/dt/zizuu-store/zzcleanurls.svg?style=plastic)](https://packagist.org/packages/zizuu-store/zzcleanurls)
 [![GitHub stars](https://img.shields.io/github/stars/ZiZuu-store/zzCleanURLs.svg?style=social)](https://github.com/ZiZuu-store/zzCleanURLs/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/ZiZuu-store/zzCleanURLs.svg?style=social&label=Forks)]()
+[![GitHub forks](https://img.shields.io/github/forks/ZiZuu-store/zzCleanURLs.svg?style=social&label=Forks)](https://github.com/ZiZuu-store/zzCleanURLs/network)
 
 [![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=plastic)](https://gitter.im/ZiZuu-store/zzCleanURLs)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module by @ZiZuu_Store: "ZiZuu Clean URLs"&url=https://github.com/ZiZuu-store/zzCleanURLs)

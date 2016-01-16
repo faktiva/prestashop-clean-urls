@@ -18,8 +18,8 @@ if (!defined('_PS_VERSION_')) {
     return;
 }
 
-// Uncomment to enable debugging
-// define('ZZ_DEBUG', true);
+// Set true to enable debugging
+define('ZZ_DEBUG', false);
 
 if (defined('ZZ_DEBUG') && ZZ_DEBUG && is_readable(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/vendor/autoload.php';

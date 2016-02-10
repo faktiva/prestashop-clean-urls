@@ -2,7 +2,7 @@
 
 class Dispatcher extends DispatcherCore
 {
-    public function __construct()
+    protected function loadRoutes($id_shop = null)
     {
         /**
          * @var array List of default routes
@@ -101,7 +101,7 @@ class Dispatcher extends DispatcherCore
             ),
         );
 
-        parent::__construct();
+        parent::loadRoutes($id_shop);
     }
 
     /**

@@ -32,7 +32,7 @@ class zzCleanUrls extends Module
     {
         $this->name = 'zzcleanurls';
         $this->tab = 'seo';
-        $this->version = '1.0.3';
+        $this->version = '1.0.4';
         $this->author = 'ZiZuu Store';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);

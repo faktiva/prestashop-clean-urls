@@ -18,8 +18,8 @@ if (!defined('_PS_VERSION_')) {
     return;
 }
 
-// Uncomment to enable debugging
-// define('ZZ_DEBUG', true);
+// Set true to enable debugging
+define('ZZ_DEBUG', false);
 
 if (defined('ZZ_DEBUG') && ZZ_DEBUG && is_readable(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/vendor/autoload.php';
@@ -32,7 +32,7 @@ class zzCleanUrls extends Module
     {
         $this->name = 'zzcleanurls';
         $this->tab = 'seo';
-        $this->version = '1.0.3';
+        $this->version = '1.0.4';
         $this->author = 'ZiZuu Store';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);

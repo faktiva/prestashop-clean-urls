@@ -2,12 +2,23 @@
 
 class Dispatcher extends DispatcherCore
 {
-    public function __construct()
+    protected function loadRoutes($id_shop = null)
     {
         /**
          * @var array List of default routes
          */
         $this->default_routes = array(
+            'category_rule' => array(
+                'controller' => 'category',
+                'rule'       => '{rewrite}/',
+                'keywords'   => array(
+                    'id'            => array('regexp' => '[0-9]+'),
+                    'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL\pS-]*'),
+                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'category_rewrite'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                ),
+            ),
             'supplier_rule' => array(
                 'controller' => 'supplier',
                 'rule'       => 'supplier/{rewrite}',
@@ -52,7 +63,7 @@ class Dispatcher extends DispatcherCore
                 'controller' =>    null,
                 'rule'       =>    'module/{module}{/:controller}',
                 'keywords'   => array(
-                    'module'     =>    array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
+                    'module'     => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
                     'controller' => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'controller'),
                 ),
                 'params'     => array(
@@ -83,25 +94,14 @@ class Dispatcher extends DispatcherCore
                 'keywords'   => array(
                     'id'               => array('regexp' => '[0-9]+'),
                     'selected_filters' => array('regexp' => '.*', 'param' => 'selected_filters'),
-                    'rewrite'          => array('regexp' => '[_a-zA-Z0-9-\pL]*', 'param' => 'category_rewrite'),
-                    'meta_keywords'    => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
-                    'meta_title'       => array('regexp' => '[_a-zA-Z0-9-\pL]*'),
-                ),
-            ),
-            'category_rule' => array(
-                'controller' => 'category',
-                'rule'       => '{rewrite}/',
-                'keywords'   => array(
-                    'id'            => array('regexp' => '[0-9]+'),
-                    'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
-                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'category_rewrite'),
-                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'rewrite'          => array('regexp' => '[_a-zA-Z0-9\pL-]*', 'param' => 'category_rewrite'),
+                    'meta_keywords'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title'       => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                 ),
             ),
         );
 
-        parent::__construct();
+        parent::loadRoutes($id_shop);
     }
 
     /**
@@ -132,11 +132,9 @@ class Dispatcher extends DispatcherCore
      */
     public static function isCategoryLink($short_link)
     {
-        // check if parent categories
-        $category = basename($short_link);
-
-        $sql = 'SELECT `id_category` FROM `'._DB_PREFIX_.'category_lang`
-            WHERE `link_rewrite` = \''.pSQL($category).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+        $sql = 'SELECT `id_category`
+            FROM `'._DB_PREFIX_.'category_lang`
+            WHERE `link_rewrite` = \''.pSQL(basename($short_link, '.html')).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
         }
@@ -178,7 +176,7 @@ class Dispatcher extends DispatcherCore
         $sql = 'SELECT l.`id_cms_category`
             FROM `'._DB_PREFIX_.'cms_category_lang` l
             LEFT JOIN `'._DB_PREFIX_.'cms_category_shop` s ON (l.`id_cms_category` = s.`id_cms_category`)
-            WHERE l.`link_rewrite` = \''.basename($short_link).'\'';
+            WHERE l.`link_rewrite` = \''.basename($short_link, '.html').'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
             $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
         }
@@ -196,6 +194,7 @@ class Dispatcher extends DispatcherCore
      */
     public static function isManufacturerLink($short_link, $route)
     {
+        $short_link = str_replace('.html', '', $short_link);
         if ($short_link == str_replace('{rewrite}', '', $route['rule'])) {
             // manufacturers list
             return true;
@@ -224,6 +223,7 @@ class Dispatcher extends DispatcherCore
      */
     public static function isSupplierLink($short_link, $route)
     {
+        $short_link = str_replace('.html', '', $short_link);
         if ($short_link == str_replace('{rewrite}', '', $route['rule'])) {
             // suppliers list
             return true;

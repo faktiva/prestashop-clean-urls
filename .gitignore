@@ -1,6 +1,6 @@
 .htaccess
 .svn
-.*.swp
-.cache
 vendor
+.php_cs.cache
+.cache
 config_*.xml

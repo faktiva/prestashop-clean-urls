@@ -18,7 +18,7 @@ env:
     matrix:
     # COMPOSER_FLAGS: , TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
         ## 1.6 latest release
-        - PS_VERSION="1.6.1.1"
+        - PS_VERSION="1.6.1.4"
         #- PS_VERSION="1.6.1.1" TEST_HOST="site.test"
         #- PS_VERSION="1.6.1.1" TEST_HOST="sub.site.test"
         #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/"

@@ -33,7 +33,7 @@ Install the module from the Backoffice (administration panel), download the rele
 In the modules tab, click on **add a new module**. Click on Browse to open the dialogue box letting you search your computer, select the ZIP file then validate the dialogue box. Finally click on Upload this module.
 
 ## Make sure your SEO and URL settings are as follows:
- 
+
 This is __MANDATORY__
  * products:         {category:/}{rewrite}              (you **can** add .html at the end)
  * categories:       {categories:/}{rewrite}**/**
@@ -45,7 +45,7 @@ This is __MANDATORY__
 
 You can replace words such as "info", "suppliers", etc with whatever you want, given that it does not conflicts with a category name
 
-Remember to 
+Remember to
  * **clear the browser cache**
  * **clear PS cache** (under smarty -> cache and smarty -> compile)
 

@@ -267,17 +267,17 @@ class Dispatcher extends DispatcherCore
                         $short_link = ltrim(parse_url($uri, PHP_URL_PATH), '/');
 
                         $route = $this->routes[$id_shop][$curr_lang_id]['product_rule'];
-                        if (!Dispatcher::isProductLink($short_link, $route)) {
+                        if (!self::isProductLink($short_link, $route)) {
                             $route = $this->routes[$id_shop][$curr_lang_id]['category_rule'];
-                            if (!Dispatcher::isCategoryLink($short_link, $route)) {
+                            if (!self::isCategoryLink($short_link, $route)) {
                                 $route = $this->routes[$id_shop][$curr_lang_id]['cms_rule'];
-                                if (!Dispatcher::isCmsLink($short_link, $route)) {
+                                if (!self::isCmsLink($short_link, $route)) {
                                     $route = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];
-                                    if (!Dispatcher::isCmsCategoryLink($short_link, $route)) {
+                                    if (!self::isCmsCategoryLink($short_link, $route)) {
                                         $route = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
-                                        if (!Dispatcher::isManufacturerLink($short_link, $route)) {
+                                        if (!self::isManufacturerLink($short_link, $route)) {
                                             $route = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
-                                            if (!Dispatcher::isSupplierLink($short_link, $route)) {
+                                            if (!self::isSupplierLink($short_link, $route)) {
                                                 // no route found
                                                 $route = array();
                                                 $controller = $this->controller_not_found;

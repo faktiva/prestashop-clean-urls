@@ -18,11 +18,8 @@ if (!defined('_PS_VERSION_')) {
     return;
 }
 
-// Set true to enable debugging
-define('ZZ_DEBUG', false);
-
-if (defined('ZZ_DEBUG') && ZZ_DEBUG && is_readable(__DIR__.'/vendor/autoload.php')) {
-    require __DIR__.'/vendor/autoload.php';
+if (is_readable(__DIR__.'/vendor/autoload.php')) {
+    require_once __DIR__.'/vendor/autoload.php';
     Symfony\Component\Debug\Debug::enable();
 }
 
@@ -32,7 +29,7 @@ class zzCleanUrls extends Module
     {
         $this->name = 'zzcleanurls';
         $this->tab = 'seo';
-        $this->version = '1.0.4';
+        $this->version = '1.0.5';
         $this->author = 'ZiZuu Store';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);
@@ -84,8 +81,7 @@ class zzCleanUrls extends Module
     public function install()
     {
         // add link_rewrite as index to improve search
-        $tables = array('category_lang','cms_category_lang','cms_lang','product_lang');
-        foreach ($tables as $tab) {
+        foreach (array('category_lang', 'cms_category_lang', 'cms_lang', 'product_lang') as $tab) {
             if (!Db::getInstance()->ExecuteS('SHOW INDEX FROM `'._DB_PREFIX_.$tab.'` WHERE Key_name = \'link_rewrite\'')) {
                 Db::getInstance()->Execute('ALTER TABLE `'._DB_PREFIX_.$tab.'` ADD INDEX ( `link_rewrite` )');
             }

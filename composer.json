@@ -31,7 +31,7 @@
         "preferred-install": "dist"
     },
     "archive": {
-        "exclude": ["/.cache", "/vendor", "/composer.*", "/tests"]
+        "exclude": ["/.cache", "/vendor", "/composer.*", "/test"]
     },
     "scripts": {
         "csfix": [

@@ -60,7 +60,7 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
     {
         $this->url('/manifacturers');
         $this->assertTrue((bool)$this->byCss('body#manufacturer'));
-        
+
         $this->url('/fashion-manufacturer');
         $this->assertTrue((bool)$this->byCss('body#manufacturer'));
     }
@@ -69,7 +69,7 @@ class FrontEndTest extends Sauce\Sausage\WebDriverTestCase
     {
         $this->url('/supplier');
         $this->assertTrue((bool)$this->byCss('body#supplier'));
-        
+
         $this->url('/fashion-supplier');
         $this->assertTrue((bool)$this->byCss('body#supplier'));
     }

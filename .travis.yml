@@ -44,6 +44,8 @@ addons:
         - apache2
         - libapache2-mod-fastcgi
     hosts:
+        - localhost
+        - chef
         - site.test
         - sub.site.test
     sauce_connect: true

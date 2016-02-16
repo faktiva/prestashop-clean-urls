@@ -18,18 +18,22 @@ env:
     matrix:
     # COMPOSER_FLAGS: , TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
         ## 1.6 latest release
-        - PS_VERSION="1.6.1.4"
-        #- PS_VERSION="1.6.1.1" TEST_HOST="site.test"
-        #- PS_VERSION="1.6.1.1" TEST_HOST="sub.site.test"
-        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/"
-        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="site.test"
-        #- PS_VERSION="1.6.1.1" TEST_BASE_DIR="/base_dir/" TEST_HOST="sub.site.test"
-        ## 1.6 first release
-        #- PS_VERSION="1.6.0.1"
+        #- PS_VERSION="1.6.1.4"
+        
+        #- PS_VERSION="1.6.1.4" TEST_HOST="site.test"
+        #- PS_VERSION="1.6.1.4" TEST_HOST="sub.site.test"
+        #- PS_VERSION="1.6.1.4" TEST_BASE_DIR="/base_dir/"
+        #- PS_VERSION="1.6.1.4" TEST_BASE_DIR="/base_dir/" TEST_HOST="site.test"
+        #- PS_VERSION="1.6.1.4" TEST_BASE_DIR="/base_dir/" TEST_HOST="sub.site.test"
+        
+        - PS_VERSION="1.6.1.0"
+        - PS_VERSION="1.6.0.14"
+        - PS_VERSION="1.6.0.1"
+        
         ## 1.5 latest release
-        #- PS_VERSION="1.5.6.2"
+        - PS_VERSION="1.5.6.2"
         ## 1.5 first testable release
-        #- PS_VERSION="1.5.4.1"
+        - PS_VERSION="1.5.4.1"
 
 matrix:
     fast_finish: true

@@ -15,7 +15,7 @@ echo 'register_argc_argv = on' >> ~/.phpenv/versions/$(phpenv version-name)/etc/
 ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 
 # configure apache virtual hosts
-sudo cp -f ${TRAVIS_BUILD_DIR%%/}/tests/setup/apache-vhost.conf /etc/apache2/sites-available/default
+sudo cp -f ${TRAVIS_BUILD_DIR%%/}/test/setup/apache-vhost.conf /etc/apache2/sites-available/default
 sudo sed -e "s#%DOCUMENT_ROOT%#${TEST_DOC_ROOT%%/}/#g" --in-place /etc/apache2/sites-available/default
 sudo sed -e "s#%SERVER_NAME%#${TEST_HOST}#g" --in-place /etc/apache2/sites-available/default
 

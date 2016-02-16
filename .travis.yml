@@ -29,7 +29,7 @@ env:
         ## 1.5 latest release
         #- PS_VERSION="1.5.6.2"
         ## 1.5 first testable release
-        - PS_VERSION="1.5.4.1"
+        #- PS_VERSION="1.5.4.1"
 
 matrix:
     fast_finish: true
@@ -45,7 +45,6 @@ addons:
         - libapache2-mod-fastcgi
     hosts:
         - localhost
-        - chef
         - site.test
         - sub.site.test
     sauce_connect: true

@@ -35,8 +35,9 @@ mv ${PS_ROOT%%/}/admin ${PS_ROOT%%/}/_admin
 mv ${PS_ROOT%%/}/install ${PS_ROOT%%/}/_install
 touch ${PS_ROOT%%/}/.htaccess && chmod 666 ${PS_ROOT%%/}/.htaccess
 
-#remove "Merchant Expertise" module as it is noisy
+#remove boring modules
 rm -rf ${PS_ROOT%%/}/modules/gamification/
+rm -rf ${PS_ROOT%%/}/modules/onboarding/
 
 #XXX
 echo -e "\033[33mls -lha ${PS_ROOT}\033[0m"

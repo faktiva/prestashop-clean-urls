@@ -98,4 +98,17 @@ class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->assertContains('configure=zzcleanurls', $this->url());
         $this->assertTextPresent('Module(s) installed successfully');
     }
+
+    public function testPrettyUrlActive()
+    {
+        $this->doAdminLogin('test@example.com', '0123456789');
+
+        $this->url('/_admin/index.php?controller=AdminMeta&token='.self::getAdminToken('AdminMeta'));
+        $this->assertContains('SEO & URLs', $this->title());
+
+        $this->byCssSelector('label.radioCheck[for="PS_REWRITING_SETTINGS_on"]')->click();
+        $this->byName('submitOptionsmeta')->click();
+
+        $this->byCssSelector('div.alert.alert-success');
+    }
 }

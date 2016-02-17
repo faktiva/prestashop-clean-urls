@@ -106,8 +106,9 @@ class BackOfficeTest extends Sauce\Sausage\WebDriverTestCase
         $this->url('/_admin/index.php?controller=AdminMeta&token='.self::getAdminToken('AdminMeta'));
         $this->assertContains('SEO & URLs', $this->title());
 
-        $this->byCssSelector('label.radioCheck[for="PS_REWRITING_SETTINGS_on"]')->click();
-        $this->byName('submitOptionsmeta')->click();
+        $form = $this->byId('meta_form');
+        $this->byId('PS_REWRITING_SETTINGS_on')->click();
+        $form->submit();
 
         $this->byCssSelector('div.alert.alert-success');
     }

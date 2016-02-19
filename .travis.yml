@@ -1,8 +1,10 @@
 
 sudo: required
 dist: precise
-language: php
+git:
+    depth: 5
 
+language: php
 php:
     #- 5.4
     #- 5.5
@@ -42,7 +44,7 @@ matrix:
     allow_failures:
         - php: 7
         - php: hhvm
-        - env: PS_VERSION="1.5.4.1"
+        #- env: PS_VERSION="1.5.4.1"
 
 addons:
     apt_packages:
@@ -50,7 +52,6 @@ addons:
         - apache2
         - libapache2-mod-fastcgi
     hosts:
-        - localhost
         - site.test
         - sub.site.test
     sauce_connect: true
@@ -77,24 +78,26 @@ notifications:
 
 before_install:
     - sudo apt-get update -q
-    - php composer.phar self-update
+    - phpenv config-rm xdebug.ini || true
+    - composer self-update
     # don't use dash
     - sudo sh -c 'echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash'
 
 install: true
 
 before_script:
-    - php composer.phar -vvv install ${COMPOSER_FLAGS} --prefer-source
+    - composer -vvv install ${COMPOSER_FLAGS} --prefer-source
     - source test/setup/environment.sh
     - sh test/setup/apache.sh
     - sh test/setup/prestashop.sh
 
 script:
     - php vendor/bin/php-cs-fixer -n fix --dry-run
-    - php vendor/bin/phpunit -v ./test/functional
+    - phpunit -v ./test/functional
 
 after_failure:
     - sudo tail -50 /var/log/apache2/access.log
     - sudo tail -50 /var/log/apache2/error.log
     - env
+    - ls -lha test/functional/
 

@@ -93,7 +93,7 @@ before_script:
 
 script:
     - php vendor/bin/php-cs-fixer -n fix --dry-run
-    - phpunit -v ./test/functional
+    - phpunit --debug -v -c test/phpunit.xml
 
 after_failure:
     - sudo tail -50 /var/log/apache2/access.log

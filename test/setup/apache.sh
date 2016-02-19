@@ -11,6 +11,7 @@ echo 'date.timezone = "Europe/Rome"' >> ~/.phpenv/versions/$(phpenv version-name
 echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 echo 'register_argc_argv = on' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
+phpenv config-rm xdebug.ini || true
 
 ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 

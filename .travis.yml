@@ -20,7 +20,6 @@ env:
         - SAUCE_TUNNEL_IDENTIFIER=${TRAVIS_JOB_NUMBER}
         - SAUCE_DONT_VERIFY_CERTS=1
     matrix:
-    # COMPOSER_FLAGS: , TEST_PROTO: http, TEST_HOST: localhost, TEST_BASE_DIR:, / TEST_WAIT: 0
         ## 1.6 latest release
         - PS_VERSION="1.6.1.4"
         
@@ -86,13 +85,14 @@ before_install:
 install: true
 
 before_script:
-    - composer -vvv install ${COMPOSER_FLAGS} --prefer-source
+    - composer require fabpot/php-cs-fixer
+    - composer -vvv install --no-dev --prefer-source
     - source test/setup/environment.sh
     - sh test/setup/apache.sh
     - sh test/setup/prestashop.sh
 
 script:
-    - php vendor/bin/php-cs-fixer -n fix --dry-run
+    - php-cs-fixer -n fix --dry-run
     - phpunit --debug --configuration test/phpunit.xml
 
 after_failure:

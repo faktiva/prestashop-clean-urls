@@ -85,15 +85,15 @@ before_install:
 install: true
 
 before_script:
-    - composer require fabpot/php-cs-fixer
+    - composer require --update-no-dev fabpot/php-cs-fixer
     - composer -vvv install --no-dev --prefer-source
     - source test/setup/environment.sh
     - sh test/setup/apache.sh
     - sh test/setup/prestashop.sh
 
 script:
-    - php-cs-fixer -n fix --dry-run
     - phpunit --debug --configuration test/phpunit.xml
+    - php-cs-fixer -n fix --dry-run
 
 after_failure:
     - sudo tail -50 /var/log/apache2/access.log

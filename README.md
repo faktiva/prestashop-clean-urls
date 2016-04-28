@@ -20,7 +20,7 @@ We are going to merge other users' contributions and ideas as soon as we note th
 
 If you fork, please make every change the way we can pull, don't reinvent the wheel .. make every custom change on a private branch, so you can merge your own changes to the community mintained branch every time a new release is out.
 
-* For production use the **latest stable [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/)**
+* For production use the **latest stable [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/latest)**
 * For developing or Pull Request please use only the "**[dev](https://github.com/ZiZuu-store/zzCleanURLs/tree/dev)**" branch
 
 It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >= 1.5 too.
@@ -28,9 +28,13 @@ It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >=
 
 # INSTALLATION
 
-Install the module from the Backoffice (administration panel), download the release ZIP file (***zzcleanurls.zip***) as it already contains the right folder name (`zzcleanurls`, **not** `zzcleanurls-version_x.y.z` !)
-
-In the modules tab, click on **add a new module**. Click on Browse to open the dialogue box letting you search your computer, select the ZIP file then validate the dialogue box. Finally click on Upload this module.
+Install the module from the Backoffice (administration panel):
+- download the lastest [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/latest) ***ZIP*** file (***`zzcleanurls.zip`***) as it already contains the right folder name (`zzcleanurls`, **not** `zzcleanurls-version_x.y.z` !)
+- in the modules tab, click on **add a new module**
+- click on "`Browse`" to open the dialogue box letting you search your computer
+- select the ZIP file you downloaded and validate the dialogue box
+- click on "`Upload this module`"
+- once uploaded you could have to search the module among the others (tip: filter by author "`zizuu store`") and click on the `install` button
 
 ## Make sure your SEO and URL settings are as follows:
 

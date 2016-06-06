@@ -14,7 +14,7 @@
     "preferred-install": "dist"
   },
   "require-dev": {
-    "fabpot/php-cs-fixer": "^1.11",
+    "friendsofphp/php-cs-fixer": "^1.11",
     "symfony/var-dumper": "^3.0",
     "symfony/debug": "^3.0"
   },

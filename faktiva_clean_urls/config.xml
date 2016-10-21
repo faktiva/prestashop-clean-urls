@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
-	<name>zzcleanurls</name>
-	<displayName><![CDATA[ZiZuu Clean URLs]]></displayName>
-	<version><![CDATA[1.0.5]]></version>
+	<name>faktiva_clean_urls</name>
+	<displayName><![CDATA[Faktiva Clean URLs]]></displayName>
+	<version><![CDATA[1.1.0]]></version>
 	<description><![CDATA[This override-Module allows you to remove URL ID&#039;s.]]></description>
-	<author><![CDATA[ZiZuu Store]]></author>
+	<author><![CDATA[Faktiva]]></author>
 	<tab><![CDATA[seo]]></tab>
-	<confirmUninstall><![CDATA[Are you sure you want to uninstall &quot;ZiZuu Clean URLs&quot;?]]></confirmUninstall>
+	<confirmUninstall><![CDATA[Are you sure you want to uninstall &quot;Faktiva Clean URLs&quot; module?]]></confirmUninstall>
 	<is_configurable>1</is_configurable>
 	<need_instance>0</need_instance>
 	<limited_countries></limited_countries>

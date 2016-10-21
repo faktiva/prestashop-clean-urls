@@ -19,7 +19,7 @@
         "optimize-autoloader": true
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "~1.10",
+        "friendsofphp/php-cs-fixer": "^1.12",
         "symfony/var-dumper": "~2.0|~3.0",
         "symfony/debug": "~2.0|~3.0"
     },
@@ -28,9 +28,9 @@
     },
     "replace": {
         "zizuu-store/zzcleanurls": "*"
-    }
+    },
     "scripts": {
-        "csfix": [
+        "fix-cs": [
             "php-cs-fixer -vvv fix ; echo"
         ],
         "zip": [

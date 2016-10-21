@@ -28,7 +28,7 @@
     },
     "replace": {
         "zizuu-store/zzcleanurls": "*"
-    }
+    },
     "scripts": {
         "csfix": [
             "php-cs-fixer -vvv fix ; echo"

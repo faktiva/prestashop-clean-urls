@@ -1,5 +1,23 @@
 <?php
 
+/*
+ * This file is part of the "Prestashop Clean URLs" module.
+ *
+ * (c) Faktiva (http://faktiva.com)
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the CC BY-SA 4.0 license that is
+ * available at the URL https://creativecommons.org/licenses/by-sa/4.0/
+ *
+ * DISCLAIMER
+ * This code is provided as is without any warranty.
+ * No promise of being safe or secure
+ *
+ * @author   AlberT <albert@faktiva.com>
+ * @license  https://creativecommons.org/licenses/by-sa/4.0/  CC-BY-SA-4.0
+ * @source   https://github.com/faktiva/prestashop-clean-urls
+ */
+
 class Dispatcher extends DispatcherCore
 {
     /**
@@ -129,7 +147,7 @@ class Dispatcher extends DispatcherCore
         if ($keywords) {
             $transform_keywords = array();
             preg_match_all('#\\\{(([^{}]*)\\\:)?('.implode('|', array_keys($keywords)).')(\\\:([^{}]*))?\\\}#', $regexp, $m);
-            for ($i = 0, $total = count($m[0]); $i < $total; $i++) {
+            for ($i = 0, $total = count($m[0]); $i < $total; ++$i) {
                 $prepend = $m[2][$i];
                 $keyword = $m[3][$i];
                 $append = $m[5][$i];

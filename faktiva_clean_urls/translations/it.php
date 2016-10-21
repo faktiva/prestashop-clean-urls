@@ -1,5 +1,23 @@
 <?php
 
+/*
+ * This file is part of the "Prestashop Clean URLs" module.
+ *
+ * (c) Faktiva (http://faktiva.com)
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the CC BY-SA 4.0 license that is
+ * available at the URL https://creativecommons.org/licenses/by-sa/4.0/
+ *
+ * DISCLAIMER
+ * This code is provided as is without any warranty.
+ * No promise of being safe or secure
+ *
+ * @author   AlberT <albert@faktiva.com>
+ * @license  https://creativecommons.org/licenses/by-sa/4.0/  CC-BY-SA-4.0
+ * @source   https://github.com/faktiva/prestashop-clean-urls
+ */
+
 global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{zzcleanurls}prestashop>zzcleanurls_66711d755755f94e8f48d9cb858290c8'] = 'ZiZuu Clean URLs';

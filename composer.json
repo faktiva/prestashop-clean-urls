@@ -26,6 +26,9 @@
     "require": {
         "php": ">=5.2"
     },
+    "replace": {
+        "zizuu-store/zzcleanurls": "*"
+    }
     "scripts": {
         "csfix": [
             "php-cs-fixer -vvv fix ; echo"

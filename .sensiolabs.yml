@@ -2,6 +2,9 @@ global_exclude_dirs:
     - translations
     - upgrade
 
+exclude_patterns:
+    - tools/debug.php
+
 rules:
     php.absolute_path_present:
         enabled: true

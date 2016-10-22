@@ -1,36 +1,37 @@
-[Prestashop module "ZiZuu Clean URLs"](https://github.com/ZiZuu-store/PrestaShop_module-CleanURLs)
-=====
+[PrestaShop module "Clean URLs"](https://github.com/faktiva/prestashop-seo-tk) <br /> [![SensioLabsInsight](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e/mini.png)](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e) [![License](https://img.shields.io/packagist/l/faktiva/prestashop-clean-urls.svg?style=flat)](https://creativecommons.org/licenses/by-sa/4.0/)
+===
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba/mini.png)](https://insight.sensiolabs.com/projects/0f609ac9-667f-4840-82d4-464e0f7c31ba)
-[![GitHub issues](https://img.shields.io/github/issues/ZiZuu-store/zzCleanURLs.svg?style=plastic)](https://github.com/ZiZuu-store/zzCleanURLs/issues)
+[![GitHub release](https://img.shields.io/github/release/faktiva/prestashop-clean-urls.svg?style=plastic&label=latest)](https://github.com/faktiva/prestashop-clean-urls/releases/latest)
+[![Project Status](http://opensource.box.com/badges/active.svg)](http://opensource.box.com/badges)
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/faktiva/prestashop-clean-urls.svg)](http://isitmaintained.com/project/faktiva/prestashop-clean-urls "Percentage of issues still open")
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/faktiva/prestashop-clean-urls.svg)](http://isitmaintained.com/project/faktiva/prestashop-clean-urls "Average time to resolve an issue")
+[![composer.lock](https://poser.pugx.org/faktiva/prestashop-clean-urls/composerlock)](https://packagist.org/packages/faktiva/prestashop-clean-urls)
+[![Dependencies Status](https://img.shields.io/librariesio/github/faktiva/prestashop-clean-urls.svg?maxAge=3600)](https://libraries.io/github/faktiva/prestashop-clean-urls)
 
-[![Packagist](https://img.shields.io/packagist/l/zizuu-store/zzcleanurls.svg?style=plastic)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-[![GitHub release](https://img.shields.io/github/release/ZiZuu-store/zzCleanURLs.svg?style=plastic&label=latest)](https://github.com/ZiZuu-store/zzCleanURLs/releases/latest)
-
-[![Packagist](https://img.shields.io/packagist/dt/zizuu-store/zzcleanurls.svg?style=plastic)](https://packagist.org/packages/zizuu-store/zzcleanurls)
-[![GitHub stars](https://img.shields.io/github/stars/ZiZuu-store/zzCleanURLs.svg?style=social)](https://github.com/ZiZuu-store/zzCleanURLs/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/ZiZuu-store/zzCleanURLs.svg?style=social&label=Forks)](https://github.com/ZiZuu-store/zzCleanURLs/network)
-
-[![Join the chat at https://gitter.im/ZiZuu-store/zzCleanURLs](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=plastic)](https://gitter.im/ZiZuu-store/zzCleanURLs)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/ZiZuu-store/zzCleanURLs.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module by @ZiZuu_Store: "ZiZuu Clean URLs"&url=https://github.com/ZiZuu-store/zzCleanURLs)
+[![Join the chat at https://gitter.im/faktiva/prestashop-clean-urls](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=plastic)](https://gitter.im/faktiva/prestashop-clean-urls)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/faktiva/prestashop-clean-urls.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module "#Faktiva Clean URLs"&url=https://github.com/faktiva/prestashop-clean-urls)
 
 ___
 
-We are going to merge other users' contributions and ideas as soon as we note them and find the time to test.
+Makes possible to have URLs with no IDs in PrestaShop.
 
-If you fork, please make every change the way we can pull, don't reinvent the wheel .. make every custom change on a private branch, so you can merge your own changes to the community mintained branch every time a new release is out.
+If you fork, please make every change the way we can pull, don't reinvent the wheel .. make every custom change on a private branch, so you can merge your own changes to the community mantained branch every time a new release is out.
 
-* For production use the **latest stable [release](https://github.com/ZiZuu-store/zzCleanURLs/releases/)**
-* For developing or Pull Request please use only the "**[dev](https://github.com/ZiZuu-store/zzCleanURLs/tree/dev)**" branch
+* For production use the **latest stable [release](https://github.com/faktiva/prestashop-clean-urls/releases/latest)**
+* For developing or Pull Request please use only the "**[dev](https://github.com/faktiva/prestashop-clean-urls/tree/dev)**" branch
 
 It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >= 1.5 too.
 **If you succesfully use this module on some older version please report**
 
 # INSTALLATION
 
-Install the module from the Backoffice (administration panel), download the release ZIP file (***zzcleanurls.zip***) as it already contains the right folder name (`zzcleanurls`, **not** `zzcleanurls-version_x.y.z` !)
-
-In the modules tab, click on **add a new module**. Click on Browse to open the dialogue box letting you search your computer, select the ZIP file then validate the dialogue box. Finally click on Upload this module.
+Install the module from the Backoffice (administration panel):
+- download the lastest [release](https://github.com/faktiva/prestashop-clean-urls/releases/latest) ***ZIP*** file (***`faktiva_clean_urls.zip`***) as it already contains the right folder name (`faktiva_clean_urls`, **not** `faktiva-prestashop-clean-urls-version_x.y.z` !)
+- in the modules tab, click on **add a new module**
+- click on "`Browse`" to open the dialogue box letting you search your computer
+- select the ZIP file you downloaded and validate the dialogue box
+- click on "`Upload this module`"
+- once uploaded you could have to search the module among the others (tip: filter by author "`faktiva`") and click on the `install` button
 
 ## Make sure your SEO and URL settings are as follows:
 
@@ -51,7 +52,7 @@ Remember to
 
 # UNINSTALLATION
 
-* Go to modules -> Find and uninstall "**zzcleanurls**"
+* Go to modules -> Find and uninstall "**faktiva_clean_urls**"
 
 **It should suffice!**
 
@@ -76,9 +77,9 @@ If you got any other override modules, you should now go to you back office, uni
 
 # License
 
-![Creative Commons BY-NC-SA License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+![Creative Commons BY-SA License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)
 
 
-**[ZiZuu CleanURLs](https://github.com/ZiZuu-store/zzCleanURLs)** by [ZiZuu Store](https://github.com/ZiZuu-store) is licensed under a **Creative Commons [Attribution-NonCommercial-ShareAlike](http://creativecommons.org/licenses/by-nc-sa/4.0/) 4.0 International License**.
+**[PrestaShop Clean URLs](https://github.com/faktiva/prestashop-clean-urls)** by [Faktiva](https://github.com/faktiva) is licensed under a **Creative Commons [Attribution-ShareAlike](http://creativecommons.org/licenses/by-sa/4.0/) 4.0 International License**.
 
-Permissions beyond the scope of this license may be available contacting us at info@ZiZuu.com.
+Permissions beyond the scope of this license may be available contacting us at info@faktiva.com.

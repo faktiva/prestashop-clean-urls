@@ -1,4 +1,4 @@
-[PrestaShop module "Clean URLs"](https://github.com/faktiva/prestashop-seo-tk) <br /> [![SensioLabsInsight](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e/mini.png)](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e) [![License](https://img.shields.io/packagist/l/faktiva/prestashop-clan-urls.svg?style=flat)](https://creativecommons.org/licenses/by-sa/4.0/)
+[PrestaShop module "Clean URLs"](https://github.com/faktiva/prestashop-seo-tk) <br /> [![SensioLabsInsight](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e/mini.png)](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e) [![License](https://img.shields.io/packagist/l/faktiva/prestashop-clean-urls.svg?style=flat)](https://creativecommons.org/licenses/by-sa/4.0/)
 ===
 
 [![GitHub release](https://img.shields.io/github/release/faktiva/prestashop-clean-urls.svg?style=plastic&label=latest)](https://github.com/faktiva/prestashop-clean-urls/releases/latest)

@@ -147,9 +147,9 @@ class Dispatcher extends DispatcherCore
             $transform_keywords = array();
             preg_match_all('#\\\{(([^{}]*)\\\:)?('.implode('|', array_keys($keywords)).')(\\\:([^{}]*))?\\\}#', $regexp, $m);
             for ($i = 0, $total = count($m[0]); $i < $total; ++$i) {
-                $prepend                      = $m[2][$i];
-                $keyword                      = $m[3][$i];
-                $append                       = $m[5][$i];
+                $prepend = $m[2][$i];
+                $keyword = $m[3][$i];
+                $append  = $m[5][$i];
                 $transform_keywords[$keyword] = array(
                     'required' => isset($keywords[$keyword]['param']),
                     'prepend'  => stripslashes($prepend),

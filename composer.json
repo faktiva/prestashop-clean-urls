@@ -13,6 +13,7 @@
 
     "minimum-stability": "stable",
     "config": {
+        "bin-dir": "bin",
         "github-protocols": ["https"],
         "archive-format": "zip",
         "preferred-install": "dist",
@@ -20,8 +21,9 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^1.12",
-        "symfony/var-dumper": "~2.0|~3.0",
-        "symfony/debug": "~2.0|~3.0"
+        "symfony/var-dumper": "^2.8||^3.0",
+        "symfony/debug": "^2.8||^3.0",
+        "sensiolabs/security-checker": "^4.0"
     },
     "require": {
         "php": ">=5.2"
@@ -30,8 +32,18 @@
         "zizuu-store/zzcleanurls": "*"
     },
     "scripts": {
+        "chk-cs": [
+            "php-cs-fixer -vvv fix --dry-run"
+        ],
+        "chk-sec": [
+            "php bin/security-checker -vv security:check"
+        ],
+        "check": [
+            "@chk-cs",
+            "@chk-sec"
+        ],
         "fix-cs": [
-            "php-cs-fixer -vvv fix ; echo"
+            "php-cs-fixer -vvv fix ; exit 0"
         ],
         "zip": [
             "@composer archive -vvv -f zip",

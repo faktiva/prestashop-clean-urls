@@ -29,18 +29,17 @@ if (version_compare(phpversion(), '5.3.0', '>=')) { // Namespaces support is req
     include_once __DIR__.'/tools/debug.php';
 }
 
-
 class faktiva_clean_urls extends Module
 {
     public function __construct()
     {
-        $this->name = 'faktiva_clean_urls';
-        $this->tab = 'seo';
-        $this->version = '1.1.0';
-        $this->author = 'Faktiva';
-        $this->need_instance = 0;
+        $this->name                   = 'faktiva_clean_urls';
+        $this->tab                    = 'seo';
+        $this->version                = '1.1.0';
+        $this->author                 = 'Faktiva';
+        $this->need_instance          = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);
-        $this->bootstrap = true;
+        $this->bootstrap              = true;
 
         parent::__construct();
 
@@ -53,11 +52,11 @@ class faktiva_clean_urls extends Module
     public function getContent()
     {
         $output = '<p class="info">'
-            . $this->l('On some versions you could have to disable Cache, save, open your shop home page, than go back and enable it:').'<br><br>'
-            . sprintf('%s -> %s -> %s', $this->l('Advanced Parameters'), $this->l('Performance'), $this->l('Clear Smarty cache')).'<br>'
-            . sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL off'), $this->l('Save')).'<br>'
-            . sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL on'), $this->l('Save')).'<br>'
-            . '</p>';
+            .$this->l('On some versions you could have to disable Cache, save, open your shop home page, than go back and enable it:').'<br><br>'
+            .sprintf('%s -> %s -> %s', $this->l('Advanced Parameters'), $this->l('Performance'), $this->l('Clear Smarty cache')).'<br>'
+            .sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL off'), $this->l('Save')).'<br>'
+            .sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL on'), $this->l('Save')).'<br>'
+            .'</p>';
 
         $sql = 'SELECT * FROM `'._DB_PREFIX_.'product_lang`
             WHERE `link_rewrite`
@@ -65,7 +64,7 @@ class faktiva_clean_urls extends Module
             GROUP BY `link_rewrite`, `id_lang`
             HAVING count(`link_rewrite`) > 1)';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
+            $sql .= ' AND `id_shop` = '.(int) Shop::getContextShopID();
         }
 
         if ($res = Db::getInstance()->ExecuteS($sql)) {

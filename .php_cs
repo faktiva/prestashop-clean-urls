@@ -20,6 +20,9 @@ EOF;
 
 Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
 
+$finder = Symfony\CS\Finder::create()
+    ->in(__DIR__.'/faktiva_clean_urls');
+
 return Symfony\CS\Config\Config::create()
     ->setUsingCache(true)
     ->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
@@ -29,10 +32,7 @@ return Symfony\CS\Config\Config::create()
         'single_quote',
         'pre_increment',
     ))
-    ->finder(
-        Symfony\CS\Finder\DefaultFinder::create()
-            ->in(__DIR__.'/faktiva_clean_urls')
-    )
+    ->finder($finder)
 ;
 
 // vim:ft=php

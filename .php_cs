@@ -25,12 +25,15 @@ $finder = Symfony\CS\Finder::create()
 
 return Symfony\CS\Config\Config::create()
     ->setUsingCache(true)
-    ->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
+    ->level(Symfony\CS\FixerInterface::SYMFONY_LEVEL)
     ->fixers(array(
+        'align_double_arrow',
+        'align_equals',
         'header_comment',
+        'empty_return',
         'long_array_syntax',
-        'single_quote',
-        'pre_increment',
+        'newline_after_open_tag',
+        'short_echo_tag',
     ))
     ->finder($finder)
 ;

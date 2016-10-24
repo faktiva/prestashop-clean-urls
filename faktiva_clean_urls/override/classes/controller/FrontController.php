@@ -21,7 +21,7 @@
 class FrontController extends FrontControllerCore
 {
     /**
-     * Redirects to canonical URL
+     * Redirects to canonical URL.
      *
      * Excludes "*_rewrite" URLs from being treated as non-canonical
      *

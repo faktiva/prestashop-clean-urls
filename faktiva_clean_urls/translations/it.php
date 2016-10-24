@@ -19,7 +19,7 @@
  */
 
 global $_MODULE;
-$_MODULE = array();
+$_MODULE                                                                          = array();
 $_MODULE['<{zzcleanurls}prestashop>zzcleanurls_66711d755755f94e8f48d9cb858290c8'] = 'ZiZuu Clean URLs';
 $_MODULE['<{zzcleanurls}prestashop>zzcleanurls_4abf1025eb40d230f80b0470e5c60696'] = 'Questo modulo permette di rimuovere gli ID dalle URL. Utilizza gli \"override\".';
 $_MODULE['<{zzcleanurls}prestashop>zzcleanurls_3c3419c3ec1896fbfd5c37549eda9144'] = 'Sicuro di voler rimuovere il modulo \"ZiZuu Clean URLs\"?';

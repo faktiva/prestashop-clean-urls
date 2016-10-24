@@ -13,7 +13,7 @@
  * This code is provided as is without any warranty.
  * No promise of being safe or secure
  *
- * @author   AlberT <albert@faktiva.com>
+ * @author   Emiliano 'AlberT' Gabrielli <albert@faktiva.com>
  * @license  https://creativecommons.org/licenses/by-sa/4.0/  CC-BY-SA-4.0
  * @source   https://github.com/faktiva/prestashop-clean-urls
  */
@@ -33,13 +33,13 @@ class faktiva_clean_urls extends Module
 {
     public function __construct()
     {
-        $this->name                   = 'faktiva_clean_urls';
-        $this->tab                    = 'seo';
-        $this->version                = '1.1.0';
-        $this->author                 = 'Faktiva';
-        $this->need_instance          = 0;
+        $this->name = 'faktiva_clean_urls';
+        $this->tab = 'seo';
+        $this->version = '1.1.1';
+        $this->author = 'Faktiva';
+        $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);
-        $this->bootstrap              = true;
+        $this->bootstrap = true;
 
         parent::__construct();
 

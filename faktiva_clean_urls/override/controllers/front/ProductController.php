@@ -13,7 +13,7 @@
  * This code is provided as is without any warranty.
  * No promise of being safe or secure
  *
- * @author   AlberT <albert@faktiva.com>
+ * @author   Emiliano 'AlberT' Gabrielli <albert@faktiva.com>
  * @license  https://creativecommons.org/licenses/by-sa/4.0/  CC-BY-SA-4.0
  * @source   https://github.com/faktiva/prestashop-clean-urls
  */
@@ -24,7 +24,7 @@ class ProductController extends ProductControllerCore
     {
         if ($product_rewrite = Tools::getValue('product_rewrite')) {
             $url_id_pattern = '/.*?([0-9]+)\-([a-zA-Z0-9-]*)(\.html)?/';
-            $lang_id        = (int) Context::getContext()->language->id;
+            $lang_id = (int) Context::getContext()->language->id;
 
             $sql = 'SELECT `id_product`
                 FROM `'._DB_PREFIX_.'product_lang`

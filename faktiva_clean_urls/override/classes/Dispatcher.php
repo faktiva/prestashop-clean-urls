@@ -21,11 +21,11 @@
 class Dispatcher extends DispatcherCore
 {
     /**
-     * Load default routes group by languages
+     * Load default routes group by languages.
      */
     protected function loadRoutes($id_shop = null)
     {
-        /**
+        /*
          * @var array List of default routes
          */
         $this->default_routes = array(
@@ -51,7 +51,7 @@ class Dispatcher extends DispatcherCore
                 ),
             ),
             'manufacturer_rule' => array(
-                'controller' =>    'manufacturer',
+                'controller' => 'manufacturer',
                 'rule'       => 'manufacturer/{rewrite}',
                 'keywords'   => array(
                     'id'            => array('regexp' => '[0-9]+'),
@@ -61,8 +61,8 @@ class Dispatcher extends DispatcherCore
                 ),
             ),
             'cms_rule' => array(
-                'controller' =>    'cms',
-                'rule'       =>    'info/{rewrite}',
+                'controller' => 'cms',
+                'rule'       => 'info/{rewrite}',
                 'keywords'   => array(
                     'id'            => array('regexp' => '[0-9]+'),
                     'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_rewrite'),
@@ -71,8 +71,8 @@ class Dispatcher extends DispatcherCore
                 ),
             ),
             'cms_category_rule' => array(
-                'controller' =>    'cms',
-                'rule'       =>    'info/{rewrite}/',
+                'controller' => 'cms',
+                'rule'       => 'info/{rewrite}/',
                 'keywords'   => array(
                     'id'            => array('regexp' => '[0-9]+'),
                     'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_category_rewrite'),
@@ -81,18 +81,18 @@ class Dispatcher extends DispatcherCore
                 ),
             ),
             'module' => array(
-                'controller' =>    null,
-                'rule'       =>    'module/{module}/{controller}',
+                'controller' => null,
+                'rule'       => 'module/{module}/{controller}',
                 'keywords'   => array(
                     'module'     => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
                     'controller' => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'controller'),
                 ),
-                'params'     => array(
+                'params' => array(
                     'fc' => 'module',
                 ),
             ),
             'product_rule' => array(
-                'controller' =>    'product',
+                'controller' => 'product',
                 'rule'       => '{category:/}{rewrite}',
                 'keywords'   => array(
                     'id'            => array('regexp' => '[0-9]+'),
@@ -110,7 +110,7 @@ class Dispatcher extends DispatcherCore
                 ),
             ),
             'layered_rule' => array(
-                'controller' =>    'category',
+                'controller' => 'category',
                 'rule'       => '{rewrite}/f/{selected_filters}',
                 'keywords'   => array(
                     'id'               => array('regexp' => '[0-9]+'),
@@ -126,21 +126,20 @@ class Dispatcher extends DispatcherCore
     }
 
     /**
-     *
-     * @param string $route_id Name of the route (need to be uniq, a second route with same name will override the first)
-     * @param string $rule Url rule
+     * @param string $route_id   Name of the route (need to be uniq, a second route with same name will override the first)
+     * @param string $rule       Url rule
      * @param string $controller Controller to call if request uri match the rule
-     * @param int $id_lang
-     * @param int $id_shop
+     * @param int    $id_lang
+     * @param int    $id_shop
      */
     public function addRoute($route_id, $rule, $controller, $id_lang = null, array $keywords = array(), array $params = array(), $id_shop = null)
     {
         if (isset(Context::getContext()->language) && $id_lang === null) {
-            $id_lang = (int)Context::getContext()->language->id;
+            $id_lang = (int) Context::getContext()->language->id;
         }
 
         if (isset(Context::getContext()->shop) && $id_shop === null) {
-            $id_shop = (int)Context::getContext()->shop->id;
+            $id_shop = (int) Context::getContext()->shop->id;
         }
 
         $regexp = preg_quote($rule, '#');
@@ -148,19 +147,19 @@ class Dispatcher extends DispatcherCore
             $transform_keywords = array();
             preg_match_all('#\\\{(([^{}]*)\\\:)?('.implode('|', array_keys($keywords)).')(\\\:([^{}]*))?\\\}#', $regexp, $m);
             for ($i = 0, $total = count($m[0]); $i < $total; ++$i) {
-                $prepend = $m[2][$i];
-                $keyword = $m[3][$i];
-                $append = $m[5][$i];
+                $prepend                      = $m[2][$i];
+                $keyword                      = $m[3][$i];
+                $append                       = $m[5][$i];
                 $transform_keywords[$keyword] = array(
                     'required' => isset($keywords[$keyword]['param']),
-                    'prepend' => stripslashes($prepend),
-                    'append' => stripslashes($append),
+                    'prepend'  => stripslashes($prepend),
+                    'append'   => stripslashes($append),
                 );
 
                 $prepend_regexp = $append_regexp = '';
                 if ($prepend || $append) {
                     $prepend_regexp = '('.$prepend;
-                    $append_regexp = $append.')??'; // fix greediness (step 1)
+                    $append_regexp  = $append.')??'; // fix greediness (step 1)
                 }
 
                 if (isset($keywords[$keyword]['param'])) {
@@ -181,18 +180,19 @@ class Dispatcher extends DispatcherCore
         }
 
         $this->routes[$id_shop][$id_lang][$route_id] = array(
-            'rule' => $rule,
-            'regexp' => $regexp,
+            'rule'       => $rule,
+            'regexp'     => $regexp,
             'controller' => $controller,
-            'keywords' => $keywords,
-            'params' => $params,
+            'keywords'   => $keywords,
+            'params'     => $params,
         );
     }
 
     /**
-     * Retrieve the controller from url or request uri if routes are activated
+     * Retrieve the controller from url or request uri if routes are activated.
      *
      * @param int $id_shop, defaults null
+     *
      * @return string
      */
     public function getController($id_shop = null)
@@ -203,11 +203,12 @@ class Dispatcher extends DispatcherCore
 
         if ($this->controller) {
             $_GET['controller'] = $this->controller;
+
             return $this->controller;
         }
 
         if (null === $id_shop) {
-            $id_shop = (int)Context::getContext()->shop->id;
+            $id_shop = (int) Context::getContext()->shop->id;
         }
 
         $controller = Tools::getValue('controller');
@@ -250,7 +251,7 @@ class Dispatcher extends DispatcherCore
                     foreach ($this->routes[$id_shop][$curr_lang_id] as $k => $r) {
                         if (preg_match($r['regexp'], $uri, $m)) {
                             $isTemplate = false;
-                            $module = isset($r['params']['module']) ? $r['params']['module'] : '';
+                            $module     = isset($r['params']['module']) ? $r['params']['module'] : '';
                             switch ($r['controller'].$module) { // Avoid name collision between core and modules' controllers
                                 case 'supplier':
                                 case 'manufacturer':
@@ -297,7 +298,7 @@ class Dispatcher extends DispatcherCore
                                             $route = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
                                             if (!self::isSupplierLink($short_link, $route)) {
                                                 // no route found
-                                                $route = array();
+                                                $route      = array();
                                                 $controller = $this->controller_not_found;
                                             }
                                         }
@@ -329,8 +330,8 @@ class Dispatcher extends DispatcherCore
                             // A patch for module friendly urls
                             if (preg_match('#module-([a-z0-9_-]+)-([a-z0-9]+)$#i', $controller, $m)) {
                                 $_GET['module'] = $m[1];
-                                $_GET['fc'] = 'module';
-                                $controller = $m[2];
+                                $_GET['fc']     = 'module';
+                                $controller     = $m[2];
                             }
 
                             if (isset($_GET['fc']) && $_GET['fc'] == 'module') {
@@ -349,22 +350,23 @@ class Dispatcher extends DispatcherCore
             $this->controller = $controller;
         }
 
-        $this->controller = str_replace('-', '', $this->controller);
+        $this->controller   = str_replace('-', '', $this->controller);
         $_GET['controller'] = $this->controller;
 
         return $this->controller;
     }
 
     /**
-     * Check if $short_link is a Product Link
+     * Check if $short_link is a Product Link.
      *
      * @param string $short_link: requested url without '?' part and without '/' on begining
+     *
      * @return bool true: it's a link to product, false: it isn't
      */
     private static function isProductLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['product_rewrite'])) {
@@ -373,25 +375,26 @@ class Dispatcher extends DispatcherCore
 
         $sql = 'SELECT `id_product`
             FROM `'._DB_PREFIX_.'product_lang`
-            WHERE `link_rewrite` = \''.pSQL($kw['product_rewrite']).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+            WHERE `link_rewrite` = \''.pSQL($kw['product_rewrite']).'\' AND `id_lang` = '.(int) Context::getContext()->language->id;
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
+            $sql .= ' AND `id_shop` = '.(int) Shop::getContextShopID();
         }
-        $id_product = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+        $id_product = (int) Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
-        return ($id_product > 0);
+        return $id_product > 0;
     }
 
     /**
-     * Check if $short_link is a Category Link
+     * Check if $short_link is a Category Link.
      *
      * @param string $short_link: requested url without '?' part and without '/' on begining
+     *
      * @return bool true: it's a link to category, false: it isn't
      */
     private static function isCategoryLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['category_rewrite'])) {
@@ -400,26 +403,27 @@ class Dispatcher extends DispatcherCore
 
         $sql = 'SELECT `id_category`
             FROM `'._DB_PREFIX_.'category_lang`
-            WHERE `link_rewrite` = \''.pSQL($kw['category_rewrite']).'\' AND `id_lang` = '.(int)Context::getContext()->language->id;
+            WHERE `link_rewrite` = \''.pSQL($kw['category_rewrite']).'\' AND `id_lang` = '.(int) Context::getContext()->language->id;
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND `id_shop` = '.(int)Shop::getContextShopID();
+            $sql .= ' AND `id_shop` = '.(int) Shop::getContextShopID();
         }
 
-        $id_category = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+        $id_category = (int) Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
-        return ($id_category > 0);
+        return $id_category > 0;
     }
 
     /**
-     * Check if $short_link is a Cms Link
+     * Check if $short_link is a Cms Link.
      *
      * @param string $short_link: requested url without '?' part and without '/' on begining
+     *
      * @return bool true: it's a link to cms page, false: it isn't
      */
     private static function isCmsLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['cms_rewrite'])) {
@@ -431,24 +435,25 @@ class Dispatcher extends DispatcherCore
             LEFT JOIN `'._DB_PREFIX_.'cms_shop` s ON (l.`id_cms` = s.`id_cms`)
             WHERE l.`link_rewrite` = \''.pSQL($kw['cms_rewrite']).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
+            $sql .= ' AND s.`id_shop` = '.(int) Shop::getContextShopID();
         }
 
-        $id_cms = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+        $id_cms = (int) Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
-        return ($id_cms > 0);
+        return $id_cms > 0;
     }
 
     /**
-     * Check if $short_link is a Cms Category Link
+     * Check if $short_link is a Cms Category Link.
      *
      * @param string $short_link: requested url without '?' part and without '/' on begining
+     *
      * @return bool true: it's a link to cms page, false: it isn't
      */
     private static function isCmsCategoryLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['cms_category_rewrite'])) {
@@ -456,6 +461,7 @@ class Dispatcher extends DispatcherCore
                 //no link_rewrite, but uri starts with the link -> cms categories' list
                 return true;
             }
+
             return false;
         }
 
@@ -464,24 +470,25 @@ class Dispatcher extends DispatcherCore
             LEFT JOIN `'._DB_PREFIX_.'cms_category_shop` s ON (l.`id_cms_category` = s.`id_cms_category`)
             WHERE l.`link_rewrite` = \''.$kw['cms_category_rewrite'].'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
+            $sql .= ' AND s.`id_shop` = '.(int) Shop::getContextShopID();
         }
 
-        $id_cms_cat = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+        $id_cms_cat = (int) Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
-        return ($id_cms_cat > 0);
+        return $id_cms_cat > 0;
     }
 
     /**
-     * Check if $short_link is a Manufacturer Link
+     * Check if $short_link is a Manufacturer Link.
      *
      * @param string $short_link: requested url without '?' part and without '/' on begining
+     *
      * @return bool true: it's a link to manufacturer, false: it isn't
      */
     private static function isManufacturerLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['manufacturer_rewrite'])) {
@@ -489,6 +496,7 @@ class Dispatcher extends DispatcherCore
                 //no link_rewrite, but uri starts with the link -> manufactures' list
                 return true;
             }
+
             return false;
         }
 
@@ -499,24 +507,25 @@ class Dispatcher extends DispatcherCore
             LEFT JOIN `'._DB_PREFIX_.'manufacturer_shop` s ON (m.`id_manufacturer` = s.`id_manufacturer`)
             WHERE LOWER(m.`name`) LIKE \''.pSQL($manufacturer).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
+            $sql .= ' AND s.`id_shop` = '.(int) Shop::getContextShopID();
         }
 
-        $id_manufacturer = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+        $id_manufacturer = (int) Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
-        return ($id_manufacturer > 0);
+        return $id_manufacturer > 0;
     }
 
     /**
-     * Check if $short_link is a Supplier Link
+     * Check if $short_link is a Supplier Link.
      *
      * @param string $short_link: requested url without '?' part and without '/' on begining
+     *
      * @return bool true: it's a link to supplier, false: it isn't
      */
     private static function isSupplierLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['supplier_rewrite'])) {
@@ -524,6 +533,7 @@ class Dispatcher extends DispatcherCore
                 //no link_rewrite, but uri starts with the link -> suppliers' list
                 return true;
             }
+
             return false;
         }
 
@@ -534,11 +544,11 @@ class Dispatcher extends DispatcherCore
             LEFT JOIN `'._DB_PREFIX_.'supplier_shop` s ON (sp.`id_supplier` = s.`id_supplier`)
             WHERE LOWER(sp.`name`) LIKE \''.pSQL($supplier).'\'';
         if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND s.`id_shop` = '.(int)Shop::getContextShopID();
+            $sql .= ' AND s.`id_shop` = '.(int) Shop::getContextShopID();
         }
 
-        $id_supplier = (int)Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
+        $id_supplier = (int) Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
 
-        return ($id_supplier > 0);
+        return $id_supplier > 0;
     }
 }

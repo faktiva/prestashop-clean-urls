@@ -21,12 +21,13 @@
 class Link extends LinkCore
 {
     /**
-     * Create a link to a category
+     * Create a link to a category.
      *
-     * @param mixed $category Category object (can be an ID category, but deprecated)
+     * @param mixed  $category         Category object (can be an ID category, but deprecated)
      * @param string $alias
-     * @param int $id_lang
+     * @param int    $id_lang
      * @param string $selected_filters Url parameter to autocheck filters of the module blocklayered
+     *
      * @return string
      */
     public function getCategoryLink($category, $alias = null, $id_lang = null, $selected_filters = null, $id_shop = null, $relative_protocol = false)
@@ -42,11 +43,11 @@ class Link extends LinkCore
         }
 
         // Set available keywords
-        $params = array();
-        $params['id'] = $category->id;
-        $params['rewrite'] = (!$alias) ? $category->link_rewrite : $alias;
+        $params                  = array();
+        $params['id']            = $category->id;
+        $params['rewrite']       = (!$alias) ? $category->link_rewrite : $alias;
         $params['meta_keywords'] = Tools::str2url($category->getFieldByLang('meta_keywords'));
-        $params['meta_title'] = Tools::str2url($category->getFieldByLang('meta_title'));
+        $params['meta_title']    = Tools::str2url($category->getFieldByLang('meta_title'));
 
         // Selected filters is used by the module blocklayered
         $selected_filters = is_null($selected_filters) ? '' : $selected_filters;
@@ -54,7 +55,7 @@ class Link extends LinkCore
         if (empty($selected_filters)) {
             $rule = 'category_rule';
         } else {
-            $rule = 'layered_rule';
+            $rule                       = 'layered_rule';
             $params['selected_filters'] = $selected_filters;
         }
 
@@ -77,14 +78,14 @@ class Link extends LinkCore
     }
 
     /**
-     * Get pagination link
+     * Get pagination link.
      *
-     * @param string $type Controller name
-     * @param int $id_object
-     * @param bool $nb Show nb element per page attribute
-     * @param bool $sort Show sort attribute
-     * @param bool $pagination Show page number attribute
-     * @param bool $array If false return an url, if true return an array
+     * @param string $type       Controller name
+     * @param int    $id_object
+     * @param bool   $nb         Show nb element per page attribute
+     * @param bool   $sort       Show sort attribute
+     * @param bool   $pagination Show page number attribute
+     * @param bool   $array      If false return an url, if true return an array
      */
     public function getPaginationLink($type, $id_object, $nb = false, $sort = false, $pagination = false, $array = false)
     {
@@ -92,7 +93,7 @@ class Link extends LinkCore
         if (!$type && !$id_object) {
             $method_name = 'get'.Dispatcher::getInstance()->getController().'Link';
             if (method_exists($this, $method_name) && isset($_GET['id_'.Dispatcher::getInstance()->getController()])) {
-                $type = Dispatcher::getInstance()->getController();
+                $type      = Dispatcher::getInstance()->getController();
                 $id_object = $_GET['id_'.$type];
             }
         }
@@ -108,9 +109,9 @@ class Link extends LinkCore
             $url = $this->getPageLink($name);
         }
 
-        $vars = array();
-        $vars_nb = array('n', 'search_query');
-        $vars_sort = array('orderby', 'orderway');
+        $vars            = array();
+        $vars_nb         = array('n', 'search_query');
+        $vars_sort       = array('orderby', 'orderway');
         $vars_pagination = array('p');
 
         foreach ($_GET as $k => $value) {
@@ -118,15 +119,15 @@ class Link extends LinkCore
                 if (Configuration::get('PS_REWRITING_SETTINGS') && ($k == 'isolang' || $k == 'id_lang')) {
                     continue;
                 }
-                $if_nb = (!$nb || ($nb && !in_array($k, $vars_nb)));
-                $if_sort = (!$sort || ($sort && !in_array($k, $vars_sort)));
+                $if_nb         = (!$nb || ($nb && !in_array($k, $vars_nb)));
+                $if_sort       = (!$sort || ($sort && !in_array($k, $vars_sort)));
                 $if_pagination = (!$pagination || ($pagination && !in_array($k, $vars_pagination)));
                 if ($if_nb && $if_sort && $if_pagination) {
                     if (!is_array($value)) {
                         $vars[urlencode($k)] = $value;
                     } else {
                         foreach (explode('&', http_build_query(array($k => $value), '', '&')) as $key => $val) {
-                            $data = explode('=', $val);
+                            $data                      = explode('=', $val);
                             $vars[urldecode($data[0])] = $data[1];
                         }
                     }
@@ -145,12 +146,13 @@ class Link extends LinkCore
         $vars['requestUrl'] = $url;
 
         if ($type && $id_object) {
-            $vars['id_'.$type] = (is_object($id_object) ? (int)$id_object->id : (int)$id_object);
+            $vars['id_'.$type] = (is_object($id_object) ? (int) $id_object->id : (int) $id_object);
         }
 
         if (!$this->allow == 1) {
             $vars['controller'] = Dispatcher::getInstance()->getController();
         }
+
         return $vars;
     }
 }

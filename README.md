@@ -1,4 +1,5 @@
-[PrestaShop module "Clean URLs"](https://github.com/faktiva/prestashop-seo-tk) <br /> [![SensioLabsInsight](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e/mini.png)](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e) [![License](https://img.shields.io/packagist/l/faktiva/prestashop-clean-urls.svg?style=flat)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e/small.png)](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e)
+[PrestaShop module "Clean URLs"](https://github.com/faktiva/prestashop-seo-tk)
 ===
 
 [![GitHub release](https://img.shields.io/github/release/faktiva/prestashop-clean-urls.svg?style=plastic&label=latest)](https://github.com/faktiva/prestashop-clean-urls/releases/latest)
@@ -7,6 +8,7 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/faktiva/prestashop-clean-urls.svg)](http://isitmaintained.com/project/faktiva/prestashop-clean-urls "Average time to resolve an issue")
 [![composer.lock](https://poser.pugx.org/faktiva/prestashop-clean-urls/composerlock)](https://packagist.org/packages/faktiva/prestashop-clean-urls)
 [![Dependencies Status](https://img.shields.io/librariesio/github/faktiva/prestashop-clean-urls.svg?maxAge=3600)](https://libraries.io/github/faktiva/prestashop-clean-urls)
+[![License](https://img.shields.io/packagist/l/faktiva/prestashop-clean-urls.svg?style=flat)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 [![Join the chat at https://gitter.im/faktiva/prestashop-clean-urls](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=plastic)](https://gitter.im/faktiva/prestashop-clean-urls)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/faktiva/prestashop-clean-urls.svg?style=social)](https://twitter.com/intent/tweet?text=Fantastic @PrestaShop module "#Faktiva Clean URLs"&url=https://github.com/faktiva/prestashop-clean-urls)

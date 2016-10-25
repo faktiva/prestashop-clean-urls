@@ -31,60 +31,60 @@ class Dispatcher extends DispatcherCore
         $this->default_routes = array(
             'category_rule' => array(
                 'controller' => 'category',
-                'rule'       => '{rewrite}/',
-                'keywords'   => array(
-                    'id'            => array('regexp' => '[0-9]+'),
-                    'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL\pS-]*'),
-                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'category_rewrite'),
+                'rule' => '{rewrite}/',
+                'keywords' => array(
+                    'id' => array('regexp' => '[0-9]+'),
+                    'categories' => array('regexp' => '[/_a-zA-Z0-9\pL\pS-]*'),
+                    'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'category_rewrite'),
                     'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                 ),
             ),
             'supplier_rule' => array(
                 'controller' => 'supplier',
-                'rule'       => 'supplier/{rewrite}',
-                'keywords'   => array(
-                    'id'            => array('regexp' => '[0-9]+'),
-                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'supplier_rewrite'),
+                'rule' => 'supplier/{rewrite}',
+                'keywords' => array(
+                    'id' => array('regexp' => '[0-9]+'),
+                    'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'supplier_rewrite'),
                     'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                 ),
             ),
             'manufacturer_rule' => array(
                 'controller' => 'manufacturer',
-                'rule'       => 'manufacturer/{rewrite}',
-                'keywords'   => array(
-                    'id'            => array('regexp' => '[0-9]+'),
-                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'manufacturer_rewrite'),
+                'rule' => 'manufacturer/{rewrite}',
+                'keywords' => array(
+                    'id' => array('regexp' => '[0-9]+'),
+                    'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'manufacturer_rewrite'),
                     'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                 ),
             ),
             'cms_rule' => array(
                 'controller' => 'cms',
-                'rule'       => 'info/{rewrite}',
-                'keywords'   => array(
-                    'id'            => array('regexp' => '[0-9]+'),
-                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_rewrite'),
+                'rule' => 'info/{rewrite}',
+                'keywords' => array(
+                    'id' => array('regexp' => '[0-9]+'),
+                    'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_rewrite'),
                     'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                 ),
             ),
             'cms_category_rule' => array(
                 'controller' => 'cms',
-                'rule'       => 'info/{rewrite}/',
-                'keywords'   => array(
-                    'id'            => array('regexp' => '[0-9]+'),
-                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_category_rewrite'),
+                'rule' => 'info/{rewrite}/',
+                'keywords' => array(
+                    'id' => array('regexp' => '[0-9]+'),
+                    'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'cms_category_rewrite'),
                     'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                 ),
             ),
             'module' => array(
                 'controller' => null,
-                'rule'       => 'module/{module}/{controller}',
-                'keywords'   => array(
-                    'module'     => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
+                'rule' => 'module/{module}/{controller}',
+                'keywords' => array(
+                    'module' => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'module'),
                     'controller' => array('regexp' => '[_a-zA-Z0-9-]+', 'param' => 'controller'),
                 ),
                 'params' => array(
@@ -93,31 +93,31 @@ class Dispatcher extends DispatcherCore
             ),
             'product_rule' => array(
                 'controller' => 'product',
-                'rule'       => '{category:/}{rewrite}',
-                'keywords'   => array(
-                    'id'            => array('regexp' => '[0-9]+'),
-                    'rewrite'       => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'product_rewrite'),
-                    'ean13'         => array('regexp' => '[0-9]{8,17}'),
-                    'category'      => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'categories'    => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
-                    'reference'     => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                'rule' => '{category:/}{rewrite}',
+                'keywords' => array(
+                    'id' => array('regexp' => '[0-9]+'),
+                    'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'product_rewrite'),
+                    'ean13' => array('regexp' => '[0-9]{8,17}'),
+                    'category' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'categories' => array('regexp' => '[/_a-zA-Z0-9\pL-]*'),
+                    'reference' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                     'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'manufacturer'  => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'supplier'      => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'price'         => array('regexp' => '[0-9\.,]*'),
-                    'tags'          => array('regexp' => '[a-zA-Z0-9\pL-]*'),
+                    'meta_title' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'manufacturer' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'supplier' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'price' => array('regexp' => '[0-9\.,]*'),
+                    'tags' => array('regexp' => '[a-zA-Z0-9\pL-]*'),
                 ),
             ),
             'layered_rule' => array(
                 'controller' => 'category',
-                'rule'       => '{rewrite}/f/{selected_filters}',
-                'keywords'   => array(
-                    'id'               => array('regexp' => '[0-9]+'),
+                'rule' => '{rewrite}/f/{selected_filters}',
+                'keywords' => array(
+                    'id' => array('regexp' => '[0-9]+'),
                     'selected_filters' => array('regexp' => '.*', 'param' => 'selected_filters'),
-                    'rewrite'          => array('regexp' => '[_a-zA-Z0-9\pL-]*', 'param' => 'category_rewrite'),
-                    'meta_keywords'    => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
-                    'meta_title'       => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL-]*', 'param' => 'category_rewrite'),
+                    'meta_keywords' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
+                    'meta_title' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),
                 ),
             ),
         );
@@ -149,17 +149,17 @@ class Dispatcher extends DispatcherCore
             for ($i = 0, $total = count($m[0]); $i < $total; ++$i) {
                 $prepend = $m[2][$i];
                 $keyword = $m[3][$i];
-                $append  = $m[5][$i];
+                $append = $m[5][$i];
                 $transform_keywords[$keyword] = array(
                     'required' => isset($keywords[$keyword]['param']),
-                    'prepend'  => stripslashes($prepend),
-                    'append'   => stripslashes($append),
+                    'prepend' => stripslashes($prepend),
+                    'append' => stripslashes($append),
                 );
 
                 $prepend_regexp = $append_regexp = '';
                 if ($prepend || $append) {
                     $prepend_regexp = '('.$prepend;
-                    $append_regexp  = $append.')??'; // fix greediness (step 1)
+                    $append_regexp = $append.')??'; // fix greediness (step 1)
                 }
 
                 if (isset($keywords[$keyword]['param'])) {
@@ -180,11 +180,11 @@ class Dispatcher extends DispatcherCore
         }
 
         $this->routes[$id_shop][$id_lang][$route_id] = array(
-            'rule'       => $rule,
-            'regexp'     => $regexp,
+            'rule' => $rule,
+            'regexp' => $regexp,
             'controller' => $controller,
-            'keywords'   => $keywords,
-            'params'     => $params,
+            'keywords' => $keywords,
+            'params' => $params,
         );
     }
 
@@ -251,7 +251,7 @@ class Dispatcher extends DispatcherCore
                     foreach ($this->routes[$id_shop][$curr_lang_id] as $k => $r) {
                         if (preg_match($r['regexp'], $uri, $m)) {
                             $isTemplate = false;
-                            $module     = isset($r['params']['module']) ? $r['params']['module'] : '';
+                            $module = isset($r['params']['module']) ? $r['params']['module'] : '';
                             switch ($r['controller'].$module) { // Avoid name collision between core and modules' controllers
                                 case 'supplier':
                                 case 'manufacturer':
@@ -298,7 +298,7 @@ class Dispatcher extends DispatcherCore
                                             $route = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
                                             if (!self::isSupplierLink($short_link, $route)) {
                                                 // no route found
-                                                $route      = array();
+                                                $route = array();
                                                 $controller = $this->controller_not_found;
                                             }
                                         }
@@ -330,8 +330,8 @@ class Dispatcher extends DispatcherCore
                             // A patch for module friendly urls
                             if (preg_match('#module-([a-z0-9_-]+)-([a-z0-9]+)$#i', $controller, $m)) {
                                 $_GET['module'] = $m[1];
-                                $_GET['fc']     = 'module';
-                                $controller     = $m[2];
+                                $_GET['fc'] = 'module';
+                                $controller = $m[2];
                             }
 
                             if (isset($_GET['fc']) && $_GET['fc'] == 'module') {
@@ -350,7 +350,7 @@ class Dispatcher extends DispatcherCore
             $this->controller = $controller;
         }
 
-        $this->controller   = str_replace('-', '', $this->controller);
+        $this->controller = str_replace('-', '', $this->controller);
         $_GET['controller'] = $this->controller;
 
         return $this->controller;
@@ -366,7 +366,7 @@ class Dispatcher extends DispatcherCore
     private static function isProductLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['product_rewrite'])) {
@@ -394,7 +394,7 @@ class Dispatcher extends DispatcherCore
     private static function isCategoryLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['category_rewrite'])) {
@@ -423,7 +423,7 @@ class Dispatcher extends DispatcherCore
     private static function isCmsLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['cms_rewrite'])) {
@@ -453,7 +453,7 @@ class Dispatcher extends DispatcherCore
     private static function isCmsCategoryLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['cms_category_rewrite'])) {
@@ -488,7 +488,7 @@ class Dispatcher extends DispatcherCore
     private static function isManufacturerLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['manufacturer_rewrite'])) {
@@ -525,7 +525,7 @@ class Dispatcher extends DispatcherCore
     private static function isSupplierLink($short_link, $route)
     {
         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp     = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
 
         preg_match($regexp, $short_link, $kw);
         if (empty($kw['supplier_rewrite'])) {

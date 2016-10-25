@@ -33,13 +33,13 @@ class faktiva_clean_urls extends Module
 {
     public function __construct()
     {
-        $this->name                   = 'faktiva_clean_urls';
-        $this->tab                    = 'seo';
-        $this->version                = '1.1.1';
-        $this->author                 = 'Faktiva';
-        $this->need_instance          = 0;
+        $this->name = 'faktiva_clean_urls';
+        $this->tab = 'seo';
+        $this->version = '1.1.1';
+        $this->author = 'Faktiva';
+        $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);
-        $this->bootstrap              = true;
+        $this->bootstrap = true;
 
         parent::__construct();
 

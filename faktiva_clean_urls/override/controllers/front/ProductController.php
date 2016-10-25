@@ -24,7 +24,7 @@ class ProductController extends ProductControllerCore
     {
         if ($product_rewrite = Tools::getValue('product_rewrite')) {
             $url_id_pattern = '/.*?([0-9]+)\-([a-zA-Z0-9-]*)(\.html)?/';
-            $lang_id        = (int) Context::getContext()->language->id;
+            $lang_id = (int) Context::getContext()->language->id;
 
             $sql = 'SELECT `id_product`
                 FROM `'._DB_PREFIX_.'product_lang`

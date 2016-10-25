@@ -27,8 +27,6 @@ return Symfony\CS\Config\Config::create()
     ->setUsingCache(true)
     ->level(Symfony\CS\FixerInterface::SYMFONY_LEVEL)
     ->fixers(array(
-        'align_double_arrow',
-        'align_equals',
         'header_comment',
         'empty_return',
         'long_array_syntax',

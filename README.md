@@ -17,14 +17,12 @@ ____
 
 **Makes possible to have URLs with no IDs in PrestaShop.**
 
->    If you fork, please make every change the way we can pull, don't reinvent the wheel .. make every custom change on a private branch, so you can merge your own changes to the community mantained branch every time a new release is out.
 >
->    - For production use the **latest stable [release](https://github.com/faktiva/prestashop-clean-urls/releases/latest)**
->    - For developing or Pull Request please use only the "**[dev](https://github.com/faktiva/prestashop-clean-urls/tree/dev)**" branch
+>    For production use the **latest stable [release](https://github.com/faktiva/prestashop-clean-urls/releases/latest)**
 >
 >    It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >= 1.5 too.
 >    **If you succesfully use this module on some older version please report**
-
+>
 
 # INSTALLATION
 

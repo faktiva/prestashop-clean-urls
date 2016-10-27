@@ -1,5 +1,5 @@
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e/small.png)](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e)
-[PrestaShop module "Clean URLs"](https://github.com/faktiva/prestashop-seo-tk)
+[PrestaShop module "Clean URLs"](https://github.com/faktiva/prestashop-clean-urls)
 ===
 
 [![GitHub release](https://img.shields.io/github/release/faktiva/prestashop-clean-urls.svg?style=plastic&label=latest)](https://github.com/faktiva/prestashop-clean-urls/releases/latest)

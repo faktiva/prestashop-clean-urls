@@ -2,12 +2,12 @@
 [PrestaShop module "Clean URLs"](https://github.com/faktiva/prestashop-clean-urls)
 ===
 
-[![GitHub release](https://img.shields.io/github/release/faktiva/prestashop-clean-urls.svg?style=plastic&label=latest)](https://github.com/faktiva/prestashop-clean-urls/releases/latest)
-[![Project Status](http://opensource.box.com/badges/active.svg)](http://opensource.box.com/badges)
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/faktiva/prestashop-clean-urls.svg)](http://isitmaintained.com/project/faktiva/prestashop-clean-urls "Percentage of issues still open")
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/faktiva/prestashop-clean-urls.svg)](http://isitmaintained.com/project/faktiva/prestashop-clean-urls "Average time to resolve an issue")
-[![composer.lock](https://poser.pugx.org/faktiva/prestashop-clean-urls/composerlock)](https://packagist.org/packages/faktiva/prestashop-clean-urls)
-[![Dependencies Status](https://img.shields.io/librariesio/github/faktiva/prestashop-clean-urls.svg?maxAge=3600)](https://libraries.io/github/faktiva/prestashop-clean-urls)
+[![GitHub release](https://img.shields.io/github/release/faktiva/prestashop-clean-urls.svg?style=flat&label=latest)](https://github.com/faktiva/prestashop-clean-urls/releases/latest)
+[![Project Status](http://opensource.box.com/badges/active.svg?style=flat)](http://opensource.box.com/badges)
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/faktiva/prestashop-clean-urls.svg?style=flat)](http://isitmaintained.com/project/faktiva/prestashop-clean-urls "Percentage of issues still open")
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/faktiva/prestashop-clean-urls.svg?style=flat)](http://isitmaintained.com/project/faktiva/prestashop-clean-urls "Average time to resolve an issue")
+[![composer.lock](https://poser.pugx.org/faktiva/prestashop-clean-urls/composerlock?style=flat)](https://packagist.org/packages/faktiva/prestashop-clean-urls)
+[![Dependencies Status](https://img.shields.io/librariesio/github/faktiva/prestashop-clean-urls.svg?maxAge=3600&style=flat)](https://libraries.io/github/faktiva/prestashop-clean-urls)
 [![License](https://img.shields.io/packagist/l/faktiva/prestashop-clean-urls.svg?style=flat)](https://creativecommons.org/licenses/by-sa/4.0/)
 
 [![Join the chat at https://gitter.im/faktiva/prestashop-clean-urls](https://img.shields.io/badge/Gitter-CHAT%20NOW-brightgreen.svg?style=flat)](https://gitter.im/faktiva/prestashop-clean-urls)

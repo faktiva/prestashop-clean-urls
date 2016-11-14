@@ -6,10 +6,16 @@
     "type": "prestashop-module",
     "authors": [
         {
-              "name": "AlberT",
-              "email": "albert@faktiva.com"
+            "name": "Emiliano 'AlberT' Gabrielli",
+            "email": "albert@faktiva.com",
+            "homepage": "http://faktiva.com",
+            "role": "Developer"
         }
     ],
+    "support": {
+        "issues": "https://github.com/faktiva/prestashop-clean-urls/issues",
+        "source": "https://github.com/faktiva/prestashop-clean-urls/releases/latest"
+    },
 
     "minimum-stability": "stable",
     "config": {
@@ -17,23 +23,26 @@
         "github-protocols": ["https"],
         "archive-format": "zip",
         "preferred-install": "dist",
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "5.3.9"
+        }
+    },
+    "replace": {
+        "zizuu-store/zzcleanurls": "*"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^1.12",
-        "symfony/var-dumper": "^2.8||^3.0",
-        "symfony/debug": "^2.8||^3.0",
+        "symfony/var-dumper": "^2.0 || ^3.0",
+        "symfony/debug": "^2.0 || ^3.0",
         "sensiolabs/security-checker": "^4.0"
     },
     "require": {
         "php": ">=5.2"
     },
-    "replace": {
-        "zizuu-store/zzcleanurls": "*"
-    },
     "scripts": {
         "chk-cs": [
-            "php-cs-fixer -vvv fix --dry-run"
+            "php bin/php-cs-fixer -vvv fix --dry-run"
         ],
         "chk-sec": [
             "php bin/security-checker -vv security:check"
@@ -43,7 +52,7 @@
             "@chk-sec"
         ],
         "fix-cs": [
-            "php-cs-fixer -vvv fix ; exit 0"
+            "php bin/php-cs-fixer -vvv fix"
         ],
         "zip": [
             "@composer archive -vvv -f zip",

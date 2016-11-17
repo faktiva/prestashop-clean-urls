@@ -14,7 +14,11 @@
     ],
     "support": {
         "issues": "https://github.com/faktiva/prestashop-clean-urls/issues",
-        "source": "https://github.com/faktiva/prestashop-clean-urls/releases/latest"
+        "source": "https://github.com/faktiva/prestashop-clean-urls/releases/latest",
+        "email": "support@faktiva.com"
+    },
+    "replace": {
+        "zizuu-store/zzcleanurls": "*"
     },
 
     "minimum-stability": "stable",
@@ -28,9 +32,6 @@
             "php": "5.3.9"
         }
     },
-    "replace": {
-        "zizuu-store/zzcleanurls": "*"
-    },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^1.12",
         "symfony/var-dumper": "^2.0 || ^3.0",
@@ -38,7 +39,7 @@
         "sensiolabs/security-checker": "^4.0"
     },
     "require": {
-        "php": ">=5.2"
+        "php": ">=5.3.9"
     },
     "scripts": {
         "chk-cs": [

@@ -61,6 +61,6 @@
         ]
     },
     "archive": {
-        "exclude": [".*", "/composer.*", "/vendor", "*.zip", "*.tar", "*.md", "/*.jpg" ]
+        "exclude": [".*", "/composer.*", "/vendor", "*.zip", "*.tar", "/*.jpg", "*.md", "LICENSE"]
     }
 }

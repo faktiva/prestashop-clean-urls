@@ -2,7 +2,7 @@
     "name": "faktiva/prestashop-clean-urls",
     "description": "Prestashop\"Clean URLs\" module. It removes objects' IDs from URLs.",
     "homepage": "https://github.com/faktiva/prestashop-clean-urls",
-    "license": "CC-BY-SA-4.0",
+    "license": "MIT",
     "type": "prestashop-module",
     "authors": [
         {

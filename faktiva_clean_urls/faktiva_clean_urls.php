@@ -93,7 +93,10 @@ class faktiva_clean_urls extends Module
             }
         }
 
-        if (!parent::install()) {
+        if (!parent::install() ||
+            !$this->registerHook('actionProductAdd') ||
+            !$this->registerHook('actionProductSave') ||
+            !$this->registerHook('actionProductUpdate')) {
             return false;
         }
 
@@ -107,5 +110,82 @@ class faktiva_clean_urls extends Module
         }
 
         return true;
+    }
+    
+    public function reset()
+    {
+        if (!$this->uninstall(false)) {
+            return false;
+        }
+        if (!$this->install(false)) {
+            return false;
+        }
+
+        return true;
+    }
+    
+    /*
+    * Check if the rewrite already exists for any other product, if so append a number to the rewrite (Drupal like)
+    * This will ensure there will never be 2 products with the exact same url.
+    *
+    */
+    
+    public function hookActionProductAdd($params){
+      $product = $params['product'];
+      $current_lang_id = (int) Context::getContext()->language->id;
+      //copy the array
+      $rewrites = $product->link_rewrite; 
+      
+      foreach ($product->link_rewrite as $lang_id => $rewrite){
+         if (empty($rewrite)) { // when adding a product the first time the rewrite for non default languages is empty in $params
+             $rewrite = $rewrites[$current_lang_id];
+         }
+         $count = 0;
+         $rewrite_unique = $rewrite;
+         while ($this->product_unique_loop($lang_id, $rewrite_unique, $product->id)){
+           $rewrite_unique = $rewrite.'-'.$count;
+           $count++;
+         }
+         $rewrites[$lang_id] = $rewrite_unique;
+         if ($count > 0) // do the update query only if we found a duplicate
+             $this->updateProductRewrite($product,$rewrite_unique, $lang_id); // not saving again the whole product, just the changed rewrites
+      }
+      $params['product']->link_rewrite = $rewrites; // this doesn't update the product
+      return $params;
+    }
+    
+    /*
+    * Check if a rewrite exists for other products and same language
+    */
+    
+    private function product_unique_loop($lang_id, $rewrite, $product_id){
+      $sql = 'SELECT *
+              FROM `'._DB_PREFIX_.'product_lang`
+              WHERE `link_rewrite` = "'.$rewrite.'" AND `id_lang` = '.$lang_id.' AND `id_product` <> '.(int)$product_id;
+      if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
+          $sql .= ' AND `id_shop` = '.(int) Shop::getContextShopID();
+      }
+     
+      return Db::getInstance()->executeS($sql);
+    }
+    
+    /*
+    * update just the rewrite we changed
+    */
+    
+    function updateProductRewrite($product, $rewrite_unique, $lang_id){
+      $where = ' `id_product` = "'.$product->id.'" AND `id_lang` = "'.$lang_id.'"';
+      if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
+          $where .= ' AND `id_shop` = '.(int) Shop::getContextShopID();
+      }
+      Db::getInstance()->update('product_lang', array('link_rewrite'=>$rewrite_unique), $where);
+    }
+    
+    public function hookActionProductSave($params){
+      return $this->hookActionProductAdd($params);
+    }
+    
+    public function hookActionProductUpdate($params){
+      return $this->hookActionProductAdd($params);
     }
 }

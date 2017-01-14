@@ -392,26 +392,57 @@ class Dispatcher extends DispatcherCore
      * @return bool true: it's a link to category, false: it isn't
      */
     private static function isCategoryLink($short_link, $route)
-    {
-        $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
-        $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
-
-        preg_match($regexp, $short_link, $kw);
-        if (empty($kw['category_rewrite'])) {
-            return false;
-        }
-
-        $sql = 'SELECT `id_category`
-            FROM `'._DB_PREFIX_.'category_lang`
-            WHERE `link_rewrite` = \''.pSQL($kw['category_rewrite']).'\' AND `id_lang` = '.(int) Context::getContext()->language->id;
-        if (Shop::isFeatureActive() && Shop::getContext() == Shop::CONTEXT_SHOP) {
-            $sql .= ' AND `id_shop` = '.(int) Shop::getContextShopID();
-        }
-
-        $id_category = (int) Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($sql);
-
-        return $id_category > 0;
-    }
+     {
+         $category = basename($short_link);
+         $tree = explode("/", trim($short_link, '/'));
+ 		//echo '<pre>Dispatcher tree:'.print_r($tree,1).'</pre>';
+         $short_link = preg_replace('#\.html?$#', '', '/'.$short_link);
+         $regexp = preg_replace('!\\\.html?\\$#!', '$#', $route['regexp']);
+         preg_match($regexp, $short_link, $kw);
+         if (empty($kw['category_rewrite'])) {
+             return false;
+         }
+  
+         $categories = Dispatcher::getSimpleCategories((int)Context::getContext()->language->id);
+ 		$id_category = 0;
+ 		foreach ($categories as $candidate){
+ 			$cloneTree = $tree;
+ 			if ($candidate['link_rewrite'] == array_pop($cloneTree)){
+ 				if (empty($cloneTree) || $candidate['is_root_category'] ||  Dispatcher::checkParentsLoop($candidate, $categories, $cloneTree)){
+ 					$id_category = (int)$candidate['id_category'];
+ 					break;
+ 				}
+ 			}
+ 		}
+ 
+         return ($id_category > 0);
+     }
+ 	
+ 	public static function checkParentsLoop($candidate, $categories, $tree){
+ 		foreach  ($categories as $cat){
+ 			$cloneTree = $tree;
+ 			if ($candidate['id_parent'] == $cat['id_category'] && $cat['link_rewrite'] == array_pop($cloneTree)){
+ 				if (empty($cloneTree) || $cat['is_root_category'] || Dispatcher::checkParentsLoop($cat, $categories, $cloneTree)){
+ 					return $cat['id_category'];
+ 					break;
+ 				}
+ 			}
+ 		}
+ 		return false;
+ 		
+ 	}
+     
+     public static function getSimpleCategories($id_lang)
+     {
+         return Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
+           SELECT c.`id_category`, c.`id_parent`, c.`is_root_category`, cl.`name`, cl.`link_rewrite`
+           FROM `'._DB_PREFIX_.'category` c
+           LEFT JOIN `'._DB_PREFIX_.'category_lang` cl ON (c.`id_category` = cl.`id_category`'.Shop::addSqlRestrictionOnLang('cl').')
+           '.Shop::addSqlAssociation('category', 'c').'
+           WHERE cl.`id_lang` = '.(int)$id_lang.'
+           AND c.`id_category` != '.Configuration::get('PS_ROOT_CATEGORY').'
+           GROUP BY c.id_category');
+     }
 
     /**
      * Check if $short_link is a Cms Link.

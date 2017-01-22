@@ -39,7 +39,11 @@
         "symfony/debug": "^2.0 || ^3.0"
     },
     "require": {
-        "php": ">=5.3.9"
+        "php": ">=5.3.9",
+        "composer/installers": "^1.2"
+    },
+        "extra": {
+        "installer-name": "faktiva_seotk"
     },
     "scripts": {
         "chk-cs": [
@@ -56,11 +60,7 @@
             "php bin/php-cs-fixer -vvv fix"
         ],
         "zip": [
-            "@composer archive -vvv -f zip",
-            "php -r 'rename(@array_shift(glob(\"faktiva-prestashop-clean-urls-*.zip\")), \"faktiva_clean_urls.zip\");'"
+            "git archive -o faktiva_clean_urls.zip --prefix=faktiva_cleanurls/ "
         ]
-    },
-    "archive": {
-        "exclude": [".*", "/composer.*", "/vendor", "*.zip", "*.tar", "/*.jpg", "*.md", "LICENSE"]
     }
 }

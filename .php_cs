@@ -21,7 +21,7 @@ EOF;
 Symfony\CS\Fixer\Contrib\HeaderCommentFixer::setHeader($header);
 
 $finder = Symfony\CS\Finder::create()
-    ->in(__DIR__.'/faktiva_clean_urls');
+    ->in(__DIR__);
 
 return Symfony\CS\Config\Config::create()
     ->setUsingCache(true)

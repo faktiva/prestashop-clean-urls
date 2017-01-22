@@ -29,11 +29,11 @@ if (version_compare(phpversion(), '5.3.0', '>=')) { // Namespaces support is req
     include_once __DIR__.'/tools/debug.php';
 }
 
-class faktiva_clean_urls extends Module
+class faktiva_CleanUrls extends Module
 {
     public function __construct()
     {
-        $this->name = 'faktiva_clean_urls';
+        $this->name = 'faktiva_cleanurls';
         $this->tab = 'seo';
         $this->version = '1.1.2';
         $this->author = 'Faktiva';

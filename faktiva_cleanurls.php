@@ -35,7 +35,7 @@ class faktiva_CleanUrls extends Module
     {
         $this->name = 'faktiva_cleanurls';
         $this->tab = 'seo';
-        $this->version = '1.1.2';
+        $this->version = '1.2.1';
         $this->author = 'Faktiva';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => _PS_VERSION_);

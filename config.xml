@@ -2,7 +2,7 @@
 <module>
 	<name>faktiva_cleanurls</name>
 	<displayName><![CDATA[Faktiva Clean URLs]]></displayName>
-	<version><![CDATA[1.1.2]]></version>
+	<version><![CDATA[1.2.1]]></version>
 	<description><![CDATA[This override-Module allows you to remove URL ID&#039;s.]]></description>
 	<author><![CDATA[Faktiva]]></author>
 	<tab><![CDATA[seo]]></tab>

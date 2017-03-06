@@ -43,21 +43,21 @@
         "composer/installers": "^1.2"
     },
         "extra": {
-        "installer-name": "faktiva_seotk"
+        "installer-name": "faktiva_cleanurls"
     },
     "scripts": {
         "chk-cs": [
-            "php bin/php-cs-fixer -vvv fix --dry-run"
+            "php-cs-fixer -vvv fix --dry-run"
         ],
         "chk-sec": [
-            "php bin/security-checker -vv security:check"
+            "security-checker -vv security:check"
         ],
         "check": [
             "@chk-cs",
             "@chk-sec"
         ],
         "fix-cs": [
-            "php bin/php-cs-fixer -vvv fix"
+            "php-cs-fixer -vvv fix"
         ],
         "zip": [
             "git archive -o faktiva_clean_urls.zip --prefix=faktiva_cleanurls/ "

@@ -17,6 +17,8 @@ ____
 
 **Makes possible to have URLs with no IDs in PrestaShop.**
 
+>    This module is **NOT intended to work on PS 1.7.x** (it may, but it is not supported at all)
+
 >
 >    For production use the **latest stable [release](https://github.com/faktiva/prestashop-clean-urls/releases/latest)**
 >

@@ -35,7 +35,7 @@ class faktiva_CleanUrls extends Module
     {
         $this->name = 'faktiva_cleanurls';
         $this->tab = 'seo';
-        $this->version = '1.2.2';
+        $this->version = '1.2.3';
         $this->author = 'Faktiva';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => '1.6.99');
@@ -44,7 +44,7 @@ class faktiva_CleanUrls extends Module
         parent::__construct();
 
         $this->displayName = $this->l('Faktiva Clean URLs');
-        $this->description = $this->l('This override-Module allows you to remove URL ID\'s.');
+        $this->description = $this->l('This override-module allows you to remove URL ID\'s.');
 
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall "Faktiva Clean URLs" module?');
     }
@@ -54,8 +54,8 @@ class faktiva_CleanUrls extends Module
         $output = '<p class="info">'
             .$this->l('On some versions you could have to disable Cache, save, open your shop home page, than go back and enable it:').'<br><br>'
             .sprintf('%s -> %s -> %s', $this->l('Advanced Parameters'), $this->l('Performance'), $this->l('Clear Smarty cache')).'<br>'
-            .sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL off'), $this->l('Save')).'<br>'
-            .sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set userfriendly URL on'), $this->l('Save')).'<br>'
+            .sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set user-friendly URL off'), $this->l('Save')).'<br>'
+            .sprintf('%s -> %s -> %s -> %s', $this->l('Preferences'), $this->l('SEO and URLs'), $this->l('Set user-friendly URL on'), $this->l('Save')).'<br>'
             .'</p>';
 
         $sql = 'SELECT * FROM `'._DB_PREFIX_.'product_lang`

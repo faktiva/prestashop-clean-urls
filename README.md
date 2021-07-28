@@ -22,8 +22,7 @@ ____
 >
 >    For production use the **latest stable [release](https://github.com/faktiva/prestashop-clean-urls/releases/latest)**
 >
->    It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >= 1.5 too.
->    **If you succesfully use this module on some older version please report**
+>    It has been reported to work on **PS 1.7.7 ** but will install on PS >= 1.5 too.
 >
 
 # INSTALLATION

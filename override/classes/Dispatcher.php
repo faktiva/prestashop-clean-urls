@@ -96,6 +96,7 @@ class Dispatcher extends DispatcherCore
                 'rule' => '{category:/}{rewrite}',
                 'keywords' => array(
                     'id' => array('regexp' => '[0-9]+'),
+                    'id_product_attribute' => ['regexp' => '[0-9]+', 'param' => 'id_product_attribute'],
                     'rewrite' => array('regexp' => '[_a-zA-Z0-9\pL\pS-]*', 'param' => 'product_rewrite'),
                     'ean13' => array('regexp' => '[0-9]{8,17}'),
                     'category' => array('regexp' => '[_a-zA-Z0-9\pL-]*'),

@@ -43,7 +43,7 @@ Go in the back office of your shop and follow these steps:
 **Make sure your _`SEO and URL`_ settings are as follows:**
 
 This is **MANDATORY**
-  - products:         {category:/}{rewrite}              (you **can** add .html at the end)
+  - products:         {category:/}{rewrite}{-:id_product_attribute}              (you **can** add .html at the end)
   - categories:       {categories:/}{rewrite}**/**
   - manufacturers:    manufactures/{rewrite}
   - suppliers:        suppliers/{rewrite}

@@ -93,7 +93,7 @@ class Dispatcher extends DispatcherCore
             ),
             'product_rule' => array(
                 'controller' => 'product',
-                'rule' => '{category:/}{rewrite}',
+                'rule' => '{category:/}{rewrite}{-:id_product_attribute}',
                 'keywords' => array(
                     'id' => array('regexp' => '[0-9]+'),
                     'id_product_attribute' => ['regexp' => '[0-9]+', 'param' => 'id_product_attribute'],

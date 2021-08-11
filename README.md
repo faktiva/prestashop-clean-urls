@@ -22,8 +22,7 @@ ____
 >
 >    For production use the **latest stable [release](https://github.com/faktiva/prestashop-clean-urls/releases/latest)**
 >
->    It has been reported to work on **PS 1.5.6 - 1.6.1.x** but will install on PS >= 1.5 too.
->    **If you succesfully use this module on some older version please report**
+>    It has been reported to work on **PS 1.7.7 ** but will install on PS >= 1.5 too.
 >
 
 # INSTALLATION
@@ -43,7 +42,7 @@ Go in the back office of your shop and follow these steps:
 **Make sure your _`SEO and URL`_ settings are as follows:**
 
 This is **MANDATORY**
-  - products:         {category:/}{rewrite}              (you **can** add .html at the end)
+  - products:         {category:/}{rewrite}{-:id_product_attribute}              (you **can** add .html at the end)
   - categories:       {categories:/}{rewrite}**/**
   - manufacturers:    manufactures/{rewrite}
   - suppliers:        suppliers/{rewrite}

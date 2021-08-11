@@ -16,6 +16,7 @@
  * @author   Emiliano 'AlberT' Gabrielli <albert@faktiva.com>
  * @license  https://creativecommons.org/licenses/by-sa/4.0/  CC-BY-SA-4.0
  * @source   https://github.com/faktiva/prestashop-clean-urls
+ * @source https://github.com/juferlover/prestashop-clean-urls/tree/Prestashop-1.7-Update
  */
 
 if (!defined('_PS_VERSION_')) {

@@ -1,4 +1,3 @@
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e/small.png)](https://insight.sensiolabs.com/projects/58d1de4f-45fc-4f63-aeb3-7ddc51d4a64e)
 [PrestaShop module "Faktiva Clean URLs"](https://github.com/faktiva/prestashop-clean-urls)
 ===
 
@@ -16,6 +15,8 @@
 ____
 
 **Makes possible to have URLs with no IDs in PrestaShop.**
+
+> **Warning**: This SW is unmaintained
 
 >    This module is **NOT intended to work on PS 1.7.x** (it may, but it is not supported at all)
 
